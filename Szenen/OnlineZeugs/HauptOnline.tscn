@@ -1171,8 +1171,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3240.0
-margin_bottom = 5660.0
+margin_right = 5400.0
+margin_bottom = 9500.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1247,8 +1247,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3240.0
-margin_bottom = 5660.0
+margin_right = 5400.0
+margin_bottom = 9500.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1544,8 +1544,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3240.0
-margin_bottom = 5760.0
+margin_right = 5400.0
+margin_bottom = 9600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

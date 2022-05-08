@@ -10,6 +10,7 @@ func button_pressed(button_name):
 	angefragter_id = int(button_name)
 	Server.available = false
 	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
+	$SucheLabel.set_text("")
 	Server.rpc_id(int(button_name), "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name)
 	$MomentNode.visible = true
 	$MomentNode/ColorRect/AnimationPlayer.play("InsBild")
@@ -36,11 +37,11 @@ func _on_deny_pressed(mit_update : bool = true):
 	yield($anfragNode/ColorRect/Tween, "tween_completed")
 	$anfragNode.visible = false
 	
-	if mit_update:
-		Server.rpc_id(1, "spieler_available_update", true, false, anfrager_id, false)
-		Server.available = true
-		Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
-		anfrager_id = null
+#	if mit_update:
+#		Server.rpc_id(1, "spieler_available_update", true, false, anfrager_id, false)
+#		Server.available = true
+#		Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
+#		anfrager_id = null
 
 func _on_Abbrechen_pressed():
 	Server.rpc_id(angefragter_id, "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, false)
@@ -49,10 +50,10 @@ func _on_Abbrechen_pressed():
 	yield($MomentNode/ColorRect/Tween, "tween_completed")
 	$MomentNode.visible = false
 	
-	Server.rpc_id(1, "spieler_available_update", true, false, angefragter_id, false)
-	Server.available = true
-	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
-	angefragter_id = null
+#	Server.rpc_id(1, "spieler_available_update", true, false, angefragter_id, false)
+#	Server.available = true
+#	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
+#	angefragter_id = null
 
 func _on_Button_pressed():
 	Server.available = false
@@ -95,4 +96,9 @@ func _on_Zufall_pressed():
 	Server.available = true
 
 func _on_Suche_pressed():
-	pass
+	print("press")
+	for i in $ScrollContainer/VBoxContainer.get_child_count():
+		print("such")
+		if $SuchEdit.text == $ScrollContainer/VBoxContainer.get_children()[i].get_node("Label").text && $ScrollContainer/VBoxContainer.get_children()[i].get_node("Ingame").visible == false:
+			button_pressed($ScrollContainer/VBoxContainer.get_children()[i].name)
+			break

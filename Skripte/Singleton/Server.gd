@@ -66,6 +66,7 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 		#Anfrage erhalten
 		available = false
 		rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
+		onlinelistnode.get_node("SucheLabel").set_text("")
 		onlinelistnode.anfrager_id = anfrager_id
 		onlinelistnode.anfrager_name = anfrager_name
 #		onlinelistnode.anfrager_name = anfrager_name
@@ -89,6 +90,7 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 # warning-ignore:return_value_discarded
 #		get_parent().add_child($"/root/Start/OnlineListe".HAUPTONLINE.instance())
 		if not returned:
+			rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 			get_parent().get_node("Start/OnlineListe/TransitionBlackness").black(false)
 			spielpartner_id = anderer_id
 			spielpartner_name = anderer_name
@@ -97,6 +99,7 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 			rpc_id(anderer_id, "reagiert_auf_anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, true, true)
 		else:
 			onlinelistnode.anfrager_id = null
+			rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 			onlinelistnode.get_node("TransitionBlackness").black()
 	else:
 		available = true
@@ -218,7 +221,7 @@ remote func anderer_spiel_verlassen():
 		$"/root/Welt/NochDaCheckTimer".stop()
 
 remote func noch_da(frager_id, frage : bool = false):
-	if frage && ((get_node_or_null("/root/Welt") && spielpartner_id == frager_id) or get_node_or_null("/root/Start/OnlineListe")):
+	if frage && ((get_node_or_null("/root/Welt") && spielpartner_id == frager_id) or (get_node_or_null("/root/Start/OnlineListe") && not ingame)):
 		rpc_id(frager_id, "noch_da", 5318008) #Id wieder unnötig, BOOBIES
 	elif get_node_or_null("/root/Welt") != null:
 		$"/root/Welt/NochDaTimer".stop()
