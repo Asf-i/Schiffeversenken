@@ -1,0 +1,47 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 44
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 0.890196 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0, 0, 0, 0.145098 )
+shadow_size = 22
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.972549, 0.972549, 0.972549, 0.839216 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0, 0, 0, 0.145098 )
+shadow_size = 22
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.631373, 0.631373, 0.631373, 0.839216 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0, 0, 0, 0.145098 )
+shadow_size = 22
+
+[resource]
+Button/colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+Button/colors/font_color_focus = Color( 0.156863, 0.156863, 0.156863, 1 )
+Button/colors/font_color_hover = Color( 0.129412, 0.129412, 0.129412, 1 )
+Button/colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+Button/fonts/font = SubResource( 1 )
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )

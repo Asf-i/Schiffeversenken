@@ -1,0 +1,1234 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://Skripte/Haupt.gd" type="Script" id=1]
+[ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Szenen/Schiff 4er.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Szenen/Schiff 2er.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Szenen/Schiff 5er.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Szenen/Felder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=8]
+[ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=9]
+[ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=11]
+[ext_resource path="res://Texturen/hintergrundbild.png" type="Texture" id=12]
+[ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=13]
+[ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=14]
+[ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=15]
+[ext_resource path="res://Texturen/Symbole/Random.png" type="Texture" id=16]
+[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=17]
+[ext_resource path="res://Texturen/Symbole/Trash.png" type="Texture" id=18]
+[ext_resource path="res://Texturen/Symbole/Haus.png" type="Texture" id=19]
+[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=20]
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.894118, 0.894118, 0.894118, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.784314, 0.784314, 0.784314, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.415686, 0.415686, 0.415686, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="DynamicFont" id=24]
+size = 82
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=25]
+size = 53
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.870588, 0.870588, 0.870588, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=28]
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=41]
+size = 95
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=40]
+size = 49
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=38]
+size = 49
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.894118 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id=43]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 270, 480 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1080, 1920 ), Vector2( 1080, 1920 ) ]
+}
+
+[node name="Welt" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 8 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+feldverschiebung = 150
+
+[node name="SwipeDetector" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hintergrundsprite" type="Sprite" parent="ColorRect"]
+modulate = Color( 1, 1, 1, 0.305882 )
+position = Vector2( -436, -1216 )
+texture = ExtResource( 12 )
+centered = false
+
+[node name="Sprite" type="Sprite" parent="ColorRect"]
+modulate = Color( 0.780392, 0.945098, 1, 1 )
+position = Vector2( 2010, 1165 )
+scale = Vector2( 1.65278, 1.65278 )
+texture = ExtResource( 14 )
+
+[node name="SchriftLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 110.0
+margin_top = 90.0
+margin_right = -110.0
+margin_bottom = 314.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_styles/normal = SubResource( 37 )
+text = "Platziere die Schiffe
+im Feld"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FelderHintergrund" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -526.0
+margin_top = -1341.0
+margin_right = 526.0
+margin_bottom = -289.002
+custom_styles/disabled = SubResource( 18 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FelderRaster" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -1327.0
+margin_right = 512.0
+margin_bottom = -303.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Felder" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -815.0
+margin_bottom = -815.0
+
+[node name="Tween" type="Tween" parent="Felder"]
+
+[node name="Abdeckung" type="Control" parent="Felder"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -531.0
+margin_top = -531.0
+margin_right = 531.0
+margin_bottom = 530.998
+
+[node name="EigenschiffControl" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -0.00012207
+margin_top = 400.0
+margin_right = -0.00012207
+margin_bottom = 400.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EigeneFelderHintergrund" type="Button" parent="EigenschiffControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -263.0
+margin_top = -263.0
+margin_right = 789.0
+margin_bottom = 789.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_styles/disabled = SubResource( 18 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EigeneFelderRaster" type="Button" parent="EigenschiffControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 768.0
+margin_bottom = 768.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_styles/disabled = SubResource( 19 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EigeneFelder" parent="EigenschiffControl" instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_right = 0.5
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="EigeneSchiffe" type="Control" parent="EigenschiffControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -251.0
+margin_right = -463.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -185.0
+margin_right = 318.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -251.0
+margin_right = -152.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -185.0
+margin_right = 107.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -185.0
+margin_right = -305.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -251.0
+margin_right = 255.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="FertigButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 135.0
+margin_top = -1535.0
+margin_right = 265.0
+margin_bottom = -1405.0
+custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
+custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color_hover = Color( 0.784314, 0.784314, 0.784314, 1 )
+custom_colors/font_color_pressed = Color( 0.564706, 0.564706, 0.564706, 1 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/disabled = SubResource( 22 )
+custom_styles/normal = SubResource( 17 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="FertigButton"]
+position = Vector2( 1.99988, -0.00195313 )
+texture = ExtResource( 17 )
+centered = false
+
+[node name="RandomButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -265.0
+margin_top = -1535.0
+margin_right = -135.0
+margin_bottom = -1405.0
+custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
+custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color_hover = Color( 0.784314, 0.784314, 0.784314, 1 )
+custom_colors/font_color_pressed = Color( 0.564706, 0.564706, 0.564706, 1 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/focus = SubResource( 20 )
+custom_styles/disabled = SubResource( 22 )
+custom_styles/normal = SubResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="RandomButton"]
+position = Vector2( 1.99988, 5.99805 )
+scale = Vector2( 0.937499, 0.937499 )
+texture = ExtResource( 16 )
+centered = false
+
+[node name="ClearButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -65.0
+margin_top = -1535.0
+margin_right = 65.0
+margin_bottom = -1405.0
+custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
+custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color_hover = Color( 0.784314, 0.784314, 0.784314, 1 )
+custom_colors/font_color_pressed = Color( 0.564706, 0.564706, 0.564706, 1 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/disabled = SubResource( 22 )
+custom_styles/normal = SubResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ClearButton"]
+position = Vector2( 6.99988, 6.99805 )
+scale = Vector2( 0.898437, 0.898437 )
+texture = ExtResource( 18 )
+centered = false
+
+[node name="HauptmenuButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = -106.002
+margin_right = 142.0
+margin_bottom = -14.002
+theme = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="HauptmenuButton"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 9, 5 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 19 )
+centered = false
+
+[node name="Schiffe" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="Schiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -226.002
+margin_right = -463.0
+margin_bottom = -226.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="Schiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -160.002
+margin_right = 318.0
+margin_bottom = -160.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="Schiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -226.002
+margin_right = -152.0
+margin_bottom = -226.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="Schiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -160.002
+margin_right = 107.0
+margin_bottom = -160.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="Schiffe" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -160.002
+margin_right = -305.0
+margin_bottom = -160.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="Schiffe" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -226.002
+margin_right = 255.0
+margin_bottom = -226.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="Raketen" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AndererSpielerBitte" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1920.0
+margin_bottom = -1920.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="AndererSpielerBitte"]
+
+[node name="Label" type="Label" parent="AndererSpielerBitte"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -494.0
+margin_top = -65.001
+margin_right = 495.0
+margin_bottom = 43.999
+custom_fonts/font = SubResource( 24 )
+text = "Spieler_2"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="AndererSpielerBitte"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -529.0
+margin_top = 46.999
+margin_right = 530.0
+margin_bottom = 109.999
+custom_fonts/font = SubResource( 25 )
+text = "ist dran"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AndererOkButton" type="Button" parent="AndererSpielerBitte"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -196.0
+margin_top = -610.002
+margin_right = 196.0
+margin_bottom = -360.002
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_styles/hover = SubResource( 26 )
+custom_styles/pressed = SubResource( 27 )
+custom_styles/focus = SubResource( 28 )
+custom_styles/normal = SubResource( 29 )
+text = "ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gewonnen" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1920.0
+margin_bottom = -1920.0
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Gewonnen"]
+
+[node name="Label" type="Label" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -935.001
+margin_right = 540.0
+margin_bottom = -823.001
+custom_fonts/font = SubResource( 41 )
+text = "Gewinnername"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gewinner1" type="Control" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -0.00012207
+margin_top = -304.001
+margin_right = -0.00012207
+margin_bottom = -304.001
+rect_scale = Vector2( 0.8, 0.8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FelderRaster" type="ColorRect" parent="Gewonnen/Gewinner1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -512.0
+margin_right = 512.0
+margin_bottom = 512.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GewinnerFelder1" parent="Gewonnen/Gewinner1" instance=ExtResource( 6 )]
+
+[node name="GewinnerSchiffe1" type="Control" parent="Gewonnen/Gewinner1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="Gewonnen/Gewinner1/GewinnerSchiffe1" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -251.0
+margin_right = -463.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="Gewonnen/Gewinner1/GewinnerSchiffe1" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -185.0
+margin_right = 318.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="Gewonnen/Gewinner1/GewinnerSchiffe1" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -251.0
+margin_right = -152.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="Gewonnen/Gewinner1/GewinnerSchiffe1" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -185.0
+margin_right = 107.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="Gewonnen/Gewinner1/GewinnerSchiffe1" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -185.0
+margin_right = -305.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="Gewonnen/Gewinner1/GewinnerSchiffe1" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -251.0
+margin_right = 255.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Gewinner2" type="Control" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -0.00012207
+margin_top = 498.999
+margin_right = -0.00012207
+margin_bottom = 498.999
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FelderRaster" type="ColorRect" parent="Gewonnen/Gewinner2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -512.0
+margin_right = 512.0
+margin_bottom = 512.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GewinnerFelder2" parent="Gewonnen/Gewinner2" instance=ExtResource( 6 )]
+
+[node name="GewinnerSchiffe2" type="Control" parent="Gewonnen/Gewinner2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="Gewonnen/Gewinner2/GewinnerSchiffe2" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -251.0
+margin_right = -463.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="Gewonnen/Gewinner2/GewinnerSchiffe2" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -185.0
+margin_right = 318.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="Gewonnen/Gewinner2/GewinnerSchiffe2" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -251.0
+margin_right = -152.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="Gewonnen/Gewinner2/GewinnerSchiffe2" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -185.0
+margin_right = 107.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="Gewonnen/Gewinner2/GewinnerSchiffe2" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -185.0
+margin_right = -305.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="Gewonnen/Gewinner2/GewinnerSchiffe2" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -251.0
+margin_right = 255.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Label2" type="Label" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -829.001
+margin_right = 540.0
+margin_bottom = -747.001
+custom_fonts/font = SubResource( 40 )
+text = "hat gewonnen"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = 166.999
+margin_right = 540.0
+margin_bottom = 224.999
+custom_fonts/font = SubResource( 38 )
+text = "Verlierername"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Revanche" type="Button" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 46.9999
+margin_top = -138.002
+margin_right = 288.0
+margin_bottom = -45.188
+theme = ExtResource( 9 )
+text = "Revanche"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hauptmenu" type="Button" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -303.0
+margin_top = -138.002
+margin_right = -19.0001
+margin_bottom = -45.188
+theme = ExtResource( 9 )
+text = "Hauptmenü"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingWegButton" type="Button" parent="."]
+visible = false
+modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Einstellungen" parent="." instance=ExtResource( 10 )]
+visible = false
+
+[node name="ZumHauptmenu" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 0.0012207
+color = Color( 0, 0, 0, 0.160784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="Control" parent="ZumHauptmenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 5400.0
+margin_bottom = 9600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nein2" type="Button" parent="ZumHauptmenu/Content"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ZumHauptmenu/Content"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -449.0
+margin_top = -680.002
+margin_right = 450.0
+margin_bottom = -432.002
+custom_styles/disabled = SubResource( 36 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ZumHauptmenu/Content"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -314.5
+margin_top = -647.001
+margin_right = 314.5
+margin_bottom = -565.001
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Zum Hauptmenü?"
+
+[node name="ja" type="Button" parent="ZumHauptmenu/Content"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -175.0
+margin_top = -556.002
+margin_right = -65.0001
+margin_bottom = -446.002
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_styles/hover = SubResource( 30 )
+custom_styles/pressed = SubResource( 31 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ZumHauptmenu/Content/ja"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 8, 4.00195 )
+scale = Vector2( 0.773438, 0.773438 )
+texture = ExtResource( 17 )
+centered = false
+
+[node name="nein" type="Button" parent="ZumHauptmenu/Content"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 64.9999
+margin_top = -556.002
+margin_right = 175.0
+margin_bottom = -446.002
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_styles/hover = SubResource( 30 )
+custom_styles/pressed = SubResource( 31 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ZumHauptmenu/Content/nein"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 2.00012, 1.00195 )
+scale = Vector2( 0.812501, 0.812501 )
+texture = ExtResource( 20 )
+centered = false
+
+[node name="ContentPlayer" type="AnimationPlayer" parent="ZumHauptmenu/Content"]
+anims/RESET = SubResource( 43 )
+anims/open = SubResource( 44 )
+
+[node name="TransitionBlackness" parent="." instance=ExtResource( 13 )]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+rotating = true
+current = true
+script = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
+[connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
+[connection signal="pressed" from="FertigButton" to="." method="_on_FertigButton_pressed"]
+[connection signal="pressed" from="RandomButton" to="." method="_on_RandomButton_pressed"]
+[connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
+[connection signal="pressed" from="HauptmenuButton" to="." method="_on_HauptmenuButton_pressed"]
+[connection signal="pressed" from="AndererSpielerBitte/AndererOkButton" to="." method="_on_AndererOkButton_pressed"]
+[connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
+[connection signal="pressed" from="Gewonnen/Hauptmenu" to="." method="_on_ja_pressed"]
+[connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
+[connection signal="pressed" from="ZumHauptmenu/Content/nein2" to="." method="_on_nein_pressed"]
+[connection signal="pressed" from="ZumHauptmenu/Content/ja" to="." method="_on_ja_pressed"]
+[connection signal="pressed" from="ZumHauptmenu/Content/nein" to="." method="_on_nein_pressed"]
+[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]

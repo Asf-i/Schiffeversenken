@@ -1,0 +1,227 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Texturen/onoff.png" type="Texture" id=4]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=5]
+
+[sub_resource type="Shader" id=26]
+code = "shader_type canvas_item;
+
+uniform float blur : hint_range(0, 6) = 1.5;
+
+void fragment() {
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, blur);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = SubResource( 26 )
+shader_param/blur = 2.0
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 1, 1, 1, 0.847059 )
+border_color = Color( 0.705882, 0.705882, 0.705882, 1 )
+shadow_color = Color( 0, 0, 0, 0.0941176 )
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.945098, 0.945098, 0.945098, 0.847059 )
+border_color = Color( 0.705882, 0.705882, 0.705882, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="DynamicFont" id=4]
+size = 44
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.443137, 0.443137, 0.443137, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=25]
+size = 55
+font_data = ExtResource( 3 )
+
+[node name="Einstellungen" type="Button"]
+material = SubResource( 27 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1920.0
+margin_bottom = 1216.0
+theme = ExtResource( 5 )
+custom_styles/disabled = SubResource( 28 )
+disabled = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/disabled = SubResource( 28 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Rotieren" type="Button" parent="."]
+margin_top = 240.0
+margin_right = 1080.0
+margin_bottom = 336.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+text = "   Rotieren"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnOff" type="Sprite" parent="Rotieren"]
+position = Vector2( 965.26, 48 )
+scale = Vector2( 0.707182, 0.75 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="Vibration" type="Button" parent="."]
+margin_top = 352.0
+margin_right = 1080.0
+margin_bottom = 448.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+text = "   Vibration"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnOff" type="Sprite" parent="Vibration"]
+position = Vector2( 965.26, 48 )
+scale = Vector2( 0.707182, 0.75 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="AudioButton" type="Button" parent="."]
+margin_top = 128.0
+margin_right = 1080.0
+margin_bottom = 224.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+text = "   Sound"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnOff" type="Sprite" parent="AudioButton"]
+position = Vector2( 965.26, 48 )
+scale = Vector2( 0.707182, 0.75 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="SettingsImmer" type="Button" parent="."]
+margin_top = 824.0
+margin_right = 1080.0
+margin_bottom = 920.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+text = "   Settings Immer"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnOff" type="Sprite" parent="SettingsImmer"]
+position = Vector2( 965.26, 48 )
+scale = Vector2( 0.707182, 0.75 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 40.0
+margin_top = 512.0
+margin_right = 1040.0
+margin_bottom = 584.0
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "85.4.251.112"
+placeholder_text = "IP-Adresse (Nur fürs Testen)"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit2" type="LineEdit" parent="."]
+margin_left = 40.0
+margin_top = 600.0
+margin_right = 1040.0
+margin_bottom = 672.0
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "6"
+placeholder_text = "Screenshake+ (6 passt)"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit3" type="LineEdit" parent="."]
+modulate = Color( 0.980392, 0.686275, 0.686275, 1 )
+margin_left = 40.0
+margin_top = 736.0
+margin_right = 1040.0
+margin_bottom = 808.0
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+placeholder_text = "online, available, namen, all"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitelLabel2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -500.0
+margin_top = 8.0
+margin_right = 324.0
+margin_bottom = 73.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 25 )
+text = "Einstellungen:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="Rotieren" to="." method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="Vibration" to="." method="_on_Vibration_toggled"]
+[connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
+[connection signal="toggled" from="SettingsImmer" to="." method="_on_SettingsImmer_toggled"]
+[connection signal="text_entered" from="LineEdit3" to="." method="_on_LineEdit3_text_entered"]

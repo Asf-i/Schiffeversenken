@@ -1,0 +1,607 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://Szenen/OnlineZeugs/OnlineListe.gd" type="Script" id=1]
+[ext_resource path="res://UI/TestTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Texturen/X.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=6]
+[ext_resource path="res://Texturen/Xdunkel.png" type="Texture" id=7]
+[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=8]
+[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=9]
+[ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="Shader" id=26]
+code = "shader_type canvas_item;
+
+uniform float blur : hint_range(0, 6) = 1.5;
+
+void fragment() {
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, blur);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = SubResource( 26 )
+shader_param/blur = 2.0
+
+[sub_resource type="StyleBoxFlat" id=28]
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="DynamicFont" id=12]
+size = 43
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.952941 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="DynamicFont" id=31]
+size = 43
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="Animation" id=39]
+resource_name = "InsBild"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=40]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=36]
+
+[sub_resource type="Animation" id=37]
+resource_name = "InsBild"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=41]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 270, 480 ), Vector2( 0, 0 ) ]
+}
+
+[node name="OnlineListe" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ListenWegButton" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/disabled = SubResource( 16 )
+custom_styles/normal = SubResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shader" type="Button" parent="."]
+material = SubResource( 27 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 222.0
+margin_top = 236.0
+margin_right = -222.0
+margin_bottom = -97.0
+custom_styles/disabled = SubResource( 28 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 222.0
+margin_top = 236.0
+margin_right = -222.0
+margin_bottom = -97.0
+custom_styles/disabled = SubResource( 11 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -186.0
+margin_top = 265.0
+margin_right = 289.0
+margin_bottom = 316.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Erfolgreich verbunden"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NiemandHierLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -342.5
+margin_top = 117.0
+margin_right = 342.5
+margin_bottom = 199.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_styles/normal = SubResource( 2 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 257.0
+margin_top = 421.0
+margin_right = -257.0
+margin_bottom = -133.0
+theme = ExtResource( 6 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="TextureButton" parent="."]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -292.0
+margin_top = 269.0
+margin_right = -254.0
+margin_bottom = 308.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anfragNode" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.368627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnfragWeg" type="Button" parent="anfragNode"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+
+[node name="ColorRect" type="Button" parent="anfragNode"]
+margin_left = 53.0
+margin_top = 1920.0
+margin_right = 1027.0
+margin_bottom = 2224.0
+custom_styles/disabled = SubResource( 30 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anfragevon" type="Label" parent="anfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -457.0
+margin_top = -125.5
+margin_right = 457.0
+margin_bottom = -74.5
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 31 )
+text = "Anfrage von"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="anfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -457.0
+margin_top = -73.5
+margin_right = 457.0
+margin_bottom = 8.5
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Spielername"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="accept" type="Button" parent="anfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.5
+margin_top = 22.0
+margin_right = -47.5
+margin_bottom = 127.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="anfragNode/ColorRect/accept"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 8, 4.00195 )
+scale = Vector2( 0.773438, 0.773438 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="deny" type="Button" parent="anfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 47.5
+margin_top = 22.0
+margin_right = 152.5
+margin_bottom = 127.0
+rect_pivot_offset = Vector2( -1254.5, -217 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 34 )
+custom_styles/normal = SubResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="anfragNode/ColorRect/deny"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 2.00012, 1.00195 )
+scale = Vector2( 0.812501, 0.812501 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="anfragNode/ColorRect"]
+anims/InsBild = SubResource( 39 )
+anims/RESET = SubResource( 40 )
+
+[node name="Tween" type="Tween" parent="anfragNode/ColorRect"]
+
+[node name="MomentNode" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.368627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MomentWeg" type="Button" parent="MomentNode"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="Button" parent="MomentNode"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -487.0
+margin_top = 1920.0
+margin_right = 487.0
+margin_bottom = 2224.0
+custom_styles/disabled = SubResource( 30 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MomentNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -314.0
+margin_top = -84.0
+margin_right = 314.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Angefragt..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Abbrechen" type="Button" parent="MomentNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -52.5
+margin_top = 21.0
+margin_right = 52.5
+margin_bottom = 126.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 36 )
+custom_styles/normal = SubResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="MomentNode/ColorRect/Abbrechen"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 2.00012, 1.00195 )
+scale = Vector2( 0.812501, 0.812501 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MomentNode/ColorRect"]
+anims/InsBild = SubResource( 37 )
+anims/RESET = SubResource( 38 )
+
+[node name="Tween" type="Tween" parent="MomentNode/ColorRect"]
+
+[node name="TransitionBlackness" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="ListPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 41 )
+anims/open = SubResource( 42 )
+
+[node name="NochDaTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NochDaSchlussTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NochDaCheckTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Zufall" type="Button" parent="."]
+margin_left = 292.0
+margin_top = 337.0
+margin_right = 570.0
+margin_bottom = 398.0
+theme = ExtResource( 10 )
+text = "Zufall"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ListenWegButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="anfragNode/AnfragWeg" to="." method="_on_deny_pressed"]
+[connection signal="pressed" from="anfragNode/ColorRect/accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="anfragNode/ColorRect/deny" to="." method="_on_deny_pressed"]
+[connection signal="pressed" from="MomentNode/MomentWeg" to="." method="_on_Abbrechen_pressed"]
+[connection signal="pressed" from="MomentNode/ColorRect/Abbrechen" to="." method="_on_Abbrechen_pressed"]
+[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
+[connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]
+[connection signal="timeout" from="NochDaSchlussTimer" to="." method="_on_NochDaSchlussTimer_timeout"]
+[connection signal="timeout" from="NochDaCheckTimer" to="." method="_on_NochDaCheckTimer_timeout"]
+[connection signal="pressed" from="Zufall" to="." method="_on_Zufall_pressed"]

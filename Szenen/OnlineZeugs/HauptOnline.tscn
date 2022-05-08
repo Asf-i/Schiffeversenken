@@ -1,0 +1,1692 @@
+[gd_scene load_steps=64 format=2]
+
+[ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
+[ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Szenen/Schiff 4er.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Szenen/Schiff 2er.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Szenen/Schiff 5er.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Szenen/Felder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=7]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=8]
+[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=11]
+[ext_resource path="res://UI/TestTheme.tres" type="Theme" id=12]
+[ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=13]
+[ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
+[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=15]
+[ext_resource path="res://Texturen/Symbole/Random.png" type="Texture" id=16]
+[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=17]
+[ext_resource path="res://Texturen/Symbole/Trash.png" type="Texture" id=18]
+[ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
+[ext_resource path="res://Texturen/Symbole/Haus.png" type="Texture" id=20]
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="Animation" id=24]
+length = 0.2
+
+[sub_resource type="Animation" id=25]
+resource_name = "weg"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 110, 90 ), Vector2( 110, -250 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.894118, 0.894118, 0.894118, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.894118, 0.894118, 0.894118, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+
+[sub_resource type="Animation" id=26]
+length = 0.001
+
+[sub_resource type="Animation" id=27]
+resource_name = "shrink"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../FertigButton:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../RandomButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../ClearButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.894118 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="DynamicFont" id=29]
+size = 50
+font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=60]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=61]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 270, 480 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1080, 1820 ), Vector2( 1080, 1820 ) ]
+}
+
+[sub_resource type="Animation" id=62]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=63]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 270, 480 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.952941 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=49]
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=51]
+
+[sub_resource type="Animation" id=56]
+resource_name = "InsBild"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=57]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=52]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=54]
+
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id=58]
+resource_name = "InsBild"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=59]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="Shader" id=39]
+code = "shader_type canvas_item;
+
+void fragment(){
+	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV, 2);
+}"
+
+[sub_resource type="ShaderMaterial" id=40]
+shader = SubResource( 39 )
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.894118 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="StyleBoxFlat" id=43]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=45]
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id=64]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1080, 1920 ), Vector2( 1080, 1920 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 270, 480 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Welt" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.000244141
+margin_bottom = 0.00195313
+theme = ExtResource( 8 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SwipeDetector" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.172549, 0.25098, 0.2, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SchriftLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 110.0
+margin_top = 90.0
+margin_right = -110.0
+margin_bottom = 314.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_styles/normal = SubResource( 20 )
+text = "Platziere die Schiffe
+im Feld"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SchriftLabel"]
+anims/RESET = SubResource( 24 )
+anims/weg = SubResource( 25 )
+
+[node name="FelderHintergrund" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -526.0
+margin_top = -1341.0
+margin_right = 526.0
+margin_bottom = -289.002
+custom_styles/disabled = SubResource( 21 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FelderRaster" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -1327.0
+margin_right = 512.0
+margin_bottom = -303.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Felder" parent="." instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -815.0
+margin_bottom = -815.0
+
+[node name="Tween" type="Tween" parent="Felder"]
+
+[node name="Abdeckung" type="Control" parent="Felder"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -531.0
+margin_top = -531.0
+margin_right = 531.0
+margin_bottom = 530.998
+
+[node name="FertigButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -405.0
+margin_top = 385.002
+margin_right = -275.0
+margin_bottom = 515.002
+rect_pivot_offset = Vector2( -1293, -341 )
+theme = ExtResource( 19 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="FertigButton"]
+position = Vector2( 1.99988, -0.00195313 )
+texture = ExtResource( 17 )
+centered = false
+
+[node name="RandomButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -805.0
+margin_top = 385.002
+margin_right = -675.0
+margin_bottom = 515.002
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="RandomButton"]
+position = Vector2( 1.99988, 5.99805 )
+scale = Vector2( 0.937499, 0.937499 )
+texture = ExtResource( 16 )
+centered = false
+
+[node name="ClearButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -605.0
+margin_top = 385.002
+margin_right = -475.0
+margin_bottom = 515.002
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ClearButton"]
+position = Vector2( 6.99988, 6.99805 )
+scale = Vector2( 0.898437, 0.898437 )
+texture = ExtResource( 18 )
+centered = false
+
+[node name="HauptmenuButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = -106.002
+margin_right = 142.0
+margin_bottom = -14.002
+theme = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="HauptmenuButton"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 9, 5 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 20 )
+centered = false
+
+[node name="Schiffe" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="Schiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -225.002
+margin_right = -463.0
+margin_bottom = -225.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="Schiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -159.002
+margin_right = 318.0
+margin_bottom = -159.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="Schiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -225.002
+margin_right = -152.0
+margin_bottom = -225.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="Schiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -159.002
+margin_right = 107.0
+margin_bottom = -159.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="Schiffe" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -159.002
+margin_right = -305.0
+margin_bottom = -159.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="Schiffe" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -225.002
+margin_right = 255.0
+margin_bottom = -225.002
+rect_scale = Vector2( 2, 2 )
+
+[node name="EigenschiffControl" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -0.00012207
+margin_top = 1105.0
+margin_right = -0.00012207
+margin_bottom = 1105.0
+rect_scale = Vector2( 2, 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EigeneFelderHintergrund" type="Button" parent="EigenschiffControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -263.0
+margin_top = -263.0
+margin_right = 789.0
+margin_bottom = 789.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_styles/disabled = SubResource( 22 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EigeneFelderRaster" type="Button" parent="EigenschiffControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_top = -256.0
+margin_right = 768.0
+margin_bottom = 768.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_styles/disabled = SubResource( 23 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EigeneFelder" parent="EigenschiffControl" instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="EigeneSchiffe" type="Control" parent="EigenschiffControl"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -251.0
+margin_right = -463.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -185.0
+margin_right = 318.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -251.0
+margin_right = -152.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -185.0
+margin_right = 107.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -185.0
+margin_right = -305.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -251.0
+margin_right = 255.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EigenschiffControl"]
+anims/RESET = SubResource( 26 )
+anims/shrink = SubResource( 27 )
+
+[node name="Raketen" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gewonnen" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1920.0
+margin_bottom = -1920.0
+color = Color( 0.168627, 0.184314, 0.258824, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Gewonnen"]
+
+[node name="Control" type="Control" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -0.00012207
+margin_top = 450.0
+margin_right = -0.00012207
+margin_bottom = 450.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FertigFelder" parent="Gewonnen/Control" instance=ExtResource( 6 )]
+rect_scale = Vector2( 0.6, 0.6 )
+
+[node name="FertigSchiffe" type="Control" parent="Gewonnen/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.6, 0.6 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -463.0
+margin_top = -251.0
+margin_right = -463.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="2" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 318.0
+margin_top = -185.0
+margin_right = 318.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="3" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -251.0
+margin_right = -152.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="4" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = -185.0
+margin_right = 107.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="5" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -305.0
+margin_top = -185.0
+margin_right = -305.0
+margin_bottom = -185.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="6" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 255.0
+margin_top = -251.0
+margin_right = 255.0
+margin_bottom = -251.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Label" type="Label" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -394.0
+margin_top = -63.4999
+margin_right = 394.0
+margin_bottom = 63.4999
+text = "Spieler x hat gewonnen!!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Revanche" type="Button" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.5
+margin_top = 145.999
+margin_right = 206.5
+margin_bottom = 281.999
+theme = ExtResource( 13 )
+text = "Revanche"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZurListeButton" type="Button" parent="Gewonnen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.5
+margin_top = 316.999
+margin_right = 206.5
+margin_bottom = 452.999
+theme = ExtResource( 13 )
+text = "Zur Liste"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarteAufControl" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -0.000244141
+margin_bottom = -0.00195313
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.133333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="WarteAufControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3240.0
+margin_bottom = 5660.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintergrundButton" type="Button" parent="WarteAufControl/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -449.0
+margin_top = 42.5
+margin_right = 450.0
+margin_bottom = 290.5
+custom_styles/disabled = SubResource( 28 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarteAufLabel" type="Label" parent="WarteAufControl/Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 122.0
+margin_top = 162.0
+margin_right = -122.0
+margin_bottom = 244.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Schniedeliedeliedeliedeliedeliedeliedel"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoLabel" type="Label" parent="WarteAufControl/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -517.0
+margin_top = 92.0
+margin_right = 517.0
+margin_bottom = 151.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Warte auf"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarteAufControl/Control"]
+anims/RESET = SubResource( 60 )
+anims/open = SubResource( 61 )
+
+[node name="NotifyRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -0.000244141
+margin_bottom = -0.00195313
+rect_pivot_offset = Vector2( -2426, 314 )
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.133333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="NotifyRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3240.0
+margin_bottom = 5660.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintergrundButton" type="Button" parent="NotifyRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -449.0
+margin_top = 42.5
+margin_right = 450.0
+margin_bottom = 290.5
+custom_styles/disabled = SubResource( 28 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NamenLabel" type="Label" parent="NotifyRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -517.0
+margin_top = 91.5
+margin_right = 517.0
+margin_bottom = 173.5
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Spielername"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoLabel" type="Label" parent="NotifyRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -517.0
+margin_top = 180.499
+margin_right = 517.0
+margin_bottom = 239.499
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Hier steht die Info"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ListenButton" type="Button" parent="NotifyRect/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -210.5
+margin_top = 362.5
+margin_right = 210.5
+margin_bottom = 452.5
+text = "Zur Liste"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NotifyRect/Control"]
+anims/RESET = SubResource( 62 )
+anims/open = SubResource( 63 )
+
+[node name="NochDaTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="NochDaCheckTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="IngameAnfragNode" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anfragweg" type="Button" parent="IngameAnfragNode"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="Button" parent="IngameAnfragNode"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -487.0
+margin_top = -0.00195313
+margin_right = 487.0
+margin_bottom = 303.998
+custom_styles/disabled = SubResource( 30 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="IngameAnfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -477.0
+margin_top = -85.0
+margin_right = 477.0
+margin_bottom = -3.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Revanche-Anfrage"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="accept" type="Button" parent="IngameAnfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.5
+margin_top = 14.0
+margin_right = -47.5
+margin_bottom = 119.0
+custom_styles/hover = SubResource( 47 )
+custom_styles/pressed = SubResource( 48 )
+custom_styles/focus = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="IngameAnfragNode/ColorRect/accept"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 8, 4.00195 )
+scale = Vector2( 0.773438, 0.773438 )
+texture = ExtResource( 17 )
+centered = false
+
+[node name="deny" type="Button" parent="IngameAnfragNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 47.5
+margin_top = 14.0
+margin_right = 152.5
+margin_bottom = 119.0
+custom_styles/hover = SubResource( 47 )
+custom_styles/pressed = SubResource( 48 )
+custom_styles/focus = SubResource( 51 )
+custom_styles/normal = SubResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="IngameAnfragNode/ColorRect/deny"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 2.00012, 1.00195 )
+scale = Vector2( 0.812501, 0.812501 )
+texture = ExtResource( 15 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IngameAnfragNode/ColorRect"]
+anims/InsBild = SubResource( 56 )
+anims/RESET = SubResource( 57 )
+
+[node name="Tween" type="Tween" parent="IngameAnfragNode/ColorRect"]
+
+[node name="IngameMomentNode" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MomentWeg" type="Button" parent="IngameMomentNode"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="Button" parent="IngameMomentNode"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -487.0
+margin_top = -0.00195313
+margin_right = 487.0
+margin_bottom = 303.998
+custom_styles/disabled = SubResource( 30 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="IngameMomentNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.0
+margin_top = -91.0
+margin_right = 207.0
+margin_bottom = -9.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Angerfagt..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Abbrechen" type="Button" parent="IngameMomentNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -52.5
+margin_top = 12.0
+margin_right = 52.5
+margin_bottom = 117.0
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_styles/hover = SubResource( 52 )
+custom_styles/pressed = SubResource( 53 )
+custom_styles/focus = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="IngameMomentNode/ColorRect/Abbrechen"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 2.00012, 1.00195 )
+scale = Vector2( 0.812501, 0.812501 )
+texture = ExtResource( 15 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IngameMomentNode/ColorRect"]
+anims/InsBild = SubResource( 58 )
+anims/RESET = SubResource( 59 )
+
+[node name="Tween" type="Tween" parent="IngameMomentNode/ColorRect"]
+
+[node name="SettingWegButton" type="Button" parent="."]
+visible = false
+modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 19 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Einstellungen" parent="." instance=ExtResource( 10 )]
+visible = false
+
+[node name="TransitionBlackness" parent="." instance=ExtResource( 11 )]
+visible = false
+
+[node name="ZumHauptmenu" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.160784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="ZumHauptmenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3240.0
+margin_bottom = 5760.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nein2" type="Button" parent="ZumHauptmenu/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shaderbutton" type="Button" parent="ZumHauptmenu/Control"]
+visible = false
+material = SubResource( 40 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -449.0
+margin_top = -680.002
+margin_right = 450.0
+margin_bottom = -432.002
+custom_styles/disabled = SubResource( 41 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ZumHauptmenu/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -449.0
+margin_top = -680.002
+margin_right = 450.0
+margin_bottom = -432.002
+custom_styles/disabled = SubResource( 42 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ZumHauptmenu/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -314.5
+margin_top = -647.001
+margin_right = 314.5
+margin_bottom = -565.001
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Zur Liste?"
+align = 1
+
+[node name="ja" type="Button" parent="ZumHauptmenu/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -175.0
+margin_top = -556.002
+margin_right = -65.0001
+margin_bottom = -446.002
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_styles/hover = SubResource( 43 )
+custom_styles/pressed = SubResource( 44 )
+custom_styles/focus = SubResource( 45 )
+custom_styles/normal = SubResource( 46 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ZumHauptmenu/Control/ja"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 8, 4.00195 )
+scale = Vector2( 0.773438, 0.773438 )
+texture = ExtResource( 17 )
+centered = false
+
+[node name="nein" type="Button" parent="ZumHauptmenu/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 64.9999
+margin_top = -556.002
+margin_right = 175.0
+margin_bottom = -446.002
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color_pressed = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_styles/hover = SubResource( 43 )
+custom_styles/pressed = SubResource( 44 )
+custom_styles/focus = SubResource( 45 )
+custom_styles/normal = SubResource( 46 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ZumHauptmenu/Control/nein"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 2.00012, 1.00195 )
+scale = Vector2( 0.812501, 0.812501 )
+texture = ExtResource( 15 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ZumHauptmenu/Control"]
+anims/RESET = SubResource( 64 )
+anims/open = SubResource( 65 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 14 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
+[connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
+[connection signal="pressed" from="FertigButton" to="." method="_on_FertigButton_pressed"]
+[connection signal="pressed" from="RandomButton" to="." method="_on_RandomButton_pressed"]
+[connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
+[connection signal="pressed" from="HauptmenuButton" to="." method="_on_HauptmenuButton_pressed"]
+[connection signal="animation_finished" from="EigenschiffControl/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
+[connection signal="pressed" from="Gewonnen/ZurListeButton" to="." method="_on_ZurListeButton_pressed"]
+[connection signal="pressed" from="NotifyRect/Control/ListenButton" to="." method="_on_ZurListeButton_pressed"]
+[connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]
+[connection signal="timeout" from="NochDaCheckTimer" to="." method="_on_NochDaCheckTimer_timeout"]
+[connection signal="pressed" from="IngameAnfragNode/Anfragweg" to="." method="anfrage_ablehnen"]
+[connection signal="pressed" from="IngameAnfragNode/ColorRect/accept" to="." method="revanche_akzeptieren"]
+[connection signal="pressed" from="IngameAnfragNode/ColorRect/deny" to="." method="anfrage_ablehnen"]
+[connection signal="pressed" from="IngameMomentNode/MomentWeg" to="." method="revanche_abbrechen"]
+[connection signal="pressed" from="IngameMomentNode/ColorRect/Abbrechen" to="." method="revanche_abbrechen"]
+[connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
+[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
+[connection signal="pressed" from="ZumHauptmenu/Control/nein2" to="." method="_on_nein_pressed"]
+[connection signal="pressed" from="ZumHauptmenu/Control/ja" to="." method="_on_ZurListeButton_pressed"]
+[connection signal="pressed" from="ZumHauptmenu/Control/nein" to="." method="_on_nein_pressed"]
