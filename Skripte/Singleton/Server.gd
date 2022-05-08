@@ -9,6 +9,7 @@ var localhost_ip = "127.0.0.1"
 var port = 9998
 var onlinelistnode
 var available : bool = false #War vor dem Random Gegner finden true
+var ingame : bool = false
 var spielpartner_id : int = 1000 #Zahl random gewählt
 var spielpartner_name : String
 
@@ -39,30 +40,32 @@ func _on_connection_succeeded():
 remote func client_was_gesendet(sendezeugs):
 	print(sendezeugs)
 
-remote func spielerbuttons_updaten(momentane_spieler, spieler_namen):
+remote func spielerbuttons_updaten(momentane_spieler, spieler_namen, spieler_ingame):
 	print("SPIELERBUTONS UPDATEN")
-	if available:
-		for n in get_parent().get_node("Start/OnlineListe/ScrollContainer/VBoxContainer").get_children():
-			onlinelistnode.get_node("ScrollContainer/VBoxContainer").remove_child(n)
-			n.queue_free()
-		
-		if momentane_spieler.size() < 2:
-			onlinelistnode.get_node("NiemandHierLabel").set_text("Suche...")
-		else:
-			onlinelistnode.get_node("NiemandHierLabel").set_text("")
-			for i in momentane_spieler.size():
-				var button = BUTTON.instance()
-				button.get_node("Label").text = str(spieler_namen[momentane_spieler[i]])
-				button.name = str(momentane_spieler[i])
-				onlinelistnode.get_node("ScrollContainer/VBoxContainer").add_child(button)
-				button.get_node("Knopf").connect("pressed", button.get_parent().get_parent().get_parent(), "button_pressed", [button.name])
-			onlinelistnode.get_node("ScrollContainer/VBoxContainer/" + str(get_tree().get_network_unique_id())).queue_free()
+	for n in get_parent().get_node("Start/OnlineListe/ScrollContainer/VBoxContainer").get_children():
+		onlinelistnode.get_node("ScrollContainer/VBoxContainer").remove_child(n)
+		n.queue_free()
+	
+	if momentane_spieler.size() < 2:
+		onlinelistnode.get_node("NiemandHierLabel").set_text("Niemand hier...")
+	else:
+		onlinelistnode.get_node("NiemandHierLabel").set_text("")
+		for i in momentane_spieler.size():
+			var button = BUTTON.instance()
+			button.get_node("Label").text = str(spieler_namen[momentane_spieler[i]])
+			button.name = str(momentane_spieler[i])
+			onlinelistnode.get_node("ScrollContainer/VBoxContainer").add_child(button)
+			button.get_node("Knopf").connect("pressed", button.get_parent().get_parent().get_parent(), "button_pressed", [button.name])
+			if momentane_spieler[i] in spieler_ingame:
+				button.get_node("Ingame").visible = true
+				button.get_node("Online").visible = false
+		onlinelistnode.get_node("ScrollContainer/VBoxContainer/" + str(get_tree().get_network_unique_id())).queue_free()
 
 remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = true):
 	if anfrage:
 		#Anfrage erhalten
 		available = false
-		rpc_id(1, "spieler_available_update", false, get_tree().get_network_unique_id())
+		rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
 		onlinelistnode.anfrager_id = anfrager_id
 		onlinelistnode.anfrager_name = anfrager_name
 #		onlinelistnode.anfrager_name = anfrager_name
@@ -106,7 +109,8 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 
 remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 : bool):
 	available = false
-	rpc_id(1, "spieler_available_update", false, get_tree().get_network_unique_id(), false)
+	onlinelistnode.get_node("SucheLabel").set_text("")
+	rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 	spielpartner_id = anderer_id
 	spielpartner_name = anderer_name
 	onlinelistnode.get_node("NochDaTimer").stop()
@@ -247,4 +251,4 @@ remote func reagiert_auf_revanche(accepted : bool = true):
 		$"/root/Welt/IngameMomentNode".visible = false
 
 remote func server_da_check():
-	rpc_id(1, "spieler_da_check", get_tree().get_network_unique_id(), available, Autoload.savegame_data.sp1name)
+	rpc_id(1, "spieler_da_check", get_tree().get_network_unique_id(), available, Autoload.savegame_data.sp1name, ingame)

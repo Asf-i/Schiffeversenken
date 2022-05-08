@@ -22,8 +22,6 @@ func _on_TransitionPlayer_animation_finished(_anim_name):
 	if start:
 		visible = false
 		emit_signal("start_done")
-		print("start_done")
 		start = false
 	else:
 		emit_signal("end_done", sp2_dran)
-		print("end_done")

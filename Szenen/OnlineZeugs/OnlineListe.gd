@@ -9,7 +9,7 @@ const HAUPTONLINE = preload("res://Szenen/OnlineZeugs/HauptOnline.tscn")
 func button_pressed(button_name):
 	angefragter_id = int(button_name)
 	Server.available = false
-	Server.rpc_id(1, "spieler_available_update", false, get_tree().get_network_unique_id())
+	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
 	Server.rpc_id(int(button_name), "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name)
 	$MomentNode.visible = true
 	$MomentNode/ColorRect/AnimationPlayer.play("InsBild")
@@ -37,9 +37,9 @@ func _on_deny_pressed(mit_update : bool = true):
 	$anfragNode.visible = false
 	
 	if mit_update:
-		Server.rpc_id(1, "spieler_available_update", true, anfrager_id, false)
+		Server.rpc_id(1, "spieler_available_update", true, false, anfrager_id, false)
 		Server.available = true
-		Server.rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id())
+		Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
 		anfrager_id = null
 
 func _on_Abbrechen_pressed():
@@ -49,9 +49,9 @@ func _on_Abbrechen_pressed():
 	yield($MomentNode/ColorRect/Tween, "tween_completed")
 	$MomentNode.visible = false
 	
-	Server.rpc_id(1, "spieler_available_update", true, angefragter_id, false)
+	Server.rpc_id(1, "spieler_available_update", true, false, angefragter_id, false)
 	Server.available = true
-	Server.rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id())
+	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
 	angefragter_id = null
 
 func _on_Button_pressed():
@@ -90,5 +90,9 @@ func _on_NochDaSchlussTimer_timeout():
 	_on_deny_pressed(false)
 
 func _on_Zufall_pressed():
-	Server.rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id(), false)
+	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id(), false)
+	$SucheLabel.set_text("Suche...")
 	Server.available = true
+
+func _on_Suche_pressed():
+	pass

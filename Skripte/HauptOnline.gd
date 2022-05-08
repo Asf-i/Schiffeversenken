@@ -18,6 +18,7 @@ var spieler1_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
 var spieler2_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
 
 func _ready():
+	Server.ingame = true
 	randomize()
 #	Autoload.dictionaries_vorbereiten()
 	$Felder.felder_platzieren()
@@ -299,8 +300,9 @@ func _on_ZurListeButton_pressed():
 	$"/root/Start/OnlineListe/MomentNode".visible = false
 	$"/root/Start/OnlineListe".angefragter_id = null
 #	Server.available = true
-	Server.rpc_id(1, "spieler_available_update", false, get_tree().get_network_unique_id()) #Available war vor randomGegner auf true
+	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id()) #Available war vor randomGegner auf true
 	$TransitionBlackness.black()
+	Server.ingame = false
 
 func _on_NochDaTimer_timeout():
 	$NochDaCheckTimer.stop()
