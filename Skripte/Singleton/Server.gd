@@ -66,7 +66,8 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 		#Anfrage erhalten
 		available = false
 		rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
-		onlinelistnode.get_node("SucheLabel").set_text("")
+		onlinelistnode.get_node("Zufall").set_text("Zufall")
+		onlinelistnode.get_node("Zufall").disabled = false
 		onlinelistnode.anfrager_id = anfrager_id
 		onlinelistnode.anfrager_name = anfrager_name
 #		onlinelistnode.anfrager_name = anfrager_name
@@ -83,7 +84,6 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 		onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
 		yield(onlinelistnode.get_node("anfragNode/ColorRect/Tween"), "tween_completed")
 		onlinelistnode.get_node("anfragNode").visible = false
-		available = true
 
 remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, returned : bool = false):
 	if accepted:
@@ -102,7 +102,6 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 			rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 			onlinelistnode.get_node("TransitionBlackness").black()
 	else:
-		available = true
 		onlinelistnode.get_node("MomentNode/ColorRect/AnimationPlayer").play_backwards("InsBild")
 		onlinelistnode.get_node("MomentNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("MomentNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("MomentNode/ColorRect/Tween").start()
@@ -112,7 +111,8 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 
 remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 : bool):
 	available = false
-	onlinelistnode.get_node("SucheLabel").set_text("")
+	onlinelistnode.get_node("Zufall").set_text("Zufall")
+	onlinelistnode.get_node("Zufall").disabled = false
 	rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 	spielpartner_id = anderer_id
 	spielpartner_name = anderer_name

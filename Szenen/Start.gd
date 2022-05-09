@@ -13,9 +13,9 @@ var hsprite_xs = [-956, -1056, -1156]
 var next_scene : int = 1
 
 func _ready():
-	$NameButton/Spieler1.set_text(Autoload.savegame_data.sp1name)
+	$NameButton/NameHintergrund/Spieler1.set_text(Autoload.savegame_data.sp1name)
 	$NameButton.set_text(Autoload.savegame_data.sp1name)
-	$NameButton/Spieler2.set_text(Autoload.savegame_data.sp2name)
+	$NameButton/NameHintergrund/Spieler2.set_text(Autoload.savegame_data.sp2name)
 	$Einstellungen.rect_position.y = Autoload.actual_screen_height + 1
 
 func _on_Multiplayer_pressed():
@@ -62,14 +62,12 @@ func _on_SwipeDetector_swipe_done(start, end, local_swipe):
 func _on_NameButton_pressed():
 	if $NamenWeg.visible:
 		Autoload.save()
+		$NameButton/NameHintergrund/AnimationPlayer.play_backwards("hin")
 	else:
 		Autoload.load_data()
+		$NameButton/NameHintergrund/AnimationPlayer.play("hin")
 	$NamenWeg.visible = not $NamenWeg.visible
-	$NameButton/NameHintergrund.visible = $NamenWeg.visible
-	$NameButton/Spieler1.visible = $NamenWeg.visible
-	$NameButton/Spieler2.visible = $NamenWeg.visible
-	$"NameButton/s1h".visible = $NamenWeg.visible
-	$"NameButton/s2h".visible = $NamenWeg.visible
+#	$NameButton/NameHintergrund.visible = $NamenWeg.visible
 	print(Autoload.savegame_data)
 
 func _on_LineEdit_text_changed(new_text):
@@ -93,8 +91,8 @@ func _on_Spieler2_text_changed(new_text):
 	for i in new_text.length():
 		if new_text[i] == " ":
 			new_text.erase(i, 1)
-			$NameButton/Spieler2.set_text(new_text)
-			$NameButton/Spieler2.set_cursor_position(i)
+			$NameButton/NameHintergrund/Spieler2.set_text(new_text)
+			$NameButton/NameHintergrund/Spieler2.set_cursor_position(i)
 			break
 	#Falls man nichts schreibt
 	if new_text == "":
@@ -137,3 +135,9 @@ func _on_TransitionBlackness_end_done(_s2dran):
 		1:
 			# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://Szenen/Haupt.tscn")
+
+func _on_Sprite_pressed():
+	$NameButton/NameHintergrund/Spieler1.grab_focus()
+
+func _on_Sprite2_pressed():
+	$NameButton/NameHintergrund/Spieler2.grab_focus()

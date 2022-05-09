@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Texturen/Stift.png" type="Texture" id=1]
 [ext_resource path="res://Szenen/Start.gd" type="Script" id=2]
@@ -34,7 +34,7 @@ size = 40
 font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=15]
-size = 92
+size = 113
 font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxEmpty" id=20]
@@ -73,6 +73,8 @@ bg_color = Color( 0.862745, 0.862745, 0.862745, 0.788235 )
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 
+[sub_resource type="StyleBoxEmpty" id=28]
+
 [sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="StyleBoxEmpty" id=13]
@@ -83,6 +85,61 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="Animation" id=29]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -8, -190 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "hin"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -8, -190 ), Vector2( -8, 136 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Start" type="Control"]
 anchor_right = 1.0
@@ -223,7 +280,7 @@ margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.2.5"
+text = "v0.2.7"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -399,7 +456,8 @@ margin_top = 352.0
 margin_right = 420.0
 margin_bottom = 460.0
 custom_fonts/font = SubResource( 15 )
-text = "Schiffeversenken"
+text = "Schiffe
+versenken"
 align = 1
 valign = 1
 __meta__ = {
@@ -458,79 +516,107 @@ __meta__ = {
 }
 
 [node name="NameHintergrund" type="Button" parent="NameButton"]
-visible = false
-margin_left = -8.0
-margin_top = 136.0
-margin_right = 840.0
-margin_bottom = 320.0
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -424.0
+margin_top = -190.0
+margin_right = 424.0
+margin_bottom = -6.0
 custom_styles/disabled = SubResource( 25 )
 disabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s1h" type="Button" parent="NameButton"]
-visible = false
-margin_top = 144.0
-margin_right = 832.0
-margin_bottom = 224.0
+[node name="s1h" type="Button" parent="NameButton/NameHintergrund"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 840.0
+margin_bottom = 88.0
 custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 custom_styles/disabled = SubResource( 12 )
 custom_styles/normal = SubResource( 12 )
 disabled = true
-
-[node name="Spieler1" type="LineEdit" parent="NameButton"]
-visible = false
-margin_top = 144.0
-margin_right = 744.0
-margin_bottom = 224.0
-custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
-custom_styles/normal = SubResource( 26 )
-text = "Spieler_1"
-max_length = 20
-context_menu_enabled = false
-placeholder_text = "Spieler_1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="NameButton/Spieler1"]
-modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
-position = Vector2( 788, 40 )
-scale = Vector2( 0.187919, 0.162025 )
-texture = ExtResource( 1 )
+[node name="Spieler1" type="LineEdit" parent="NameButton/NameHintergrund"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 752.0
+margin_bottom = 88.0
+custom_colors/cursor_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+custom_styles/focus = SubResource( 28 )
+custom_styles/normal = SubResource( 26 )
+max_length = 20
+context_menu_enabled = false
+placeholder_text = "Spieler_1"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="s2h" type="Button" parent="NameButton"]
-visible = false
-margin_top = 232.0
-margin_right = 832.0
-margin_bottom = 312.0
+[node name="Sprite" type="TextureButton" parent="NameButton/NameHintergrund/Spieler1"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+margin_left = 760.0
+margin_top = 8.0
+margin_right = 816.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="s2h" type="Button" parent="NameButton/NameHintergrund"]
+margin_left = 8.0
+margin_top = 96.0
+margin_right = 840.0
+margin_bottom = 176.0
 custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 custom_styles/focus = SubResource( 13 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 11 )
 disabled = true
-
-[node name="Spieler2" type="LineEdit" parent="NameButton"]
-visible = false
-margin_top = 232.0
-margin_right = 744.0
-margin_bottom = 312.0
-custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
-custom_styles/focus = SubResource( 13 )
-custom_styles/normal = SubResource( 27 )
-text = "Spieler_2"
-context_menu_enabled = false
-placeholder_text = "Spieler_2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite2" type="Sprite" parent="NameButton/Spieler2"]
-modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
-position = Vector2( 788, 40 )
-scale = Vector2( 0.187919, 0.162025 )
-texture = ExtResource( 1 )
+[node name="Spieler2" type="LineEdit" parent="NameButton/NameHintergrund"]
+margin_left = 8.0
+margin_top = 96.0
+margin_right = 752.0
+margin_bottom = 176.0
+custom_colors/cursor_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/normal = SubResource( 27 )
+max_length = 20
+context_menu_enabled = false
+placeholder_text = "Spieler_2"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureButton" parent="NameButton/NameHintergrund/Spieler2"]
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+margin_left = 760.0
+margin_top = 8.0
+margin_right = 816.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NameButton/NameHintergrund"]
+anims/RESET = SubResource( 29 )
+anims/hin = SubResource( 30 )
 
 [node name="TransitionBlackness" parent="." instance=ExtResource( 16 )]
 
@@ -546,6 +632,8 @@ texture = ExtResource( 1 )
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
 [connection signal="button_down" from="NamenWeg" to="." method="_on_NameButton_pressed"]
 [connection signal="pressed" from="NameButton" to="." method="_on_NameButton_pressed"]
-[connection signal="text_changed" from="NameButton/Spieler1" to="." method="_on_LineEdit_text_changed"]
-[connection signal="text_changed" from="NameButton/Spieler2" to="." method="_on_Spieler2_text_changed"]
+[connection signal="text_changed" from="NameButton/NameHintergrund/Spieler1" to="." method="_on_LineEdit_text_changed"]
+[connection signal="pressed" from="NameButton/NameHintergrund/Spieler1/Sprite" to="." method="_on_Sprite_pressed"]
+[connection signal="text_changed" from="NameButton/NameHintergrund/Spieler2" to="." method="_on_Spieler2_text_changed"]
+[connection signal="pressed" from="NameButton/NameHintergrund/Spieler2/Sprite" to="." method="_on_Sprite2_pressed"]
 [connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
