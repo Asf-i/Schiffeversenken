@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Diamantraster.png-3146809247c347c6e35cfc42e1c10a25.stex"
+path="res://.import/Grabber.png-5519beb64416f80b77f65a2bf66e2bf7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texturen/Diamantraster.png"
-dest_files=[ "res://.import/Diamantraster.png-3146809247c347c6e35cfc42e1c10a25.stex" ]
+source_file="res://Texturen/Slider/Grabber.png"
+dest_files=[ "res://.import/Grabber.png-5519beb64416f80b77f65a2bf66e2bf7.stex" ]
 
 [params]
 

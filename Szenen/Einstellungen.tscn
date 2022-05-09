@@ -1,9 +1,14 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
+[ext_resource path="res://Texturen/Slider/Grabber Area.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Texturen/onoff.png" type="Texture" id=4]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=5]
+[ext_resource path="res://Texturen/Slider/Grabber.png" type="Texture" id=6]
+[ext_resource path="res://Texturen/Slider/Slider.png" type="Texture" id=7]
+[ext_resource path="res://Texturen/Slider/Tick.png" type="Texture" id=8]
+[ext_resource path="res://Texturen/Slider/Grabber Highlight.png" type="Texture" id=9]
 
 [sub_resource type="Shader" id=26]
 code = "shader_type canvas_item;
@@ -23,6 +28,10 @@ shader_param/blur = 2.0
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
 corner_radius_top_left = 40
 corner_radius_top_right = 40
+
+[sub_resource type="DynamicFont" id=25]
+size = 55
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 1, 1, 1, 0.847059 )
@@ -47,8 +56,20 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=25]
-size = 55
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 946, 24 )
+
+[sub_resource type="StyleBoxTexture" id=31]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 946, 24 )
+
+[sub_resource type="StyleBoxTexture" id=30]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 946, 24 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 42
 font_data = ExtResource( 3 )
 
 [node name="Einstellungen" type="Button"]
@@ -75,6 +96,21 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="EinstellungsLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -500.0
+margin_top = 8.0
+margin_right = 324.0
+margin_bottom = 73.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 25 )
+text = "Einstellungen:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Rotieren" type="Button" parent="."]
 margin_top = 240.0
@@ -140,9 +176,9 @@ texture = ExtResource( 4 )
 hframes = 2
 
 [node name="SettingsImmer" type="Button" parent="."]
-margin_top = 824.0
+margin_top = 952.0
 margin_right = 1080.0
-margin_bottom = 920.0
+margin_bottom = 1048.0
 custom_styles/hover = SubResource( 18 )
 custom_styles/pressed = SubResource( 19 )
 custom_styles/focus = SubResource( 17 )
@@ -162,9 +198,9 @@ hframes = 2
 
 [node name="LineEdit" type="LineEdit" parent="."]
 margin_left = 40.0
-margin_top = 512.0
+margin_top = 1136.0
 margin_right = 1040.0
-margin_bottom = 584.0
+margin_bottom = 1208.0
 custom_fonts/font = SubResource( 4 )
 custom_styles/normal = SubResource( 3 )
 text = "85.4.251.112"
@@ -175,27 +211,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit2" type="LineEdit" parent="."]
-margin_left = 40.0
-margin_top = 600.0
-margin_right = 1040.0
-margin_bottom = 672.0
-custom_fonts/font = SubResource( 4 )
-custom_styles/normal = SubResource( 3 )
-text = "6"
-placeholder_text = "Screenshake+ (6 passt)"
-caret_blink = true
-caret_blink_speed = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="LineEdit3" type="LineEdit" parent="."]
 modulate = Color( 0.980392, 0.686275, 0.686275, 1 )
 margin_left = 40.0
-margin_top = 736.0
+margin_top = 1056.0
 margin_right = 1040.0
-margin_bottom = 808.0
+margin_bottom = 1128.0
 custom_fonts/font = SubResource( 4 )
 custom_styles/normal = SubResource( 3 )
 placeholder_text = "online, available, namen, all"
@@ -205,16 +226,77 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitelLabel2" type="Label" parent="."]
+[node name="MusicSlider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -473.0
+margin_top = -80.0
+margin_right = 473.0
+margin_bottom = -38.0
+custom_icons/tick = ExtResource( 8 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 6 )
+custom_styles/slider = SubResource( 29 )
+custom_styles/grabber_area_highlight = SubResource( 31 )
+custom_styles/grabber_area = SubResource( 30 )
+max_value = 20.0
+step = 2.0
+rounded = true
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicLabel" type="Label" parent="MusicSlider"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -500.0
-margin_top = 8.0
-margin_right = 324.0
-margin_bottom = 73.0
+margin_left = -476.0
+margin_top = -56.0
+margin_right = 348.0
+margin_bottom = -7.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-custom_fonts/font = SubResource( 25 )
-text = "Einstellungen:"
+custom_fonts/font = SubResource( 32 )
+text = "Musiklautstärke"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenshakeSlider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -473.0
+margin_top = 48.0
+margin_right = 473.0
+margin_bottom = 90.0
+custom_icons/tick = ExtResource( 8 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 6 )
+custom_styles/slider = SubResource( 29 )
+custom_styles/grabber_area_highlight = SubResource( 31 )
+custom_styles/grabber_area = SubResource( 30 )
+max_value = 20.0
+step = 2.0
+rounded = true
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenshakeLabel" type="Label" parent="ScreenshakeSlider"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -476.0
+margin_top = -56.0
+margin_right = 348.0
+margin_bottom = -7.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 32 )
+text = "Bildschirmwackeln"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -225,3 +307,4 @@ __meta__ = {
 [connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
 [connection signal="toggled" from="SettingsImmer" to="." method="_on_SettingsImmer_toggled"]
 [connection signal="text_entered" from="LineEdit3" to="." method="_on_LineEdit3_text_entered"]
+[connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]

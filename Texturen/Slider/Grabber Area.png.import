@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RasterTile.png-22dac40e75f96758881232f9ecbddb51.stex"
+path="res://.import/Grabber Area.png-1e88dfc0e2721968e23e3401a684780d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texturen/RasterTile.png"
-dest_files=[ "res://.import/RasterTile.png-22dac40e75f96758881232f9ecbddb51.stex" ]
+source_file="res://Texturen/Slider/Grabber Area.png"
+dest_files=[ "res://.import/Grabber Area.png-1e88dfc0e2721968e23e3401a684780d.stex" ]
 
 [params]
 

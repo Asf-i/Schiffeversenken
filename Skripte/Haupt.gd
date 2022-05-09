@@ -27,6 +27,7 @@ func _ready():
 	#Anderes
 	$AndererSpielerBitte/Label.set_text(Autoload.savegame_data.sp2name)
 	$Einstellungen.rect_position.y = Autoload.actual_screen_height + 1
+	$Name.set_text(Autoload.savegame_data.sp1name + " ")
 	
 	#Die nervigen, sich selbst vergrössernden Felder
 	$ZumHauptmenu/Content.rect_size = Vector2(1080, Autoload.actual_screen_height)
@@ -102,8 +103,10 @@ func schiff_move(movezahl):
 	im_feld += movezahl
 	if im_feld == anzahl_schiffe && get_node_or_null("FertigButton"):
 		$FertigButton.disabled = false
+		$FertigButton/Sprite.modulate = Color(1, 1, 1)
 	elif get_node_or_null("FertigButton"):
 		$FertigButton.disabled = true
+		$FertigButton/Sprite.modulate = Color(0.415686, 0.415686, 0.415686)
 #	if im_feld == 0 && get_node_or_null("RandomButton"):
 #		$RandomButton.disabled = false
 #	elif get_node_or_null("RandomButton"):
@@ -112,6 +115,7 @@ func schiff_move(movezahl):
 func _on_RandomButton_pressed():
 	$Felder.clear(true)
 	$FertigButton.disabled = false
+	$FertigButton/Sprite.modulate = Color(1, 1, 1)
 	var random_bool_dingens : int
 	var penis : int = anzahl_schiffe
 	var zweier : int = 2
@@ -178,6 +182,7 @@ func _on_ClearButton_pressed():
 	$Felder.clear(true)
 	clear()
 	$FertigButton.disabled = true
+	$FertigButton/Sprite.modulate = Color(0.415686, 0.415686, 0.415686)
 
 func _on_HauptmenuButton_pressed():
 	$ZumHauptmenu/Content/ContentPlayer.play("open")
@@ -192,6 +197,7 @@ func _on_FertigButton_pressed():
 	$Schiffe.visible = true
 	$RandomButton.disabled = false
 	$FertigButton.disabled = true
+	$FertigButton/Sprite.modulate = Color(0.415686, 0.415686, 0.415686)
 	spielerparatfeld_anzeigen()
 
 func spielerparatfeld_anzeigen():
@@ -218,10 +224,14 @@ func spielerparatfeld_anzeigen():
 	$Felder/Abdeckung.visible = false
 	$Felder.clear(false)
 	clear()
-	if spieler2_ist_dran && spielphase == 1:
-		$Felder.rect_position.y += feldverschiebung
-		$FelderRaster.rect_position.y += feldverschiebung
-		$FelderHintergrund.rect_position.y += feldverschiebung
+	if spieler2_ist_dran:
+		$Name.set_text(Autoload.savegame_data.sp1name)
+		if spielphase == 1:
+			$Felder.rect_position.y += feldverschiebung
+			$FelderRaster.rect_position.y += feldverschiebung
+			$FelderHintergrund.rect_position.y += feldverschiebung
+	else:
+		$Name.set_text(Autoload.savegame_data.sp2name)
 
 func anderer_spieler_parat():
 	if spieler2_ist_dran && spielphase == 1:

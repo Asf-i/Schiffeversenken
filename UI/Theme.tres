@@ -1,7 +1,6 @@
-[gd_resource type="Theme" load_steps=16 format=2]
+[gd_resource type="Theme" load_steps=13 format=2]
 
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Texturen/ButtonTextur.png" type="Texture" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 63
@@ -9,22 +8,12 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 637, 92 )
-modulate_color = Color( 0.976471, 0.976471, 0.976471, 1 )
-
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 1, 1, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 637, 92 )
-modulate_color = Color( 0.905882, 0.905882, 0.905882, 1 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 70
@@ -61,9 +50,7 @@ Button/colors/font_color_hover = Color( 0.160784, 0.160784, 0.160784, 1 )
 Button/colors/font_color_pressed = Color( 0.160784, 0.160784, 0.160784, 1 )
 Button/fonts/font = SubResource( 1 )
 Button/styles/focus = SubResource( 4 )
-Button/styles/hover = SubResource( 3 )
 Button/styles/normal = SubResource( 6 )
-Button/styles/pressed = SubResource( 5 )
 Label/fonts/font = SubResource( 7 )
 LineEdit/colors/font_color = Color( 0.184314, 0.184314, 0.184314, 1 )
 LineEdit/fonts/font = SubResource( 8 )

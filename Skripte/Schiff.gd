@@ -99,7 +99,7 @@ func todesanimation():
 		$SchiffPlayer.play("Kaputtgeh")
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(70)
-		$"/root/Welt/Camera2D"._screen_shake(0.6, laenge + int($"/root/Welt/Einstellungen/LineEdit2".text))
+		$"/root/Welt/Camera2D"._screen_shake(0.6, laenge * Autoload.savegame_data.screenshake_value)
 	
 	if $"/root/Welt".spieler2_ist_dran:
 		s2_gesehen = true

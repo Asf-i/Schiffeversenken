@@ -13,7 +13,7 @@ var actual_screen_height : int
 
 #Zum Saven
 const SAVE_PATH = "user://schiffeversenken.save"
-var savegame_data = {"sp1name": "Spieler_1", "sp2name": "Spieler_2", "rotier_mode": false, "sound_an" : false, "vibration" : true}
+var savegame_data = {"sp1name": "Spieler_1", "sp2name": "Spieler_2", "rotier_mode": false, "sound_an" : false, "vibration" : true, "screenshake_value" : 10}
 
 func _ready():
 	load_data()

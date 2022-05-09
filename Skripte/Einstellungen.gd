@@ -1,7 +1,7 @@
 extends Button
 
 var min_swipe_distanz : int = 100
-var swipe_verlangsamung : int = 120
+var swipe_verlangsamung : int = 240
 
 var richtunganders : int = 1
 var sonst_okay : bool = true
@@ -13,6 +13,7 @@ func _ready():
 	$Rotieren.pressed = Autoload.savegame_data.rotier_mode
 	$AudioButton.pressed = Autoload.savegame_data.sound_an
 	$Vibration.pressed = Autoload.savegame_data.vibration
+	$ScreenshakeSlider.value = Autoload.savegame_data.screenshake_value
 	richtunganders = 1
 
 func _on_SwipeDetector_swipe(local_swipe, event_relative):
@@ -97,3 +98,6 @@ func _on_LineEdit3_text_entered(new_text):
 func _on_SettingsImmer_toggled(button_pressed): #Fürs Testen
 	settings_immer = button_pressed
 	on_off_switch($SettingsImmer, button_pressed)
+
+func _on_ScreenshakeSlider_value_changed(value):
+	Autoload.savegame_data.screenshake_value = value
