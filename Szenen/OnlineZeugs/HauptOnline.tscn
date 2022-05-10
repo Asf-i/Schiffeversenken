@@ -660,9 +660,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="ColorRect"]
-modulate = Color( 0.701961, 1, 0.639216, 1 )
-position = Vector2( -817, 1069 )
-scale = Vector2( 1.51111, 1.51111 )
+modulate = Color( 0.992157, 0.992157, 0.992157, 1 )
+position = Vector2( -990.334, 1166.5 )
+scale = Vector2( 1.64653, 1.64653 )
 texture = ExtResource( 21 )
 
 [node name="SchriftLabel" type="Label" parent="."]
@@ -1194,8 +1194,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 11880.0
-margin_bottom = 21020.0
+margin_right = 12960.0
+margin_bottom = 22940.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1270,8 +1270,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 4320.0
-margin_bottom = 7680.0
+margin_right = 5400.0
+margin_bottom = 9600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1569,8 +1569,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 11880.0
-margin_bottom = 21120.0
+margin_right = 12960.0
+margin_bottom = 23040.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

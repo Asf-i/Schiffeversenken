@@ -185,32 +185,40 @@ func _on_HauptmenuButton_pressed():
 	$Einstellungen.sonst_okay = false
 
 func _on_FertigButton_pressed():
-	$Felder.felderstatus_speichern(spieler2_ist_dran)
+	$Felder.felderstatus_speichern(false)
 	schiffe_fertig_platziert()
 
 func schiffe_fertig_platziert():
-	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-	$NochDaTimer.start()
 	spielphase = 2
-	Server.rpc_id(Server.spielpartner_id, "schiffdaten_senden", Autoload.spieler1_felder, Autoload.spieler1_centerfelder, Autoload.spieler2_felder, Autoload.spieler2_centerfelder)
-	Server.rpc_id(Server.spielpartner_id, "bin_bereit")
+#	Server.rpc_id(Server.spielpartner_id, "schiffdaten_senden", Autoload.spieler1_felder, Autoload.spieler1_centerfelder, Autoload.spieler2_felder, Autoload.spieler2_centerfelder)
+#	Server.rpc_id(Server.spielpartner_id, "bin_bereit")
+	
+	Autoload.spieler2_centerfelder = {"2_2":false, "2_4":false, "4_10":false, "5_3":true, "5_6":false, "1_1":true} #Das ist obviously nur zum Testen.
+	zu_phase_zwei_wechseln()
 
 func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Feld.gd
-	$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
+	$NotifyRect/Control/NamenLabel.set_text("Mr.Computer")
 	$NotifyRect/Control/InfoLabel.set_text("ist dran")
 	$NotifyRect/Control/AnimationPlayer.play("open")
 	$NotifyRect.visible = true
-	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-	$NochDaTimer.start()
-	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
-	$NochDaCheckTimer.start()
+#	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
 	yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
 	$Felder/Abdeckung.visible = false
+	
+	spieler2_ist_dran = true
+	$MrComputer.such()
 
 func zu_phase_zwei_wechseln():
 	$Felder.clear(false)
 	clear()
 	$Schiffe.visible = true
+	
+	#Der Computer platziert seine Schiffe
+	spieler2_ist_dran = true
+	_on_RandomButton_pressed()
+	$Felder.felderstatus_speichern(true)
+	spieler2_ist_dran = false
+	
 	#Felder gehen runter
 	$Felder/Tween.interpolate_property($Felder, "rect_position:y", $Felder.rect_position.y, $Felder.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -232,37 +240,23 @@ func zu_phase_zwei_wechseln():
 	var centerfeld_zweite_schiffe = []
 	for n in 10:
 		for i in 10:
-			if spieler2_ist_dran:
-				besetzfeld_dinger.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp2_schiffli_name)
-				centerfeld_schifflaengen.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp2_centerfeld_schifflaenge)
-				centerfeld_zweite_schiffe.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp2_centerfeld_zweites_schiff)
-			else:
-				besetzfeld_dinger.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_schiffli_name)
-				centerfeld_schifflaengen.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_schifflaenge)
-				centerfeld_zweite_schiffe.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_zweites_schiff)
-	Server.rpc_id(Server.spielpartner_id, "besetzdinger_senden", besetzfeld_dinger, centerfeld_schifflaengen, centerfeld_zweite_schiffe)
-	yield(Server, "data_received")
+			besetzfeld_dinger.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_schiffli_name)
+			centerfeld_schifflaengen.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_schifflaenge)
+			centerfeld_zweite_schiffe.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_zweites_schiff)
+#	Server.rpc_id(Server.spielpartner_id, "besetzdinger_senden", besetzfeld_dinger, centerfeld_schifflaengen, centerfeld_zweite_schiffe)
 	for i in anzahl_schiffe:
 		get_node("Schiffe/" + str(i + 1)).visible = false
 	for i in anzahl_schiffe:
 		vollschiffcheck(str(i + 1))
 	for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
-		match spieler2_ist_dran:
-			true:
-				$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
-			false:
-				$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
+		$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 	
 	yield($Felder/Tween, "tween_completed")
 	for i in Autoload.spieler1_centerfelder.size():
-		match spieler2_ist_dran:
-			true:
-				$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $Schiffe)
-			false:
-				$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
+		$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
 
 func vollschiffcheck(schiffname):
-	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene)
+#	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene)
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			get_node("Schiffe/" + schiffname).visible = true
@@ -279,7 +273,6 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 	
 	if peimel == false:
 		$Gewonnen.visible = true
-		$NochDaCheckTimer.start()
 		$Gewonnen/Control/FertigFelder.felder_platzieren()
 		$Gewonnen/Control/FertigFelder.felder_laden(not spieler2_ist_dran)
 		$Gewonnen/Control/FertigFelder.treffer_markieren(spieler2_ist_dran)

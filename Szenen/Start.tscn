@@ -572,6 +572,7 @@ anims/hin = SubResource( 30 )
 [connection signal="pressed" from="SettingButton" to="." method="_on_SettingButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/1" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="HBoxContainer/2" to="." method="_on_Multiplayer_pressed"]
+[connection signal="pressed" from="HBoxContainer/3" to="." method="_on_VsComputer_pressed"]
 [connection signal="pressed" from="ModeBeschr/NachLinks" to="." method="_on_NachLinks_pressed"]
 [connection signal="pressed" from="ModeBeschr/NachRechts" to="." method="_on_NachRechts_pressed"]
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]

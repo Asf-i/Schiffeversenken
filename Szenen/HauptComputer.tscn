@@ -21,6 +21,7 @@
 [ext_resource path="res://Szenen/Schiff 4er.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Skripte/MrComputer.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
@@ -229,10 +230,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 1080, 1820 ), Vector2( 1080, 1820 ) ]
 }
-
-[sub_resource type="DynamicFont" id=66]
-size = 63
-font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=62]
 length = 0.001
@@ -647,6 +644,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MrComputer" type="Node" parent="."]
+script = ExtResource( 22 )
+
 [node name="SwipeDetector" type="Node" parent="."]
 script = ExtResource( 8 )
 
@@ -659,9 +659,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="ColorRect"]
-modulate = Color( 1, 0.72549, 0.639216, 1 )
-position = Vector2( 534, 1065 )
-scale = Vector2( 1.51111, 1.51111 )
+modulate = Color( 0.745098, 1, 0.639216, 1 )
+position = Vector2( 534, 1281 )
+scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 15 )
 
 [node name="SchriftLabel" type="Label" parent="."]
@@ -1193,8 +1193,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 8640.0
-margin_bottom = 15260.0
+margin_right = 10800.0
+margin_bottom = 19100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1269,8 +1269,6 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1080.0
-margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1321,23 +1319,6 @@ custom_fonts/font = SubResource( 29 )
 text = "Hier steht die Info"
 align = 1
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ListenButton" type="Button" parent="NotifyRect/Control"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -210.5
-margin_top = 362.5
-margin_right = 210.5
-margin_bottom = 452.5
-theme = ExtResource( 2 )
-custom_fonts/font = SubResource( 66 )
-text = "Zur Liste"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1560,8 +1541,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 8640.0
-margin_bottom = 15360.0
+margin_right = -0.000244141
+margin_bottom = -0.00195313
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1618,8 +1599,11 @@ margin_top = -647.001
 margin_right = 314.5
 margin_bottom = -565.001
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Zur Liste?"
+text = "Zum Hauptmenü?"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ja" type="Button" parent="ZumHauptmenu/Control"]
 anchor_left = 0.5
@@ -1693,7 +1677,6 @@ script = ExtResource( 9 )
 [connection signal="animation_finished" from="EigenschiffControl/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
 [connection signal="pressed" from="Gewonnen/ZurListeButton" to="." method="_on_ZurListeButton_pressed"]
-[connection signal="pressed" from="NotifyRect/Control/ListenButton" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="pressed" from="IngameAnfragNode/Anfragweg" to="." method="anfrage_ablehnen"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/accept" to="." method="revanche_akzeptieren"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/deny" to="." method="anfrage_ablehnen"]

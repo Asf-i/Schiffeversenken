@@ -43,15 +43,14 @@ func machen():
 	var check_schiffli_name = "nix"
 	if name in anderer_spieler_felder:
 		eigene_spieler_beschossene[name] = true
-		match $"/root/Welt".spieler2_ist_dran:
-			true:
-				$"/root/Welt".spieler2_punkte += 1
-				$"/root/Welt".spieler1_versenkte[sp1_schiffli_name] -= 1
-				check_schiffli_name = sp1_schiffli_name
-			false:
-				$"/root/Welt".spieler1_punkte += 1
-				$"/root/Welt".spieler2_versenkte[sp2_schiffli_name] -= 1
-				check_schiffli_name = sp2_schiffli_name
+		if $"/root/Welt".spieler2_ist_dran:
+			$"/root/Welt".spieler2_punkte += 1
+			$"/root/Welt".spieler1_versenkte[sp1_schiffli_name] -= 1
+			check_schiffli_name = sp1_schiffli_name
+		else:
+			$"/root/Welt".spieler1_punkte += 1
+			$"/root/Welt".spieler2_versenkte[sp2_schiffli_name] -= 1
+			check_schiffli_name = sp2_schiffli_name
 		$Button.modulate = get_parent().trefferfarbe
 		$PlatschPengPlayer.play("Peng")
 		if Autoload.savegame_data.vibration:

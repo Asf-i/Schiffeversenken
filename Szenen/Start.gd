@@ -28,6 +28,12 @@ func _on_Singleplayer_pressed():
 		next_scene = 1
 		$TransitionBlackness.black()
 
+func _on_VsComputer_pressed():
+	if not swiping:
+		Server.network = null
+		next_scene = 2
+		$TransitionBlackness.black()
+
 func _on_SwipeDetector_swipe(local_swipe, event_relative):
 	swiping = true
 	#Spielmodi swipen
@@ -133,8 +139,11 @@ func _on_NachRechts_pressed():
 func _on_TransitionBlackness_end_done(_s2dran):
 	match next_scene:
 		1:
-			# warning-ignore:return_value_discarded
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://Szenen/Haupt.tscn")
+		2:
+# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://Szenen/HauptComputer.tscn")
 
 func _on_Sprite_pressed():
 	$NameButton/NameHintergrund/Spieler1.grab_focus()
