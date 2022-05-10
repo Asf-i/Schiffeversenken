@@ -75,8 +75,8 @@ func _on_LineEdit_text_changed(new_text):
 	for i in new_text.length():
 		if new_text[i] == " ":
 			new_text.erase(i, 1)
-			$NameButton/Spieler1.set_text(new_text)
-			$NameButton/Spieler1.set_cursor_position(i)
+			$NameButton/NameHintergrund/Spieler1.set_text(new_text)
+			$NameButton/NameHintergrund/Spieler1.set_cursor_position(i)
 			break
 	#Falls man nichts schreibt
 	if new_text == "":

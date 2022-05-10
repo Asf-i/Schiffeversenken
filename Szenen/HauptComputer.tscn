@@ -1,27 +1,26 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=66 format=2]
 
-[ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
-[ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Szenen/Schiff 4er.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Szenen/Schiff 2er.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Szenen/Schiff 5er.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Szenen/Felder.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=7]
-[ext_resource path="res://UI/Theme.tres" type="Theme" id=8]
-[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=11]
-[ext_resource path="res://UI/TestTheme.tres" type="Theme" id=12]
-[ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=13]
-[ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
-[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=15]
-[ext_resource path="res://Texturen/Symbole/Random.png" type="Texture" id=16]
-[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=17]
-[ext_resource path="res://Texturen/Symbole/Trash.png" type="Texture" id=18]
-[ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
-[ext_resource path="res://Texturen/Symbole/Haus.png" type="Texture" id=20]
-[ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=21]
-[ext_resource path="res://Happy.png" type="Texture" id=22]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=2]
+[ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=3]
+[ext_resource path="res://UI/TestTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Skripte/HauptComputer.gd" type="Script" id=7]
+[ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=8]
+[ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=9]
+[ext_resource path="res://Texturen/Symbole/Random.png" type="Texture" id=10]
+[ext_resource path="res://Texturen/Symbole/Trash.png" type="Texture" id=11]
+[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=12]
+[ext_resource path="res://Texturen/Symbole/Haus.png" type="Texture" id=13]
+[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=14]
+[ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=15]
+[ext_resource path="res://Szenen/Schiff 2er.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Szenen/Schiff 5er.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Szenen/Felder.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Szenen/Schiff 4er.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=21]
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
@@ -138,7 +137,7 @@ shadow_size = 48
 
 [sub_resource type="DynamicFont" id=29]
 size = 50
-font_data = ExtResource( 9 )
+font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=60]
 length = 0.001
@@ -233,7 +232,7 @@ tracks/3/keys = {
 
 [sub_resource type="DynamicFont" id=66]
 size = 63
-font_data = ExtResource( 9 )
+font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=62]
 length = 0.001
@@ -642,14 +641,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.000244141
 margin_bottom = 0.00195313
-theme = ExtResource( 8 )
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SwipeDetector" type="Node" parent="."]
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -660,10 +659,10 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="ColorRect"]
-modulate = Color( 0.701961, 1, 0.639216, 1 )
-position = Vector2( -817, 1069 )
+modulate = Color( 1, 0.72549, 0.639216, 1 )
+position = Vector2( 534, 1065 )
 scale = Vector2( 1.51111, 1.51111 )
-texture = ExtResource( 21 )
+texture = ExtResource( 15 )
 
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
@@ -714,7 +713,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Felder" parent="." instance=ExtResource( 6 )]
+[node name="Felder" parent="." instance=ExtResource( 18 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -743,7 +742,7 @@ margin_top = 385.002
 margin_right = -275.0
 margin_bottom = 515.002
 rect_pivot_offset = Vector2( -1293, -341 )
-theme = ExtResource( 19 )
+theme = ExtResource( 3 )
 disabled = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -752,7 +751,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="FertigButton"]
 modulate = Color( 0.415686, 0.415686, 0.415686, 1 )
 position = Vector2( 1.99988, -0.00195313 )
-texture = ExtResource( 17 )
+texture = ExtResource( 14 )
 centered = false
 
 [node name="RandomButton" type="Button" parent="."]
@@ -762,7 +761,7 @@ margin_left = -805.0
 margin_top = 385.002
 margin_right = -675.0
 margin_bottom = 515.002
-theme = ExtResource( 19 )
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -770,7 +769,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="RandomButton"]
 position = Vector2( 1.99988, 5.99805 )
 scale = Vector2( 0.937499, 0.937499 )
-texture = ExtResource( 16 )
+texture = ExtResource( 10 )
 centered = false
 
 [node name="ClearButton" type="Button" parent="."]
@@ -780,7 +779,7 @@ margin_left = -605.0
 margin_top = 385.002
 margin_right = -475.0
 margin_bottom = 515.002
-theme = ExtResource( 19 )
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -788,7 +787,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="ClearButton"]
 position = Vector2( 6.99988, 6.99805 )
 scale = Vector2( 0.898437, 0.898437 )
-texture = ExtResource( 18 )
+texture = ExtResource( 11 )
 centered = false
 
 [node name="HauptmenuButton" type="Button" parent="."]
@@ -798,7 +797,7 @@ margin_left = 50.0
 margin_top = -106.002
 margin_right = 142.0
 margin_bottom = -14.002
-theme = ExtResource( 13 )
+theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -807,7 +806,7 @@ __meta__ = {
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
 position = Vector2( 9, 5 )
 scale = Vector2( 0.625, 0.625 )
-texture = ExtResource( 20 )
+texture = ExtResource( 13 )
 centered = false
 
 [node name="Schiffe" type="Control" parent="."]
@@ -818,7 +817,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="1" parent="Schiffe" instance=ExtResource( 4 )]
+[node name="1" parent="Schiffe" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -829,7 +828,7 @@ margin_right = -463.0
 margin_bottom = -225.002
 rect_scale = Vector2( 2, 2 )
 
-[node name="2" parent="Schiffe" instance=ExtResource( 4 )]
+[node name="2" parent="Schiffe" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -840,7 +839,7 @@ margin_right = 318.0
 margin_bottom = -159.002
 rect_scale = Vector2( 2, 2 )
 
-[node name="3" parent="Schiffe" instance=ExtResource( 2 )]
+[node name="3" parent="Schiffe" instance=ExtResource( 21 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -851,7 +850,7 @@ margin_right = -152.0
 margin_bottom = -225.002
 rect_scale = Vector2( 2, 2 )
 
-[node name="4" parent="Schiffe" instance=ExtResource( 2 )]
+[node name="4" parent="Schiffe" instance=ExtResource( 21 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -862,7 +861,7 @@ margin_right = 107.0
 margin_bottom = -159.002
 rect_scale = Vector2( 2, 2 )
 
-[node name="5" parent="Schiffe" instance=ExtResource( 3 )]
+[node name="5" parent="Schiffe" instance=ExtResource( 19 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -873,7 +872,7 @@ margin_right = -305.0
 margin_bottom = -159.002
 rect_scale = Vector2( 2, 2 )
 
-[node name="6" parent="Schiffe" instance=ExtResource( 5 )]
+[node name="6" parent="Schiffe" instance=ExtResource( 17 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -925,7 +924,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EigeneFelder" parent="EigenschiffControl" instance=ExtResource( 6 )]
+[node name="EigeneFelder" parent="EigenschiffControl" instance=ExtResource( 18 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -943,7 +942,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="1" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 4 )]
+[node name="1" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -954,7 +953,7 @@ margin_right = -463.0
 margin_bottom = -251.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="2" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 4 )]
+[node name="2" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -965,7 +964,7 @@ margin_right = 318.0
 margin_bottom = -185.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="3" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 2 )]
+[node name="3" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 21 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -976,7 +975,7 @@ margin_right = -152.0
 margin_bottom = -251.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="4" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 2 )]
+[node name="4" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 21 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -987,7 +986,7 @@ margin_right = 107.0
 margin_bottom = -185.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="5" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 3 )]
+[node name="5" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 19 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -998,7 +997,7 @@ margin_right = -305.0
 margin_bottom = -185.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="6" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 5 )]
+[node name="6" parent="EigenschiffControl/EigeneSchiffe" instance=ExtResource( 17 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1060,7 +1059,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FertigFelder" parent="Gewonnen/Control" instance=ExtResource( 6 )]
+[node name="FertigFelder" parent="Gewonnen/Control" instance=ExtResource( 18 )]
 
 [node name="FertigSchiffe" type="Control" parent="Gewonnen/Control"]
 anchor_right = 1.0
@@ -1070,7 +1069,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="1" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 4 )]
+[node name="1" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1081,7 +1080,7 @@ margin_right = -463.0
 margin_bottom = -251.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="2" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 4 )]
+[node name="2" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 16 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1092,7 +1091,7 @@ margin_right = 318.0
 margin_bottom = -185.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="3" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 2 )]
+[node name="3" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 21 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1103,7 +1102,7 @@ margin_right = -152.0
 margin_bottom = -251.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="4" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 2 )]
+[node name="4" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 21 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1114,7 +1113,7 @@ margin_right = 107.0
 margin_bottom = -185.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="5" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 3 )]
+[node name="5" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 19 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1125,7 +1124,7 @@ margin_right = -305.0
 margin_bottom = -185.0
 rect_scale = Vector2( 2, 2 )
 
-[node name="6" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 5 )]
+[node name="6" parent="Gewonnen/Control/FertigSchiffe" instance=ExtResource( 17 )]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1158,7 +1157,7 @@ margin_left = -206.5
 margin_top = 443.999
 margin_right = 206.5
 margin_bottom = 579.999
-theme = ExtResource( 13 )
+theme = ExtResource( 2 )
 text = "Revanche"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1173,7 +1172,7 @@ margin_left = -206.5
 margin_top = 614.999
 margin_right = 206.5
 margin_bottom = 750.999
-theme = ExtResource( 13 )
+theme = ExtResource( 2 )
 text = "Zur Liste"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1194,8 +1193,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 11880.0
-margin_bottom = 21020.0
+margin_right = 8640.0
+margin_bottom = 15260.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1270,8 +1269,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 4320.0
-margin_bottom = 7680.0
+margin_right = 1080.0
+margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1336,7 +1335,7 @@ margin_left = -210.5
 margin_top = 362.5
 margin_right = 210.5
 margin_bottom = 452.5
-theme = ExtResource( 13 )
+theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 66 )
 text = "Zur Liste"
 __meta__ = {
@@ -1346,14 +1345,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NotifyRect/Control"]
 anims/RESET = SubResource( 62 )
 anims/open = SubResource( 63 )
-
-[node name="NochDaTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
-
-[node name="NochDaCheckTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
 
 [node name="IngameAnfragNode" type="ColorRect" parent="."]
 visible = false
@@ -1425,7 +1416,7 @@ __meta__ = {
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
 position = Vector2( 8, 4.00195 )
 scale = Vector2( 0.773438, 0.773438 )
-texture = ExtResource( 17 )
+texture = ExtResource( 14 )
 centered = false
 
 [node name="deny" type="Button" parent="IngameAnfragNode/ColorRect"]
@@ -1449,7 +1440,7 @@ __meta__ = {
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
 position = Vector2( 2.00012, 1.00195 )
 scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 15 )
+texture = ExtResource( 12 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IngameAnfragNode/ColorRect"]
@@ -1514,7 +1505,7 @@ margin_left = -52.5
 margin_top = 12.0
 margin_right = 52.5
 margin_bottom = 117.0
-theme = ExtResource( 12 )
+theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_styles/hover = SubResource( 52 )
 custom_styles/pressed = SubResource( 53 )
@@ -1528,7 +1519,7 @@ __meta__ = {
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
 position = Vector2( 2.00012, 1.00195 )
 scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 15 )
+texture = ExtResource( 12 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IngameMomentNode/ColorRect"]
@@ -1551,10 +1542,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Einstellungen" parent="." instance=ExtResource( 10 )]
+[node name="Einstellungen" parent="." instance=ExtResource( 20 )]
 visible = false
 
-[node name="TransitionBlackness" parent="." instance=ExtResource( 11 )]
+[node name="TransitionBlackness" parent="." instance=ExtResource( 6 )]
 visible = false
 
 [node name="ZumHauptmenu" type="ColorRect" parent="."]
@@ -1569,8 +1560,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 11880.0
-margin_bottom = 21120.0
+margin_right = 8640.0
+margin_bottom = 15360.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1653,7 +1644,7 @@ __meta__ = {
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
 position = Vector2( 8, 4.00195 )
 scale = Vector2( 0.773438, 0.773438 )
-texture = ExtResource( 17 )
+texture = ExtResource( 14 )
 centered = false
 
 [node name="nein" type="Button" parent="ZumHauptmenu/Control"]
@@ -1679,7 +1670,7 @@ __meta__ = {
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
 position = Vector2( 2.00012, 1.00195 )
 scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 15 )
+texture = ExtResource( 12 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ZumHauptmenu/Control"]
@@ -1689,15 +1680,9 @@ anims/open = SubResource( 65 )
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
-script = ExtResource( 14 )
+script = ExtResource( 9 )
 
 [node name="Tween" type="Tween" parent="Camera2D"]
-
-[node name="TweenSprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 171, 409 )
-scale = Vector2( 0.157184, 0.157184 )
-texture = ExtResource( 22 )
 
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
@@ -1709,8 +1694,6 @@ texture = ExtResource( 22 )
 [connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
 [connection signal="pressed" from="Gewonnen/ZurListeButton" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="pressed" from="NotifyRect/Control/ListenButton" to="." method="_on_ZurListeButton_pressed"]
-[connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]
-[connection signal="timeout" from="NochDaCheckTimer" to="." method="_on_NochDaCheckTimer_timeout"]
 [connection signal="pressed" from="IngameAnfragNode/Anfragweg" to="." method="anfrage_ablehnen"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/accept" to="." method="revanche_akzeptieren"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/deny" to="." method="anfrage_ablehnen"]

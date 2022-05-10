@@ -8,9 +8,8 @@ var unselectbar : bool = true
 var im_feld : int = 0
 var spielphase : int = 1
 var spieler2_ist_dran : bool = false
-var paratfeld_im_bild : bool = false #Brauchts im Feld script, drum nicht entfernt
-
-var anderer_noch_da : bool = true
+var paratfeld_im_bild : bool = false #Braucht es im Feld script, darum nicht entfernt
+var revanche : bool = false
 
 var spieler1_punkte : int = 0
 var spieler2_punkte : int = 0
@@ -187,12 +186,7 @@ func _on_HauptmenuButton_pressed():
 
 func _on_FertigButton_pressed():
 	$Felder.felderstatus_speichern(spieler2_ist_dran)
-#	$WarteAufControl/Control/AnimationPlayer.play("open")
-#	$WarteAufControl/Control/WarteAufLabel.set_text(Server.spielpartner_name)
-#	$WarteAufControl.visible = true
-	if not $NochDaCheckTimer.time_left > 0:
-		$NochDaCheckTimer.start()
-		schiffe_fertig_platziert()
+	schiffe_fertig_platziert()
 
 func schiffe_fertig_platziert():
 	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
@@ -253,19 +247,19 @@ func zu_phase_zwei_wechseln():
 	for i in anzahl_schiffe:
 		vollschiffcheck(str(i + 1))
 	for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
-		if spieler2_ist_dran:
-			$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
-		else:
-			$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
+		match spieler2_ist_dran:
+			true:
+				$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
+			false:
+				$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 	
-	if $Felder.rect_position.y != $Felder.rect_position.y + feldverschiebung: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
-		yield($Felder/Tween, "tween_completed")
-	$TweenSprite.visible = true
+	yield($Felder/Tween, "tween_completed")
 	for i in Autoload.spieler1_centerfelder.size():
-		if spieler2_ist_dran:
-			$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $Schiffe)
-		else:
-			$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
+		match spieler2_ist_dran:
+			true:
+				$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $Schiffe)
+			false:
+				$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
 
 func vollschiffcheck(schiffname):
 	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene)
@@ -297,44 +291,7 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
 
 func _on_ZurListeButton_pressed():
-	if anderer_noch_da:
-		Server.rpc_id(Server.spielpartner_id, "anderer_spiel_verlassen")
-	$"/root/Start/OnlineListe/anfragNode".visible = false
-	$"/root/Start/OnlineListe".anfrager_id = null
-	$"/root/Start/OnlineListe/MomentNode".visible = false
-	$"/root/Start/OnlineListe".angefragter_id = null
-#	Server.available = true
-	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id()) #Available war vor randomGegner auf true
 	$TransitionBlackness.black()
-	Server.ingame = false
-
-func _on_NochDaTimer_timeout():
-	$NochDaCheckTimer.stop()
-	anderer_noch_da = false
-	if not $Gewonnen.visible:
-		$WarteAufControl.visible = false
-		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
-		$NotifyRect/Control/InfoLabel.set_text("ist nicht mehr da...")
-		$NotifyRect/Control/ListenButton.visible = true
-		$NotifyRect/Control/AnimationPlayer.play("open")
-		$NotifyRect.visible = true
-	else:
-		$Gewonnen/Revanche.disabled = true
-		$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-		$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-		$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:y", $IngameAnfragNode/ColorRect.rect_position.y, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", $IngameMomentNode/ColorRect.rect_position.y, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$IngameAnfragNode/ColorRect/Tween.start()
-		$IngameMomentNode/ColorRect/Tween.start()
-		yield($IngameAnfragNode/ColorRect/Tween, "tween_all_completed")
-		$IngameAnfragNode.visible = false
-		$IngameMomentNode.visible = false
-
-func _on_NochDaCheckTimer_timeout():
-	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-	$NochDaTimer.start()
-	if ($NotifyRect.visible or $WarteAufControl.visible or $Gewonnen.visible): #hier war hinten dran noch && spielphase != 3
-		$NochDaCheckTimer.start()
 
 func _on_Revanche_pressed():
 	Server.rpc_id(Server.spielpartner_id, "revanche")
@@ -365,13 +322,12 @@ func anfrage_ablehnen():
 	$IngameAnfragNode.visible = false
 
 func _on_TransitionBlackness_end_done(_s2dran):
-	if name == "NichtWelt":
-		get_parent().add_child($"/root/Start/OnlineListe".HAUPTONLINE.instance())
-		$"/root/Welt".spieler2_ist_dran = spieler2_ist_dran
-		$"/root/Welt".im_feld = 6
+	if revanche:
+# warning-ignore:return_value_discarded
+		get_tree().reload_current_scene()
 	else:
-		get_parent().get_node("Start/OnlineListe/TransitionBlackness").black_reverse()
-	queue_free()
+	# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Szenen/Start.tscn")
 
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	$RandomButton.queue_free()

@@ -101,3 +101,17 @@ func _on_SettingsImmer_toggled(button_pressed): #Fürs Testen
 
 func _on_ScreenshakeSlider_value_changed(value):
 	Autoload.savegame_data.screenshake_value = value
+
+func _on_SchiffplatzierUknow_pressed():
+	for i in Autoload.spieler1_centerfelder.size():
+		if $"/root/Welt".spieler2_ist_dran:
+			$"/root/Welt/Felder".schiff_in_feld_platzieren(get_node("/root/Welt/Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $"/root/Welt/Schiffe")
+		else:
+			$"/root/Welt/Felder".schiff_in_feld_platzieren(get_node("/root/Welt/Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $"/root/Welt/Schiffe")
+
+func _on_SchiffplatzierUknow2_pressed():
+	for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
+		if $"/root/Welt".spieler2_ist_dran:
+			$"/root/Welt/Felder".schiff_in_feld_platzieren(get_node("/root/Welt/Felder/" + Autoload.spieler2_centerfelder.keys()[i]), false, true, $"/root/Welt/Schiffe")
+		else:
+			$"/root/Welt/Felder".schiff_in_feld_platzieren(get_node("/root/Welt/Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $"/root/Welt/Schiffe")
