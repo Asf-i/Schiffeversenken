@@ -5,7 +5,6 @@ export var laenge : int = 2
 var normale_position = Vector2()
 var jetzige_position = Vector2()
 var jetzige_touch_position = Vector2()
-var mouse_pos = Vector2()
 var button_pressed : bool = false
 var rotiert : bool = false
 var im_feld : bool = false
@@ -24,14 +23,12 @@ func _ready():
 		$Button.modulate = Color(0, 0, 1)
 
 func _input(event):
-	if event is InputEventScreenDrag or event is InputEventScreenTouch:
-		mouse_pos = event.position
 	if event is InputEventScreenTouch && event.is_pressed():
-		jetzige_touch_position = event.position
+		jetzige_touch_position = get_global_mouse_position()
 
 func _process(_delta):
 	if button_pressed:
-		rect_global_position = mouse_pos
+		rect_global_position = get_global_mouse_position()
 
 func einrasten():
 	if felder_node.ist_moeglich(im_feld):
@@ -74,7 +71,7 @@ func _on_Button_pressed():
 
 func _on_Button_released():
 	if $"/root/Welt".spielphase == 1 && not get_parent().get_parent().get_node("SettingWegButton").visible:
-		if (mouse_pos - jetzige_touch_position).length() > 50:
+		if (get_global_mouse_position() - jetzige_touch_position).length() > 50:
 			nur_tippend = false
 		if nur_tippend:
 			rect_position = jetzige_position

@@ -206,7 +206,7 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 	$Felder/Abdeckung.visible = false
 	
 	spieler2_ist_dran = true
-	$MrComputer.such()
+	$MrComputer.zug()
 
 func zu_phase_zwei_wechseln():
 	$Felder.clear(false)
@@ -259,6 +259,8 @@ func vollschiffcheck(schiffname):
 #	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene)
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
+			$MrComputer.erstes_getroffenes = null
+			$MrComputer.i_richtig = 4
 			get_node("Schiffe/" + schiffname).visible = true
 			get_node("Schiffe/" + schiffname).todesanimation()
 
