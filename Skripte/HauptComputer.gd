@@ -261,6 +261,8 @@ func vollschiffcheck(schiffname):
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			$MrComputer.erstes_getroffenes = null
 			$MrComputer.i_richtig = 4
+			$MrComputer.i_letztes = 4
+			$MrComputer.state = 0
 			get_node("Schiffe/" + schiffname).visible = true
 			get_node("Schiffe/" + schiffname).todesanimation()
 

@@ -2,26 +2,42 @@ extends Node
 
 const RAKETE = preload("res://Szenen/Rakete.tscn")
 var besuch_feld
-var treffer : int = 0
 var erstes_getroffenes
 var letztes_getroffenes
-var i : int = 0
+var i_letztes : int = 4
 var i_richtig : int = 4
 const FELD_NAME_VEKTOREN = [Vector2(1, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1)]
 var start : bool = true
+var state : int = 0
+
+signal press()
 
 func _ready():
 	besuch_feld = $"/root/Welt/Felder"
 
+func _input(_event):
+	if Input.is_action_just_pressed("ui_left"):
+		emit_signal("press")
+
 func zug():
+	print("state: " + str(state))
+	print("i_letztes: " + str(i_letztes))
+	print("i_richtig: " + str(i_richtig))
+	print("erstes_getroffenes: " + str(erstes_getroffenes))
+	print("letztes_getroffenes: " + str(letztes_getroffenes))
+#	yield(self, "press")
 	randomize()
 	such()
 	
 	if besuch_feld.name in Autoload.spieler1_felder:
-		if treffer == 0:
+		if state == 1:
+			i_richtig = i_letztes
+			state = 2
+		if state == 0:
+			state = 1
+		if i_letztes == 4:
 			erstes_getroffenes = besuch_feld
-		treffer += 1
-		i_richtig = i - 1
+		print("TREFFER")
 		letztes_getroffenes = besuch_feld
 		Autoload.spieler2_beschossene[besuch_feld.name] = true
 		$"/root/Welt".spieler2_punkte += 1
@@ -30,7 +46,11 @@ func zug():
 		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
 		$"/root/Welt".gewinnercheck()
 	else:
-		treffer = 0
+		if state == 2:
+			state = 3
+		print("VERFEHLT")
+		i_letztes = 4
+		letztes_getroffenes = null
 		Autoload.spieler2_beschossene[besuch_feld.name] = false
 	
 	#Rakete Abschiessen
@@ -46,7 +66,7 @@ func zug():
 	
 	#Zug beenden
 	start = false
-	if treffer == 0:
+	if letztes_getroffenes == null:
 		$"/root/Welt/NotifyRect/Control/AnimationPlayer".play_backwards("open")
 		yield($"/root/Welt/NotifyRect/Control/AnimationPlayer", "animation_finished")
 		$"/root/Welt/NotifyRect".visible = false
@@ -57,20 +77,35 @@ func zug():
 		pass
 
 func such():
-	if erstes_getroffenes != null:
-		i = i_richtig
+	if state == 0:
+		print("RANDOM")
+		while besuch_feld.name in Autoload.spieler2_beschossene or besuch_feld.name == "Felder":
+			besuch_feld = get_node("/root/Welt/Felder/" + str(int(rand_range(1, 11))) + "_" + str(int(rand_range(1, 11))))
 	else:
-		i = 0
-	while besuch_feld.name in Autoload.spieler2_beschossene or besuch_feld.name == "Felder":
-		if treffer == 0 && erstes_getroffenes == null:
-			if not start: #Für Testen
-				besuch_feld = get_node("/root/Welt/Felder/" + str(int(rand_range(1, 11))) + "_" + str(int(rand_range(1, 11))))
+		if state == 1:
+			print("RUNDHERUM VOM ERSTEN")
+			for i in 4:
+				if get_node_or_null("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y)) != null:
+					if get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y)).aufgedeckt == false:
+						besuch_feld = get_node("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y))
+						i_letztes = i
+						break
+		elif state == 3:
+			print("ANDERE RICHTUNG")
+			if get_node_or_null("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y)) != null:
+				if get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y)).aufgedeckt == false:
+					besuch_feld = get_node("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y))
+					erstes_getroffenes = besuch_feld
+				else:
+					i_letztes = 4
 			else:
-				besuch_feld = get_node("/root/Welt/Felder/3_3")
-		elif treffer != 0 && i_richtig == 4:
-			besuch_feld = get_node("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y))
-			i += 1
-			if i > 3:
-				treffer = 0
-	if i_richtig != 4:
-		besuch_feld = get_node("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y))
+				i_letztes = 4
+		elif state == 2:
+			print("AB ZWEI")
+			if get_node_or_null("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y)) != null:
+				if get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y)).aufgedeckt == false:
+					besuch_feld = get_node("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y))
+				else:
+					i_letztes = 4
+			else:
+				i_letztes = 4
