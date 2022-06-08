@@ -45,6 +45,8 @@ func zug():
 		
 		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
 		$"/root/Welt".gewinnercheck()
+		if erstes_getroffenes == null:
+			state = 0
 	else:
 		if state == 2:
 			state = 3
@@ -77,12 +79,12 @@ func zug():
 		pass
 
 func such():
-	if state == 0:
-		print("RANDOM")
-		while besuch_feld.name in Autoload.spieler2_beschossene or besuch_feld.name == "Felder":
-			besuch_feld = get_node("/root/Welt/Felder/" + str(int(rand_range(1, 11))) + "_" + str(int(rand_range(1, 11))))
-	else:
-		if state == 1:
+	match state:
+		0:
+			print("RANDOM")
+			while besuch_feld.name in Autoload.spieler2_beschossene or besuch_feld.name == "Felder":
+				besuch_feld = get_node("/root/Welt/Felder/" + str(int(rand_range(1, 11))) + "_" + str(int(rand_range(1, 11))))
+		1:
 			print("RUNDHERUM VOM ERSTEN")
 			for i in 4:
 				if get_node_or_null("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y)) != null:
@@ -90,7 +92,7 @@ func such():
 						besuch_feld = get_node("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y))
 						i_letztes = i
 						break
-		elif state == 3:
+		3:
 			print("ANDERE RICHTUNG")
 			if get_node_or_null("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y)) != null:
 				if get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y)).aufgedeckt == false:
@@ -100,7 +102,7 @@ func such():
 					i_letztes = 4
 			else:
 				i_letztes = 4
-		elif state == 2:
+		2:
 			print("AB ZWEI")
 			if get_node_or_null("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y)) != null:
 				if get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y)).aufgedeckt == false:
@@ -109,3 +111,5 @@ func such():
 					i_letztes = 4
 			else:
 				i_letztes = 4
+				state = 3
+				such()

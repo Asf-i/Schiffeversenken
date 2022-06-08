@@ -256,15 +256,17 @@ func zu_phase_zwei_wechseln():
 		$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
 
 func vollschiffcheck(schiffname):
-#	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene)
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
-			$MrComputer.erstes_getroffenes = null
-			$MrComputer.i_richtig = 4
-			$MrComputer.i_letztes = 4
-			$MrComputer.state = 0
-			get_node("Schiffe/" + schiffname).visible = true
-			get_node("Schiffe/" + schiffname).todesanimation()
+			print("------SCHIFF GEFUNDEN")
+			if not spieler2_ist_dran:
+				get_node("Schiffe/" + schiffname).visible = true
+				get_node("Schiffe/" + schiffname).todesanimation()
+			else:
+				$MrComputer.erstes_getroffenes = null
+				$MrComputer.i_richtig = 4
+				$MrComputer.i_letztes = 4
+				$MrComputer.state = 0
 
 func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, das unten auch ausgeführt wird, wenn die punkte nicht erreicht sind
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
