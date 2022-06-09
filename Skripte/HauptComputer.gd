@@ -26,9 +26,10 @@ func _ready():
 	$Einstellungen.rect_position.y = Autoload.actual_screen_height + 1
 	
 	#Die Grössen dieser neriven Felder, die sich von selber vergrössern
-	$WarteAufControl/Control.rect_size = Vector2(1080, Autoload.actual_screen_height - 100)
 	$NotifyRect/Control.rect_size = Vector2(1080, Autoload.actual_screen_height - 100)
 	$ZumHauptmenu/Control.rect_size = Vector2(1080, Autoload.actual_screen_height)
+	
+	$NotifyRect/Control/AnimationPlayer.play_backwards("open") #Damit es kein komisches Zucken gibt, wenn es tatsächlich aufkommt (Standadmässig auf Reset oder so)
 	
 	#Alle variablen fürs Spiel parat machen
 	Autoload.spieler1_felder.clear()
@@ -190,8 +191,6 @@ func _on_FertigButton_pressed():
 
 func schiffe_fertig_platziert():
 	spielphase = 2
-#	Server.rpc_id(Server.spielpartner_id, "schiffdaten_senden", Autoload.spieler1_felder, Autoload.spieler1_centerfelder, Autoload.spieler2_felder, Autoload.spieler2_centerfelder)
-#	Server.rpc_id(Server.spielpartner_id, "bin_bereit")
 	
 	Autoload.spieler2_centerfelder = {"2_2":false, "2_4":false, "4_10":false, "5_3":true, "5_6":false, "1_1":true} #Das ist obviously nur zum Testen.
 	zu_phase_zwei_wechseln()
@@ -201,7 +200,6 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 	$NotifyRect/Control/InfoLabel.set_text("ist dran")
 	$NotifyRect/Control/AnimationPlayer.play("open")
 	$NotifyRect.visible = true
-#	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
 	yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
 	$Felder/Abdeckung.visible = false
 	
@@ -243,7 +241,6 @@ func zu_phase_zwei_wechseln():
 			besetzfeld_dinger.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_schiffli_name)
 			centerfeld_schifflaengen.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_schifflaenge)
 			centerfeld_zweite_schiffe.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_zweites_schiff)
-#	Server.rpc_id(Server.spielpartner_id, "besetzdinger_senden", besetzfeld_dinger, centerfeld_schifflaengen, centerfeld_zweite_schiffe)
 	for i in anzahl_schiffe:
 		get_node("Schiffe/" + str(i + 1)).visible = false
 	for i in anzahl_schiffe:
@@ -276,16 +273,11 @@ func gewinnercheck():
 		spielphase = 3
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
-	
 		$Gewonnen.visible = true
 		$Gewonnen/Control/FertigFelder.felder_platzieren()
 		$Gewonnen/Control/FertigFelder.felder_laden(true)
 		$Gewonnen/Control/FertigFelder.treffer_markieren(false)
 		for i in Autoload.spieler1_centerfelder.size():
-#			match spieler2_ist_dran:
-#				true:
-#					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
-#				false:
 			$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
 
 func _on_ZurListeButton_pressed():
@@ -294,27 +286,6 @@ func _on_ZurListeButton_pressed():
 func _on_Revanche_pressed():
 	revanche = true
 	$TransitionBlackness.black()
-
-func revanche_abbrechen():
-	Server.rpc_id(Server.spielpartner_id, "revanche", false)
-	$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$IngameMomentNode/ColorRect/Tween.start()
-	yield($IngameMomentNode/ColorRect/Tween, "tween_completed")
-	$IngameMomentNode.visible = false
-
-func revanche_akzeptieren():
-	Server.rpc_id(Server.spielpartner_id, "reagiert_auf_revanche")
-	name = "NichtWelt"
-	$TransitionBlackness.black()
-
-func anfrage_ablehnen():
-	Server.rpc_id(Server.spielpartner_id, "reagiert_auf_revanche", false)
-	$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-	$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$IngameAnfragNode/ColorRect/Tween.start()
-	yield($IngameAnfragNode/ColorRect/Tween, "tween_completed")
-	$IngameAnfragNode.visible = false
 
 func _on_TransitionBlackness_end_done(_s2dran):
 	if revanche:
