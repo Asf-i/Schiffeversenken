@@ -109,6 +109,8 @@ func such():
 					besuch_feld = get_node("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y))
 				else:
 					i_letztes = 4
+					state = 3
+					such()
 			else:
 				i_letztes = 4
 				state = 3

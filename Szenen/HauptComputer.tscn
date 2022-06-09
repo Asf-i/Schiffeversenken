@@ -1022,7 +1022,6 @@ __meta__ = {
 }
 
 [node name="Gewonnen" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1920.0
@@ -1142,7 +1141,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = 104.999
 margin_bottom = 186.999
-text = "Spieler x hat gewonnen!!"
+text = "Spiel verloren"
 align = 1
 valign = 1
 __meta__ = {
@@ -1174,7 +1173,7 @@ margin_top = 614.999
 margin_right = 206.5
 margin_bottom = 750.999
 theme = ExtResource( 2 )
-text = "Zur Liste"
+text = "Hauptmenü"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1194,8 +1193,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 10800.0
-margin_bottom = 19100.0
+margin_right = 11880.0
+margin_bottom = 21020.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1270,6 +1269,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1080.0
+margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1550,8 +1551,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -0.000244141
-margin_bottom = -0.00195313
+margin_right = 1080.0
+margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

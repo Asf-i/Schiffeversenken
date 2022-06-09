@@ -268,36 +268,32 @@ func vollschiffcheck(schiffname):
 				$MrComputer.i_letztes = 4
 				$MrComputer.state = 0
 
-func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, das unten auch ausgeführt wird, wenn die punkte nicht erreicht sind
+func gewinnercheck():
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
-		$Gewonnen/Label.set_text("Spiel gewonnen!")
+		spieler2_ist_dran = false
+		if spieler1_punkte == 19:
+			$Gewonnen/Label.set_text("Spiel gewonnen!")
 		spielphase = 3
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
-		Server.rpc_id(Server.spielpartner_id, "spiel_wurde_gewonnen")
-		peimel = false
 	
-	if peimel == false:
 		$Gewonnen.visible = true
 		$Gewonnen/Control/FertigFelder.felder_platzieren()
-		$Gewonnen/Control/FertigFelder.felder_laden(not spieler2_ist_dran)
-		$Gewonnen/Control/FertigFelder.treffer_markieren(spieler2_ist_dran)
+		$Gewonnen/Control/FertigFelder.felder_laden(true)
+		$Gewonnen/Control/FertigFelder.treffer_markieren(false)
 		for i in Autoload.spieler1_centerfelder.size():
-			match spieler2_ist_dran:
-				true:
-					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
-				false:
-					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
+#			match spieler2_ist_dran:
+#				true:
+#					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
+#				false:
+			$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
 
 func _on_ZurListeButton_pressed():
 	$TransitionBlackness.black()
 
 func _on_Revanche_pressed():
-	Server.rpc_id(Server.spielpartner_id, "revanche")
-	$IngameMomentNode.visible = true
-	$IngameMomentNode/ColorRect/AnimationPlayer.play("InsBild")
-	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$IngameMomentNode/ColorRect/Tween.start()
+	revanche = true
+	$TransitionBlackness.black()
 
 func revanche_abbrechen():
 	Server.rpc_id(Server.spielpartner_id, "revanche", false)

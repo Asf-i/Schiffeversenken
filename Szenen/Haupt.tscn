@@ -740,7 +740,6 @@ __meta__ = {
 }
 
 [node name="Gewonnen" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1920.0
@@ -1073,8 +1072,8 @@ __meta__ = {
 [node name="Content" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 12960.0
-margin_bottom = 23040.0
+margin_right = 14040.0
+margin_bottom = 24960.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
