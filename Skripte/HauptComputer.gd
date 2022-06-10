@@ -270,6 +270,7 @@ func gewinnercheck():
 		spieler2_ist_dran = false
 		if spieler1_punkte == 19:
 			$Gewonnen/Label.set_text("Spiel gewonnen!")
+			$Gewonnen/Revanche.text = "Nochmal"
 		spielphase = 3
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()

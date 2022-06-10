@@ -44,7 +44,6 @@ func zug():
 		$"/root/Welt".spieler1_versenkte[besuch_feld.sp1_schiffli_name] -= 1
 		
 		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
-		$"/root/Welt".gewinnercheck()
 		if erstes_getroffenes == null:
 			state = 0
 	else:
@@ -65,6 +64,8 @@ func zug():
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	$"/root/Welt/EigenschiffControl/EigeneFelder".treffer_markieren(true)
+	if besuch_feld.name in Autoload.spieler1_felder:
+		$"/root/Welt".gewinnercheck()
 	
 	#Zug beenden
 	start = false
@@ -76,7 +77,6 @@ func zug():
 		get_parent().spieler2_ist_dran = false
 	else:
 		zug()
-		pass
 
 func such():
 	match state:
