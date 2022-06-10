@@ -34,7 +34,7 @@ func _on_VsComputer_pressed():
 		next_scene = 2
 		$TransitionBlackness.black()
 
-func _on_SwipeDetector_swipe(local_swipe, event_relative):
+func _on_SwipeDetector_swipe(local_swipe, event_relative, _start):
 	swiping = true
 	#Spielmodi swipen
 	if abs(local_swipe.x) < visible_swipedistanz && abs($SwipeDetector.start_direction.x) > abs($SwipeDetector.start_direction.y) && not $SettingWegButton.visible && get_node_or_null("OnlineListe") == null:

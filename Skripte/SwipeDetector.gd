@@ -1,6 +1,6 @@
 extends Node
 
-signal swipe(local_swipe, event_relative)
+signal swipe(local_swipe, event_relative, staart)
 signal swipe_done(start, end, local_swipe)
 
 var start_pos = Vector2()
@@ -21,6 +21,6 @@ func _input(event):
 	if event is InputEventScreenDrag:
 		swipe_vector += event.relative
 		if swipe_vector.length() > 20:
-			emit_signal("swipe", swipe_vector, event.relative)
+			emit_signal("swipe", swipe_vector, event.relative, start_pos)
 			if start_direction == Vector2(0, 0):
 				start_direction = swipe_vector.normalized()

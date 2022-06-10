@@ -16,10 +16,10 @@ func _ready():
 	$ScreenshakeSlider.value = Autoload.savegame_data.screenshake_value
 	richtunganders = 1
 
-func _on_SwipeDetector_swipe(local_swipe, event_relative):
+func _on_SwipeDetector_swipe(local_swipe, event_relative, start):
 	visible = true
 	swipe_event_relative = event_relative
-	if settings_immer or (abs(get_parent().get_node("SwipeDetector").start_direction.y) > abs(get_parent().get_node("SwipeDetector").start_direction.x) && (get_parent().get_node("SwipeDetector").start_direction.y * richtunganders < 0 && not get_parent().get_node("SettingWegButton").visible or get_parent().get_node("SwipeDetector").start_direction.y * richtunganders > 0 && get_parent().get_node("SettingWegButton").visible) && get_parent().get_node_or_null("OnlineListe") == null && sonst_okay):
+	if settings_immer or (abs(get_parent().get_node("SwipeDetector").start_direction.y) > abs(get_parent().get_node("SwipeDetector").start_direction.x) && (get_parent().get_node("SwipeDetector").start_direction.y * richtunganders < 0 && not get_parent().get_node("SettingWegButton").visible or get_parent().get_node("SwipeDetector").start_direction.y * richtunganders > 0 && get_parent().get_node("SettingWegButton").visible) && get_parent().get_node_or_null("OnlineListe") == null && sonst_okay && start.y < Autoload.actual_screen_height - 100):
 		rect_position.y += event_relative.y * richtunganders / (0.5 * abs(local_swipe.y) / swipe_verlangsamung + 1)
 	if rect_position.y < Autoload.actual_screen_height - rect_size.y:
 		rect_position.y = Autoload.actual_screen_height - rect_size.y
