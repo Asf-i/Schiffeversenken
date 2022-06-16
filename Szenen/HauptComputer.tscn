@@ -774,6 +774,90 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="NotifyRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -0.000244141
+margin_bottom = -0.00195313
+rect_pivot_offset = Vector2( -2426, 314 )
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.133333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="NotifyRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2160.0
+margin_bottom = 3840.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintergrundButton" type="Button" parent="NotifyRect/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -449.0
+margin_top = 42.5
+margin_right = 450.0
+margin_bottom = 290.5
+custom_styles/disabled = SubResource( 28 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NamenLabel" type="Label" parent="NotifyRect/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -517.0
+margin_top = 91.5
+margin_right = 517.0
+margin_bottom = 173.5
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Spielername"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoLabel" type="Label" parent="NotifyRect/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -517.0
+margin_top = 180.499
+margin_right = 517.0
+margin_bottom = 239.499
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Hier steht die Info"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NotifyRect/Control"]
+anims/RESET = SubResource( 62 )
+anims/open = SubResource( 63 )
+
+[node name="Sprite" type="Sprite" parent="NotifyRect/Control"]
+position = Vector2( 540, 1037 )
+scale = Vector2( 3.8125, 3.8125 )
+texture = ExtResource( 23 )
+
 [node name="Gewonnen" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -932,90 +1016,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NotifyRect" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -0.000244141
-margin_bottom = -0.00195313
-rect_pivot_offset = Vector2( -2426, 314 )
-mouse_filter = 2
-color = Color( 0, 0, 0, 0.133333 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Control" type="Control" parent="NotifyRect"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1080.0
-margin_bottom = 1920.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HintergrundButton" type="Button" parent="NotifyRect/Control"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -449.0
-margin_top = 42.5
-margin_right = 450.0
-margin_bottom = 290.5
-custom_styles/disabled = SubResource( 28 )
-disabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NamenLabel" type="Label" parent="NotifyRect/Control"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -517.0
-margin_top = 91.5
-margin_right = 517.0
-margin_bottom = 173.5
-custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Spielername"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="InfoLabel" type="Label" parent="NotifyRect/Control"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -517.0
-margin_top = 180.499
-margin_right = 517.0
-margin_bottom = 239.499
-custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-custom_fonts/font = SubResource( 29 )
-text = "Hier steht die Info"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NotifyRect/Control"]
-anims/RESET = SubResource( 62 )
-anims/open = SubResource( 63 )
-
-[node name="Sprite" type="Sprite" parent="NotifyRect/Control"]
-position = Vector2( 540, 1037 )
-scale = Vector2( 3.8125, 3.8125 )
-texture = ExtResource( 23 )
-
 [node name="SettingWegButton" type="Button" parent="."]
 visible = false
 modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
@@ -1048,8 +1048,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1080.0
-margin_bottom = 1920.0
+margin_right = 2160.0
+margin_bottom = 3840.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

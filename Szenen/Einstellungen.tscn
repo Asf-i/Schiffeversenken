@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
 [ext_resource path="res://Texturen/Slider/Grabber Area.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Texturen/Slider/Slider.png" type="Texture" id=7]
 [ext_resource path="res://Texturen/Slider/Tick.png" type="Texture" id=8]
 [ext_resource path="res://Texturen/Slider/Grabber Highlight.png" type="Texture" id=9]
+[ext_resource path="res://Texturen/Schiffe/niceschiff.png" type="Texture" id=10]
 
 [sub_resource type="Shader" id=26]
 code = "shader_type canvas_item;
@@ -95,6 +96,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 736, 968 )
+scale = Vector2( 0.531482, 0.531482 )
+texture = ExtResource( 10 )
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="EinstellungsLabel" type="Label" parent="."]
@@ -174,55 +180,6 @@ position = Vector2( 965.26, 48 )
 scale = Vector2( 0.707182, 0.75 )
 texture = ExtResource( 4 )
 hframes = 2
-
-[node name="SettingsImmer" type="Button" parent="."]
-margin_top = 952.0
-margin_right = 1080.0
-margin_bottom = 1048.0
-custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
-toggle_mode = true
-text = "   Settings Immer"
-align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OnOff" type="Sprite" parent="SettingsImmer"]
-position = Vector2( 965.26, 48 )
-scale = Vector2( 0.707182, 0.75 )
-texture = ExtResource( 4 )
-hframes = 2
-
-[node name="SchiffplatzierUknow" type="Button" parent="."]
-margin_top = 840.0
-margin_right = 1080.0
-margin_bottom = 936.0
-custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
-text = "   Schiffplatzier u know"
-align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SchiffplatzierUknow2" type="Button" parent="."]
-margin_top = 728.0
-margin_right = 1080.0
-margin_bottom = 824.0
-custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/normal = SubResource( 18 )
-text = "   Schiffplatzier u anders"
-align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LineEdit" type="LineEdit" parent="."]
 margin_left = 40.0
@@ -329,8 +286,5 @@ __meta__ = {
 [connection signal="toggled" from="Rotieren" to="." method="_on_CheckButton_toggled"]
 [connection signal="toggled" from="Vibration" to="." method="_on_Vibration_toggled"]
 [connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
-[connection signal="toggled" from="SettingsImmer" to="." method="_on_SettingsImmer_toggled"]
-[connection signal="pressed" from="SchiffplatzierUknow" to="." method="_on_SchiffplatzierUknow_pressed"]
-[connection signal="pressed" from="SchiffplatzierUknow2" to="." method="_on_SchiffplatzierUknow2_pressed"]
 [connection signal="text_entered" from="LineEdit3" to="." method="_on_LineEdit3_text_entered"]
 [connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]
