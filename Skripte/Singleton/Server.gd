@@ -216,6 +216,8 @@ remote func anderer_spiel_verlassen():
 		$"/root/Welt/NotifyRect/Control/NamenLabel".set_text(spielpartner_name)
 		$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("hat das Spiel verlassen")
 		$"/root/Welt/NotifyRect/Control/ListenButton".visible = true
+		$"/root/Welt/NotifyRect/Control/HintergrundButton".visible = false
+		$"/root/Welt/NotifyRect/Control/HintergrundButton2".visible = true
 		$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 		$"/root/Welt/NotifyRect".visible = true
 		$"/root/Welt/NochDaCheckTimer".stop()

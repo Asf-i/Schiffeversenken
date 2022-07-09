@@ -260,7 +260,7 @@ func zu_phase_zwei_wechseln():
 	
 	if $Felder.rect_position.y != $Felder.rect_position.y + feldverschiebung: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
 		yield($Felder/Tween, "tween_completed")
-	$TweenSprite.visible = true
+	
 	for i in Autoload.spieler1_centerfelder.size():
 		if spieler2_ist_dran:
 			$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $Schiffe)
@@ -316,6 +316,8 @@ func _on_NochDaTimer_timeout():
 		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
 		$NotifyRect/Control/InfoLabel.set_text("ist nicht mehr da...")
 		$NotifyRect/Control/ListenButton.visible = true
+		$NotifyRect/Control/HintergrundButton.visible = false
+		$NotifyRect/Control/HintergrundButton2.visible = true
 		$NotifyRect/Control/AnimationPlayer.play("open")
 		$NotifyRect.visible = true
 	else:

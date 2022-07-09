@@ -790,8 +790,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2160.0
-margin_bottom = 3840.0
+margin_right = 3240.0
+margin_bottom = 5760.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1033,9 +1033,6 @@ __meta__ = {
 [node name="Einstellungen" parent="." instance=ExtResource( 20 )]
 visible = false
 
-[node name="TransitionBlackness" parent="." instance=ExtResource( 6 )]
-visible = false
-
 [node name="ZumHauptmenu" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -1048,8 +1045,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2160.0
-margin_bottom = 3840.0
+margin_right = 3240.0
+margin_bottom = 5760.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1168,6 +1165,9 @@ centered = false
 anims/RESET = SubResource( 64 )
 anims/open = SubResource( 65 )
 
+[node name="TransitionBlackness" parent="." instance=ExtResource( 6 )]
+visible = false
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
@@ -1185,7 +1185,7 @@ script = ExtResource( 9 )
 [connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
 [connection signal="pressed" from="Gewonnen/ZurListeButton" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
-[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
 [connection signal="pressed" from="ZumHauptmenu/Control/nein2" to="." method="_on_nein_pressed"]
 [connection signal="pressed" from="ZumHauptmenu/Control/ja" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="pressed" from="ZumHauptmenu/Control/nein" to="." method="_on_nein_pressed"]
+[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]

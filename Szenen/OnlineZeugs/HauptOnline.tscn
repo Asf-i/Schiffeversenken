@@ -21,7 +21,7 @@
 [ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
 [ext_resource path="res://Texturen/Symbole/Haus.png" type="Texture" id=20]
 [ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=21]
-[ext_resource path="res://Happy.png" type="Texture" id=22]
+[ext_resource path="res://UI/CleanDark.tres" type="Theme" id=23]
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
@@ -1194,8 +1194,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 12960.0
-margin_bottom = 22940.0
+margin_right = 14040.0
+margin_bottom = 24860.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1270,8 +1270,24 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 5400.0
-margin_bottom = 9600.0
+margin_right = 1080.0
+margin_bottom = 1920.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintergrundButton2" type="Button" parent="NotifyRect/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -449.0
+margin_top = 43.0
+margin_right = 450.0
+margin_bottom = 399.0
+custom_styles/disabled = SubResource( 28 )
+disabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1282,9 +1298,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -449.0
-margin_top = 42.5
+margin_top = 43.0
 margin_right = 450.0
-margin_bottom = 290.5
+margin_bottom = 289.0
 custom_styles/disabled = SubResource( 28 )
 disabled = true
 __meta__ = {
@@ -1333,10 +1349,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -210.5
-margin_top = 362.5
+margin_top = 279.0
 margin_right = 210.5
-margin_bottom = 452.5
-theme = ExtResource( 13 )
+margin_bottom = 369.0
+theme = ExtResource( 23 )
 custom_fonts/font = SubResource( 66 )
 text = "Zur Liste"
 __meta__ = {
@@ -1554,9 +1570,6 @@ __meta__ = {
 [node name="Einstellungen" parent="." instance=ExtResource( 10 )]
 visible = false
 
-[node name="TransitionBlackness" parent="." instance=ExtResource( 11 )]
-visible = false
-
 [node name="ZumHauptmenu" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -1569,8 +1582,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 12960.0
-margin_bottom = 23040.0
+margin_right = 14040.0
+margin_bottom = 24960.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1686,18 +1699,15 @@ centered = false
 anims/RESET = SubResource( 64 )
 anims/open = SubResource( 65 )
 
+[node name="TransitionBlackness" parent="." instance=ExtResource( 11 )]
+visible = false
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
 script = ExtResource( 14 )
 
 [node name="Tween" type="Tween" parent="Camera2D"]
-
-[node name="TweenSprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 171, 409 )
-scale = Vector2( 0.157184, 0.157184 )
-texture = ExtResource( 22 )
 
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
@@ -1717,7 +1727,7 @@ texture = ExtResource( 22 )
 [connection signal="pressed" from="IngameMomentNode/MomentWeg" to="." method="revanche_abbrechen"]
 [connection signal="pressed" from="IngameMomentNode/ColorRect/Abbrechen" to="." method="revanche_abbrechen"]
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
-[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
 [connection signal="pressed" from="ZumHauptmenu/Control/nein2" to="." method="_on_nein_pressed"]
 [connection signal="pressed" from="ZumHauptmenu/Control/ja" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="pressed" from="ZumHauptmenu/Control/nein" to="." method="_on_nein_pressed"]
+[connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]

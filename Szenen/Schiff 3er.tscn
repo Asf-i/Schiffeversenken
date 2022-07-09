@@ -274,14 +274,14 @@ anims/RESET = SubResource( 7 )
 modulate = Color( 0, 0, 0, 0.137255 )
 scale = Vector2( 0.354067, 0.375 )
 frames = SubResource( 8 )
-frame = 132
+frame = 38
 speed_scale = 3.5
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.346063, 0.346062 )
 frames = SubResource( 8 )
-frame = 132
+frame = 38
 speed_scale = 3.5
 playing = true
 
