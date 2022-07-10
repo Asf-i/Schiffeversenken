@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -15,13 +15,15 @@
 [ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=13]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
 [ext_resource path="res://Texturen/Symbolelol/X.png" type="Texture" id=15]
-[ext_resource path="res://Texturen/Symbolelol/Random.png" type="Texture" id=16]
+[ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=16]
 [ext_resource path="res://Texturen/Symbolelol/Haken.png" type="Texture" id=17]
-[ext_resource path="res://Texturen/Symbolelol/Trash.png" type="Texture" id=18]
+[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
-[ext_resource path="res://Texturen/Symbolelol/Haus.png" type="Texture" id=20]
+[ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=20]
 [ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=21]
+[ext_resource path="res://Texturen/Symbole/Shuffle.png" type="Texture" id=22]
 [ext_resource path="res://UI/CleanDark.tres" type="Theme" id=23]
+[ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=24]
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
@@ -751,8 +753,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="FertigButton"]
 modulate = Color( 0.415686, 0.415686, 0.415686, 1 )
-position = Vector2( 1.99988, -0.00195313 )
-texture = ExtResource( 17 )
+position = Vector2( 23, 21.738 )
+scale = Vector2( 0.374, 0.374 )
+texture = ExtResource( 18 )
 centered = false
 
 [node name="RandomButton" type="Button" parent="."]
@@ -768,9 +771,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="RandomButton"]
-position = Vector2( 1.99988, 5.99805 )
-scale = Vector2( 0.937499, 0.937499 )
-texture = ExtResource( 16 )
+position = Vector2( 25, 21.346 )
+scale = Vector2( 0.329, 0.329 )
+texture = ExtResource( 22 )
 centered = false
 
 [node name="ClearButton" type="Button" parent="."]
@@ -786,9 +789,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="ClearButton"]
-position = Vector2( 6.99988, 6.99805 )
-scale = Vector2( 0.898437, 0.898437 )
-texture = ExtResource( 18 )
+position = Vector2( 20, 20 )
+scale = Vector2( 0.377, 0.377 )
+texture = ExtResource( 16 )
 centered = false
 
 [node name="HauptmenuButton" type="Button" parent="."]
@@ -805,8 +808,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="HauptmenuButton"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 9, 5 )
-scale = Vector2( 0.625, 0.625 )
+position = Vector2( 10, 9.623 )
+scale = Vector2( 0.305, 0.305 )
 texture = ExtResource( 20 )
 centered = false
 
@@ -824,9 +827,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -463.0
-margin_top = -225.002
+margin_top = -233.002
 margin_right = -463.0
-margin_bottom = -225.002
+margin_bottom = -233.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="2" parent="Schiffe" instance=ExtResource( 4 )]
@@ -835,9 +838,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 318.0
-margin_top = -159.002
+margin_top = -139.002
 margin_right = 318.0
-margin_bottom = -159.002
+margin_bottom = -139.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="3" parent="Schiffe" instance=ExtResource( 2 )]
@@ -846,9 +849,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -152.0
-margin_top = -225.002
+margin_top = -233.002
 margin_right = -152.0
-margin_bottom = -225.002
+margin_bottom = -233.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="4" parent="Schiffe" instance=ExtResource( 2 )]
@@ -857,9 +860,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 107.0
-margin_top = -159.002
+margin_top = -139.002
 margin_right = 107.0
-margin_bottom = -159.002
+margin_bottom = -139.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="5" parent="Schiffe" instance=ExtResource( 3 )]
@@ -868,9 +871,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -305.0
-margin_top = -159.002
+margin_top = -139.002
 margin_right = -305.0
-margin_bottom = -159.002
+margin_bottom = -139.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="6" parent="Schiffe" instance=ExtResource( 5 )]
@@ -879,9 +882,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 255.0
-margin_top = -225.002
+margin_top = -233.002
 margin_right = 255.0
-margin_bottom = -225.002
+margin_bottom = -233.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="EigenschiffControl" type="Control" parent="."]
@@ -1194,8 +1197,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 14040.0
-margin_bottom = 24860.0
+margin_right = 16200.0
+margin_bottom = 28700.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1270,8 +1273,6 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1080.0
-margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1312,10 +1313,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -517.0
-margin_top = 91.5
-margin_right = 517.0
-margin_bottom = 173.5
+margin_left = -439.0
+margin_top = 92.0
+margin_right = 439.0
+margin_bottom = 174.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 text = "Spielername"
 align = 1
@@ -1582,8 +1583,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 14040.0
-margin_bottom = 24960.0
+margin_right = 16200.0
+margin_bottom = 28800.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1664,9 +1665,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="ZumHauptmenu/Control/ja"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 8, 4.00195 )
-scale = Vector2( 0.773438, 0.773438 )
-texture = ExtResource( 17 )
+position = Vector2( 15, 13.979 )
+scale = Vector2( 0.352, 0.352 )
+texture = ExtResource( 18 )
 centered = false
 
 [node name="nein" type="Button" parent="ZumHauptmenu/Control"]
@@ -1690,9 +1691,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="ZumHauptmenu/Control/nein"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 2.00012, 1.00195 )
-scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 15 )
+position = Vector2( 15, 15.003 )
+scale = Vector2( 0.349, 0.349 )
+texture = ExtResource( 24 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ZumHauptmenu/Control"]

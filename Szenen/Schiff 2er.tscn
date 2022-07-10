@@ -203,9 +203,6 @@
 [ext_resource path="res://Texturen/Schiffe/2erSchiffFrames/0061.png" type="Texture" id=201]
 [ext_resource path="res://Texturen/Schiffe/2erSchiffFrames/0064.png" type="Texture" id=202]
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 1, 1 )
-
 [sub_resource type="Animation" id=7]
 resource_name = "Kaputtgeh"
 length = 0.6
@@ -245,6 +242,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1, 1 )
+
 [node name="Schiff 2er" type="Control"]
 script = ExtResource( 1 )
 __meta__ = {
@@ -255,11 +255,6 @@ __meta__ = {
 position = Vector2( -26, -23 )
 scale = Vector2( 0.398438, 0.359375 )
 normal = ExtResource( 182 )
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="." groups=["Schiff"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-shape = SubResource( 6 )
 
 [node name="NurtippTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -274,7 +269,7 @@ modulate = Color( 0, 0, 0, 0.137255 )
 position = Vector2( 26, 2.89083e-06 )
 scale = Vector2( 0.414063, 0.4375 )
 frames = SubResource( 9 )
-frame = 185
+frame = 157
 speed_scale = 3.5
 playing = true
 
@@ -282,9 +277,14 @@ playing = true
 position = Vector2( 26, 0 )
 scale = Vector2( 0.396, 0.396 )
 frames = SubResource( 9 )
-frame = 184
+frame = 156
 speed_scale = 3.5
 playing = true
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." groups=["Schiff"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 6 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="released" from="Button" to="." method="_on_Button_released"]
