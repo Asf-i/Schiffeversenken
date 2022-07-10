@@ -7,8 +7,8 @@
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=6]
 [ext_resource path="res://Texturen/Xdunkel.png" type="Texture" id=7]
-[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=8]
-[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=9]
+[ext_resource path="res://Texturen/Symbolelol/X.png" type="Texture" id=8]
+[ext_resource path="res://Texturen/Symbolelol/Haken.png" type="Texture" id=9]
 [ext_resource path="res://UI/CleanDark.tres" type="Theme" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=13]

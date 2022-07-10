@@ -14,11 +14,11 @@
 [ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=13]
 [ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=14]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=15]
-[ext_resource path="res://Texturen/Symbole/Random.png" type="Texture" id=16]
-[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=17]
-[ext_resource path="res://Texturen/Symbole/Trash.png" type="Texture" id=18]
-[ext_resource path="res://Texturen/Symbole/Haus.png" type="Texture" id=19]
-[ext_resource path="res://Texturen/Symbole/X.png" type="Texture" id=20]
+[ext_resource path="res://Texturen/Symbolelol/Random.png" type="Texture" id=16]
+[ext_resource path="res://Texturen/Symbolelol/Haken.png" type="Texture" id=17]
+[ext_resource path="res://Texturen/Symbolelol/Trash.png" type="Texture" id=18]
+[ext_resource path="res://Texturen/Symbolelol/Haus.png" type="Texture" id=19]
+[ext_resource path="res://Texturen/Symbolelol/X.png" type="Texture" id=20]
 
 [sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
