@@ -13,12 +13,12 @@
 [ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=11]
 [ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=12]
 [ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=13]
-[ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=14]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=15]
 [ext_resource path="res://Texturen/Symbole/Shuffle.png" type="Texture" id=16]
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=17]
 [ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=19]
+[ext_resource path="res://Texturen/Hintergrund/HintergrundBlau.png" type="Texture" id=20]
 
 [sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
@@ -280,11 +280,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="ColorRect"]
-modulate = Color( 0.780392, 0.945098, 1, 1 )
-position = Vector2( 2010, 1165 )
-scale = Vector2( 1.65278, 1.65278 )
-texture = ExtResource( 14 )
+[node name="HintergrundBlau" type="Sprite" parent="ColorRect"]
+position = Vector2( 609, 1141 )
+texture = ExtResource( 20 )
 
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
@@ -1073,8 +1071,8 @@ __meta__ = {
 [node name="Content" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1080.0
-margin_bottom = 1920.0
+margin_right = 2160.0
+margin_bottom = 3840.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

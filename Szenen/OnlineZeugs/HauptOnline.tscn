@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -14,13 +14,10 @@
 [ext_resource path="res://UI/TestTheme.tres" type="Theme" id=12]
 [ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=13]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
-[ext_resource path="res://Texturen/Symbolelol/X.png" type="Texture" id=15]
 [ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=16]
-[ext_resource path="res://Texturen/Symbolelol/Haken.png" type="Texture" id=17]
 [ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
 [ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=20]
-[ext_resource path="res://artwork-the-legend-of-zelda-mm-2560x1440.jpg" type="Texture" id=21]
 [ext_resource path="res://Texturen/Symbole/Shuffle.png" type="Texture" id=22]
 [ext_resource path="res://UI/CleanDark.tres" type="Theme" id=23]
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=24]
@@ -656,16 +653,10 @@ script = ExtResource( 7 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.172549, 0.25098, 0.2, 1 )
+color = Color( 0.290196, 0.505882, 0.368627, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="ColorRect"]
-modulate = Color( 0.992157, 0.992157, 0.992157, 1 )
-position = Vector2( -990.334, 1166.5 )
-scale = Vector2( 1.64653, 1.64653 )
-texture = ExtResource( 21 )
 
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
@@ -1197,8 +1188,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 16200.0
-margin_bottom = 28700.0
+margin_right = 18360.0
+margin_bottom = 32540.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1273,6 +1264,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 2160.0
+margin_bottom = 3840.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1440,9 +1433,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="IngameAnfragNode/ColorRect/accept"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 8, 4.00195 )
-scale = Vector2( 0.773438, 0.773438 )
-texture = ExtResource( 17 )
+position = Vector2( 13.4999, 13 )
+scale = Vector2( 0.352, 0.352 )
+texture = ExtResource( 18 )
 centered = false
 
 [node name="deny" type="Button" parent="IngameAnfragNode/ColorRect"]
@@ -1464,9 +1457,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="IngameAnfragNode/ColorRect/deny"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 2.00012, 1.00195 )
-scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 15 )
+position = Vector2( 13.5, 15 )
+scale = Vector2( 0.349, 0.349 )
+texture = ExtResource( 24 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IngameAnfragNode/ColorRect"]
@@ -1543,9 +1536,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="IngameMomentNode/ColorRect/Abbrechen"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 2.00012, 1.00195 )
-scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 15 )
+position = Vector2( 13.5, 15 )
+scale = Vector2( 0.349, 0.349 )
+texture = ExtResource( 24 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IngameMomentNode/ColorRect"]
@@ -1583,8 +1576,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 16200.0
-margin_bottom = 28800.0
+margin_right = 18360.0
+margin_bottom = 32640.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

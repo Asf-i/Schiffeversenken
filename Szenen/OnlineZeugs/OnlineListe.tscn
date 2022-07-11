@@ -7,9 +7,9 @@
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=6]
 [ext_resource path="res://Texturen/Xdunkel.png" type="Texture" id=7]
-[ext_resource path="res://Texturen/Symbolelol/X.png" type="Texture" id=8]
-[ext_resource path="res://Texturen/Symbolelol/Haken.png" type="Texture" id=9]
+[ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=9]
 [ext_resource path="res://UI/CleanDark.tres" type="Theme" id=10]
+[ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -262,6 +262,8 @@ tracks/2/keys = {
 [node name="OnlineListe" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1080.0
+margin_bottom = 1920.0
 theme = ExtResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -508,8 +510,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="anfragNode/ColorRect/accept"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 8, 4.00195 )
-scale = Vector2( 0.773438, 0.773438 )
+position = Vector2( 15, 13.979 )
+scale = Vector2( 0.352, 0.352 )
 texture = ExtResource( 9 )
 centered = false
 
@@ -533,9 +535,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="anfragNode/ColorRect/deny"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 2.00012, 1.00195 )
-scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 8 )
+position = Vector2( 13.5, 15 )
+scale = Vector2( 0.349, 0.349 )
+texture = ExtResource( 11 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="anfragNode/ColorRect"]
@@ -612,9 +614,9 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="MomentNode/ColorRect/Abbrechen"]
 modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
-position = Vector2( 2.00012, 1.00195 )
-scale = Vector2( 0.812501, 0.812501 )
-texture = ExtResource( 8 )
+position = Vector2( 13.5, 15 )
+scale = Vector2( 0.349, 0.349 )
+texture = ExtResource( 11 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MomentNode/ColorRect"]

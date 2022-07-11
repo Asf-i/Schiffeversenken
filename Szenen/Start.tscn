@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Texturen/Stift.png" type="Texture" id=1]
 [ext_resource path="res://Szenen/Start.gd" type="Script" id=2]
@@ -8,25 +8,13 @@
 [ext_resource path="res://Texturen/Symbole/Zahnrad.png" type="Texture" id=6]
 [ext_resource path="res://Texturen/LokalBild.png" type="Texture" id=7]
 [ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=8]
-[ext_resource path="res://Texturen/Dreieck.png" type="Texture" id=9]
+[ext_resource path="res://Texturen/Symbole/Wahl.png" type="Texture" id=9]
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Texturen/hintergrundbild.png" type="Texture" id=12]
 [ext_resource path="res://Texturen/OnlineBild.png" type="Texture" id=13]
 [ext_resource path="res://Texturen/ComputerBild.png" type="Texture" id=14]
 [ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=16]
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color( 1, 1, 1, 0.733333 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="DynamicFont" id=14]
 size = 40
@@ -184,39 +172,6 @@ scale = Vector2( 1, 0.108263 )
 texture = ExtResource( 5 )
 centered = false
 
-[node name="BorderButton" type="Button" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
-mouse_filter = 2
-custom_styles/disabled = SubResource( 2 )
-disabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-margin_right = 1080.0
-margin_bottom = 152.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-visible = false
-margin_top = 152.0
-margin_right = 1080.0
-margin_bottom = 160.0
-color = Color( 0.882353, 0.882353, 0.882353, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="VersionsLabel" type="Label" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -225,7 +180,7 @@ margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.3.6"
+text = "v0.4.1"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -368,27 +323,24 @@ __meta__ = {
 }
 
 [node name="NachLinks" type="TextureButton" parent="ModeBeschr"]
-margin_left = -404.0
-margin_top = 94.0
-margin_right = -20.0
-margin_bottom = 206.0
-rect_rotation = 270.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -348.0
+margin_top = 113.0
+margin_right = -236.0
+margin_bottom = 419.0
+rect_rotation = 180.0
+rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 9 )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NachRechts" type="TextureButton" parent="ModeBeschr"]
-margin_left = 412.0
-margin_top = -98.0
-margin_right = 796.0
-margin_bottom = 14.0
-rect_rotation = 90.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 356.0
+margin_top = -98.0001
+margin_right = 468.0
+margin_bottom = 208.0
+rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 9 )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -464,9 +416,9 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -8.0
+margin_left = -424.0
 margin_top = -190.0
-margin_right = 840.0
+margin_right = 424.0
 margin_bottom = -6.0
 custom_styles/disabled = SubResource( 25 )
 disabled = true
