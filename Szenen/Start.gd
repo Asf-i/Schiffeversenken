@@ -17,6 +17,11 @@ func _ready():
 	$NameButton.set_text(Autoload.savegame_data.sp1name)
 	$NameButton/NameHintergrund/Spieler2.set_text(Autoload.savegame_data.sp2name)
 	$Einstellungen.rect_position.y = Autoload.actual_screen_height + 1
+	
+	#verschiebung
+	$VersionsLabel.rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
+	for i in range(1, 6):
+		get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
 
 func _on_Multiplayer_pressed():
 	if not swiping:
@@ -73,6 +78,7 @@ func _on_NameButton_pressed():
 		Autoload.load_data()
 		$NameButton/NameHintergrund/AnimationPlayer.play("hin")
 	$NamenWeg.visible = not $NamenWeg.visible
+	$EingebeCover.visible = not $NamenWeg.visible
 #	$NameButton/NameHintergrund.visible = $NamenWeg.visible
 	print(Autoload.savegame_data)
 

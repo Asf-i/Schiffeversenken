@@ -11,9 +11,12 @@ var spieler2_beschossene = {}
 
 var actual_screen_height : int
 
+var default_versch_values = [1864, 0, 0, 24, 128, -448]
+var versch_namen = ["VersionsLabel", "GradientControl", "NameButton", "SettingButton", "SettingWegButton", "EingebeCover"]
+
 #Zum Saven
 const SAVE_PATH = "user://schiffeversenken.save"
-var savegame_data = {"sp1name": "Spieler_1", "sp2name": "Spieler_2", "rotier_mode": false, "sound_an" : false, "vibration" : true, "screenshake_value" : 10}
+var savegame_data = {"sp1name": "Spieler_1", "sp2name": "Spieler_2", "rotier_mode": false, "sound_an" : false, "vibration" : true, "screenshake_value" : 10, "verschiebung" : 0.0}
 
 func _ready():
 	load_data()
@@ -59,6 +62,7 @@ func centerfelder_anpassen(centerfeld, rotiert : bool, laenge : int, zweites : b
 		becenterte_felder.erase(centerfeld.name)
 
 func save():
+	print("SAVE")
 	var save_game = File.new()
 	save_game.open(SAVE_PATH, File.WRITE)
 	save_game.store_line(to_json(savegame_data))

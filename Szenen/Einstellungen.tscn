@@ -283,8 +283,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VerschiebungSlider" type="HSlider" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -473.0
+margin_top = 784.0
+margin_right = 473.0
+margin_bottom = 826.0
+custom_icons/tick = ExtResource( 8 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 6 )
+custom_styles/slider = SubResource( 29 )
+custom_styles/grabber_area_highlight = SubResource( 31 )
+custom_styles/grabber_area = SubResource( 30 )
+max_value = 220.0
+step = 22.0
+rounded = true
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VerschiebungLabel" type="Label" parent="VerschiebungSlider"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -476.0
+margin_top = -56.0
+margin_right = 348.0
+margin_bottom = -7.0
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 32 )
+text = "UI-Verschiebung"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="toggled" from="Rotieren" to="." method="_on_CheckButton_toggled"]
 [connection signal="toggled" from="Vibration" to="." method="_on_Vibration_toggled"]
 [connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
 [connection signal="text_entered" from="LineEdit3" to="." method="_on_LineEdit3_text_entered"]
 [connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]
+[connection signal="value_changed" from="VerschiebungSlider" to="." method="_on_VerschiebungSlider_value_changed"]

@@ -366,7 +366,7 @@ visible = false
 modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 160.0
+margin_top = 128.0
 custom_styles/hover = SubResource( 20 )
 custom_styles/pressed = SubResource( 21 )
 custom_styles/focus = SubResource( 22 )
@@ -384,6 +384,7 @@ visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -512.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -514,6 +515,14 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NameButton/NameHintergrund"]
 anims/RESET = SubResource( 29 )
 anims/hin = SubResource( 30 )
+
+[node name="EingebeCover" type="ColorRect" parent="."]
+anchor_right = 1.0
+margin_top = -448.0
+color = Color( 0.909804, 0.133333, 0.823529, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TransitionBlackness" parent="." instance=ExtResource( 16 )]
 
