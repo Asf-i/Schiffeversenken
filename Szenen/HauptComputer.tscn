@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Texturen/Symbole/Shuffle.png" type="Texture" id=11]
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=12]
 [ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=13]
+[ext_resource path="res://Texturen/Hintergrund/gruenHintergrund.png" type="Texture" id=14]
 [ext_resource path="res://Szenen/Schiff 2er.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Szenen/Schiff 5er.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Szenen/Felder.tscn" type="PackedScene" id=18]
@@ -411,6 +412,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="gruenHintergrund" type="Sprite" parent="ColorRect"]
+position = Vector2( 562, 1000 )
+texture = ExtResource( 14 )
+
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_left = 110.0
@@ -784,8 +789,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 7560.0
-margin_bottom = 13440.0
+margin_right = 8640.0
+margin_bottom = 15360.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1039,8 +1044,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2160.0
-margin_bottom = 3840.0
+margin_right = 3240.0
+margin_bottom = 5760.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

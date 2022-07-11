@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://UI/TestTheme.tres" type="Theme" id=12]
 [ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=13]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
+[ext_resource path="res://Texturen/Hintergrund/schwarzHintergrund.png" type="Texture" id=15]
 [ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=16]
 [ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
@@ -658,6 +659,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SchwarzHintergrund" type="Sprite" parent="ColorRect"]
+position = Vector2( 196, 1009 )
+texture = ExtResource( 15 )
+
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_left = 110.0
@@ -1188,8 +1193,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 18360.0
-margin_bottom = 32540.0
+margin_right = 19440.0
+margin_bottom = 34460.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1264,8 +1269,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2160.0
-margin_bottom = 3840.0
+margin_right = 3240.0
+margin_bottom = 5760.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1576,8 +1581,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 18360.0
-margin_bottom = 32640.0
+margin_right = 19440.0
+margin_bottom = 34560.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

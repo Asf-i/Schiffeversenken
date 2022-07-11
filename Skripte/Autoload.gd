@@ -62,7 +62,6 @@ func centerfelder_anpassen(centerfeld, rotiert : bool, laenge : int, zweites : b
 		becenterte_felder.erase(centerfeld.name)
 
 func save():
-	print("SAVE")
 	var save_game = File.new()
 	save_game.open(SAVE_PATH, File.WRITE)
 	save_game.store_line(to_json(savegame_data))
