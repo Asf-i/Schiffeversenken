@@ -78,6 +78,7 @@ func zug():
 		zug()
 
 func such():
+	var such_node
 	match state:
 		0:
 			print("RANDOM")
@@ -86,21 +87,24 @@ func such():
 		1:
 			print("RUNDHERUM VOM ERSTEN")
 			for i in 4:
-				if get_node_or_null("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y)) != null && get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y)).aufgedeckt == false:
-					besuch_feld = get_node("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y))
+				such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y))
+				if such_node != null && such_node.aufgedeckt == false:
+					besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
 					i_letztes = i
 					break
 		3:
 			print("ANDERE RICHTUNG")
-			if get_node_or_null("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y)) != null && get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y)).aufgedeckt == false:
-				besuch_feld = get_node("/root/Welt/Felder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y))
+			such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y))
+			if such_node != null && such_node.aufgedeckt == false:
+				besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
 				erstes_getroffenes = besuch_feld
 			else:
 				i_letztes = 4
 		2:
 			print("AB ZWEI")
-			if get_node_or_null("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y)) != null && get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y)).aufgedeckt == false:
-				besuch_feld = get_node("/root/Welt/Felder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y))
+			such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y))
+			if such_node != null && such_node.aufgedeckt == false:
+				besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
 			else:
 				i_letztes = 4
 				state = 3
