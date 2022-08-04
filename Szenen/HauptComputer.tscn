@@ -789,8 +789,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 8640.0
-margin_bottom = 15360.0
+margin_right = 9720.0
+margin_bottom = 17280.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1044,8 +1044,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3240.0
-margin_bottom = 5760.0
+margin_right = 4320.0
+margin_bottom = 7680.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

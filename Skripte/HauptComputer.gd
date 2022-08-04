@@ -19,7 +19,6 @@ var spieler2_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
 func _ready():
 	Server.ingame = true
 	randomize()
-#	Autoload.dictionaries_vorbereiten()
 	$Felder.felder_platzieren()
 	$EigenschiffControl/EigeneFelder.felder_platzieren()
 	$Gewonnen.rect_position.y = -$Gewonnen.rect_size.y

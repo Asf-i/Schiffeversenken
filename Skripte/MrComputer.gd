@@ -25,7 +25,6 @@ func zug():
 	print("i_richtig: " + str(i_richtig))
 	print("erstes_getroffenes: " + str(erstes_getroffenes))
 	print("letztes_getroffenes: " + str(letztes_getroffenes))
-#	yield(self, "press")
 	randomize()
 	such()
 	

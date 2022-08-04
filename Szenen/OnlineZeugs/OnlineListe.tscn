@@ -262,8 +262,6 @@ tracks/2/keys = {
 [node name="OnlineListe" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1080.0
-margin_bottom = 1920.0
 theme = ExtResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {

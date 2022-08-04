@@ -41,6 +41,10 @@ func _input(event):
 		print("\nspieler2_centerfelder: " + str(spieler2_centerfelder))
 		print("spieler2_ist_dran: " + str($"/root/Welt".spieler2_ist_dran))
 	
+	elif event.is_action_pressed("ui_left"):
+		print(savegame_data)
+		print(to_json(savegame_data))
+	
 	elif event.is_action_pressed("ui_cancel"):
 		for i in spieler1_centerfelder.size():
 			print(get_node("/root/Welt/Felder/" + spieler1_centerfelder.keys()[i]).name + ": " + get_node("/root/Welt/Felder/" + spieler1_centerfelder.keys()[i]).sp1_schiffli_name)
