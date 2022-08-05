@@ -27,7 +27,7 @@ func connect_to_server(ip):
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
 
 func _on_connection_failed():
-	print("Failed to connect")
+	print("Failed to connect") #Es funktioniert, kommt aber erst nach einer Weile.. glaub ich
 
 func _on_connection_succeeded():
 	var liste = LISTE.instance()

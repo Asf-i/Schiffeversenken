@@ -22,6 +22,11 @@ func _ready():
 	$VersionsLabel.rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
 	for i in range(1, 6):
 		get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
+	$Einstellungen/VerschiebungSlider.value = Autoload.savegame_data.verschiebung
+
+func _input(event):
+	if event.is_action_pressed("ui_right"):
+		$VersionsLabel.rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
 
 func _on_Multiplayer_pressed():
 	if not swiping:

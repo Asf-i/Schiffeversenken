@@ -34,7 +34,7 @@ func zug():
 			state = 2
 		elif state == 0:
 			state = 1
-		if i_letztes == 4:
+		if i_letztes == 4: #Weil in den loops i nur bis 3 geht
 			erstes_getroffenes = besuch_feld
 		print("TREFFER")
 		letztes_getroffenes = besuch_feld
@@ -81,27 +81,19 @@ func such():
 	var such_node
 	match state:
 		0:
-			print("RANDOM")
+			#Zufällig ein Feld auswählen
 			while besuch_feld.name in Autoload.spieler2_beschossene or besuch_feld.name == "Felder":
 				besuch_feld = get_node("/root/Welt/Felder/" + str(int(rand_range(1, 11))) + "_" + str(int(rand_range(1, 11))))
 		1:
-			print("RUNDHERUM VOM ERSTEN")
+			#Die benachbarten Felder des aufgedeckten absuchen
 			for i in 4:
 				such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i].x) + "_" + str(erstes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i].y))
 				if such_node != null && such_node.aufgedeckt == false:
 					besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
 					i_letztes = i
 					break
-		3:
-			print("ANDERE RICHTUNG")
-			such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y))
-			if such_node != null && such_node.aufgedeckt == false:
-				besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
-				erstes_getroffenes = besuch_feld
-			else:
-				i_letztes = 4
 		2:
-			print("AB ZWEI")
+			#Ab zwei gefundenen Feldern in die gleiche Richtung voran gehen
 			such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(letztes_getroffenes.coords.x + FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(letztes_getroffenes.coords.y + FELD_NAME_VEKTOREN[i_richtig].y))
 			if such_node != null && such_node.aufgedeckt == false:
 				besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
@@ -109,3 +101,11 @@ func such():
 				i_letztes = 4
 				state = 3
 				such()
+		3:
+			#Die Richtung wechseln
+			such_node = get_node_or_null("/root/Welt/EigenschiffControl/EigeneFelder/" + str(erstes_getroffenes.coords.x - FELD_NAME_VEKTOREN[i_richtig].x) + "_" + str(erstes_getroffenes.coords.y - FELD_NAME_VEKTOREN[i_richtig].y))
+			if such_node != null && such_node.aufgedeckt == false:
+				besuch_feld = get_node("/root/Welt/Felder/" + such_node.name)
+				erstes_getroffenes = besuch_feld
+			else:
+				i_letztes = 4

@@ -14,7 +14,7 @@ func _ready():
 	$AudioButton.pressed = Autoload.savegame_data.sound_an
 	$Vibration.pressed = Autoload.savegame_data.vibration
 	$ScreenshakeSlider.value = Autoload.savegame_data.screenshake_value
-	$VerschiebungSlider.value = Autoload.savegame_data.verschiebung
+	#VerschiebungSlider wird in Start.gd gesetzt
 	richtunganders = 1
 
 func _on_SwipeDetector_swipe(local_swipe, event_relative, start):
@@ -101,7 +101,9 @@ func _on_ScreenshakeSlider_value_changed(value):
 	Autoload.savegame_data.screenshake_value = value
 
 func _on_VerschiebungSlider_value_changed(value):
+	print("VALUE CHANGED LUL")
 	Autoload.savegame_data.verschiebung = value
-	get_parent().get_node("VersionsLabel").rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
-	for i in range(1, 6):
-		get_parent().get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
+	if get_parent().name == "Start":
+		get_parent().get_node("VersionsLabel").rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
+		for i in range(1, 6):
+			get_parent().get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
