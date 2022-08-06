@@ -1,7 +1,7 @@
 extends Control
 
 export var anzahl_schiffe : int = 6
-var feldverschiebung : int = 150
+const FELDVERSCHIEBUNG : int = 200
 
 var selected_schiffli
 var unselectbar : bool = true
@@ -15,6 +15,8 @@ var spieler1_punkte : int = 0
 var spieler2_punkte : int = 0
 var spieler1_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
 var spieler2_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
+
+var aufgedeckte_schiffe = []
 
 func _ready():
 	Server.ingame = true
@@ -217,9 +219,9 @@ func zu_phase_zwei_wechseln():
 	spieler2_ist_dran = false
 	
 	#Felder gehen runter
-	$Felder/Tween.interpolate_property($Felder, "rect_position:y", $Felder.rect_position.y, $Felder.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Felder/Tween.interpolate_property($FelderHintergrund, "rect_position:y", $FelderHintergrund.rect_position.y, $FelderHintergrund.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Felder/Tween.interpolate_property($Felder, "rect_position:y", $Felder.rect_position.y, $Felder.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Felder/Tween.interpolate_property($FelderHintergrund, "rect_position:y", $FelderHintergrund.rect_position.y, $FelderHintergrund.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($EigenschiffControl, "rect_position:y", Autoload.actual_screen_height - 814.998, 400, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.start()
 	#Mehr
@@ -255,10 +257,13 @@ func vollschiffcheck(schiffname):
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			print("------SCHIFF GEFUNDEN")
+			$Sound/Schiffkaputt.play()
 			if not spieler2_ist_dran:
 				get_node("Schiffe/" + schiffname).visible = true
 				get_node("Schiffe/" + schiffname).todesanimation()
+				aufgedeckte_schiffe.append(schiffname) #Um die zerstörten Schiffe zu markieren
 			else:
+				get_node("EigenschiffControl/EigeneSchiffe/" + schiffname).todesanimation()
 				$MrComputer.erstes_getroffenes = null
 				$MrComputer.i_richtig = 4
 				$MrComputer.i_letztes = 4
@@ -279,6 +284,9 @@ func gewinnercheck():
 		$Gewonnen/Control/FertigFelder.treffer_markieren(false)
 		for i in Autoload.spieler1_centerfelder.size():
 			$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
+		#Zerstörte Schiffe markieren
+		for schiff in aufgedeckte_schiffe.size():
+			get_node("Gewonnen/Control/FertigSchiffe/" + aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
 
 func _on_ZurListeButton_pressed():
 	$TransitionBlackness.black()

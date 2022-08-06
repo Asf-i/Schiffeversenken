@@ -16,6 +16,10 @@ var coords = Vector2()
 var eigene_spieler_beschossene
 var anderer_spieler_felder
 
+func _input(event):
+	if event.is_action_pressed("ui_right") && get_parent().name == "EigeneFelder":
+		$PlatschPengPlayer.play("Platsch")
+
 func _on_Feld_pressed():
 	if $"/root/Welt".spielphase == 2 && not aufgedeckt && get_parent().name == "Felder" && not $"/root/Welt".paratfeld_im_bild:
 		aufgedeckt = true
@@ -53,6 +57,7 @@ func machen():
 			check_schiffli_name = sp2_schiffli_name
 		$Button.modulate = get_parent().trefferfarbe
 		$PlatschPengPlayer.play("Peng")
+		$Explosion.play()
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(50)
 		$"/root/Welt".vollschiffcheck(check_schiffli_name)
@@ -61,6 +66,7 @@ func machen():
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
 		$PlatschPengPlayer.play("Platsch")
+		$Platschsound.play()
 		yield($PlatschPengPlayer, "animation_finished")
 		$"/root/Welt".spielerparatfeld_anzeigen()
 

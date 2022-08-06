@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Skripte/Feld.gd" type="Script" id=1]
 [ext_resource path="res://Texturen/PlatschFrames.png" type="Texture" id=2]
 [ext_resource path="res://Texturen/PengFrames.png" type="Texture" id=3]
+[ext_resource path="res://Audio/Explosion.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/Platsch.wav" type="AudioStream" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -166,6 +168,14 @@ frame = 1
 anims/Peng = SubResource( 6 )
 anims/Platsch = SubResource( 7 )
 anims/RESET = SubResource( 8 )
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound"
+
+[node name="Platschsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound"
 
 [connection signal="pressed" from="Button" to="." method="_on_Feld_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

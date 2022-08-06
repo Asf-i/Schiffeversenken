@@ -277,5 +277,6 @@ __meta__ = {
 [connection signal="toggled" from="Rotieren" to="." method="_on_CheckButton_toggled"]
 [connection signal="toggled" from="Vibration" to="." method="_on_Vibration_toggled"]
 [connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
+[connection signal="value_changed" from="MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]
 [connection signal="value_changed" from="VerschiebungSlider" to="." method="_on_VerschiebungSlider_value_changed"]

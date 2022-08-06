@@ -9,7 +9,7 @@ var swipe_verlangsamung : int = 120
 
 var swiping : bool = false
 
-var hsprite_xs = [-956, -1056, -1156]
+var hsprite_xs = [-868, -968, -1068]
 var next_scene : int = 1
 
 func _ready():
@@ -23,6 +23,15 @@ func _ready():
 	for i in range(1, 6):
 		get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
 	$Einstellungen/VerschiebungSlider.value = Autoload.savegame_data.verschiebung
+	
+	#soundeffekte
+	AudioServer.set_bus_mute(2, not Autoload.savegame_data.sound_an)
+	
+	if get_node_or_null("/root/Musik") == null:
+		yield(get_tree().create_timer(0.5), "timeout")
+		get_parent().add_child(load("res://Szenen/Musik.tscn").instance())
+	# warning-ignore:return_value_discarded
+		$"/root/Musik".connect("finished", Autoload, "musik_restart")
 
 func _input(event):
 	if event.is_action_pressed("ui_right"):

@@ -1,7 +1,7 @@
 extends Control
 
 export var anzahl_schiffe : int = 6
-export var feldverschiebung : int = 180
+const FELDVERSCHIEBUNG : int = 200
 
 var selected_schiffli
 var unselectbar : bool = true
@@ -226,9 +226,9 @@ func spielerparatfeld_anzeigen():
 	if spieler2_ist_dran:
 		$Name.set_text(Autoload.savegame_data.sp1name)
 		if spielphase == 1:
-			$Felder.rect_position.y += feldverschiebung
-			$FelderRaster.rect_position.y += feldverschiebung
-			$FelderHintergrund.rect_position.y += feldverschiebung
+			$Felder.rect_position.y += FELDVERSCHIEBUNG
+			$FelderRaster.rect_position.y += FELDVERSCHIEBUNG
+			$FelderHintergrund.rect_position.y += FELDVERSCHIEBUNG
 	else:
 		$Name.set_text(Autoload.savegame_data.sp2name)
 

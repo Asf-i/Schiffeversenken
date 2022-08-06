@@ -150,7 +150,7 @@ __meta__ = {
 
 [node name="Hintergrundsprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.305882 )
-position = Vector2( -1056, -1024 )
+position = Vector2( -968, -64 )
 texture = ExtResource( 12 )
 centered = false
 
@@ -180,7 +180,7 @@ margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.4.4"
+text = "v0.4.5"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false

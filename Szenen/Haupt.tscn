@@ -267,7 +267,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-feldverschiebung = 150
 
 [node name="SwipeDetector" type="Node" parent="."]
 script = ExtResource( 11 )
@@ -289,9 +288,9 @@ texture = ExtResource( 14 )
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_left = 110.0
-margin_top = 90.0
+margin_top = 56.0
 margin_right = -110.0
-margin_bottom = 314.0
+margin_bottom = 280.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_styles/normal = SubResource( 37 )
 text = "Platziere die Schiffe
@@ -308,9 +307,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -526.0
-margin_top = -1341.0
+margin_top = -1405.0
 margin_right = 526.0
-margin_bottom = -289.002
+margin_bottom = -353.002
 custom_styles/disabled = SubResource( 18 )
 disabled = true
 __meta__ = {
@@ -323,9 +322,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -512.0
-margin_top = -1327.0
+margin_top = -1391.0
 margin_right = 512.0
-margin_bottom = -303.0
+margin_bottom = -367.0
 color = Color( 0.156863, 0.156863, 0.156863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -336,8 +335,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -815.0
-margin_bottom = -815.0
+margin_top = -879.0
+margin_bottom = -879.0
 
 [node name="Tween" type="Tween" parent="Felder"]
 
@@ -478,9 +477,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 135.0
-margin_top = -1535.0
+margin_top = -1568.0
 margin_right = 265.0
-margin_bottom = -1405.0
+margin_bottom = -1438.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
 custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -508,9 +507,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -265.0
-margin_top = -1535.0
+margin_top = -1568.0
 margin_right = -135.0
-margin_bottom = -1405.0
+margin_bottom = -1438.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
 custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -537,9 +536,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -65.0
-margin_top = -1535.0
+margin_top = -1568.0
 margin_right = 65.0
-margin_bottom = -1405.0
+margin_bottom = -1438.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
 custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -607,9 +606,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -463.0
-margin_top = -233.0
+margin_top = -281.0
 margin_right = -463.0
-margin_bottom = -233.0
+margin_bottom = -281.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="2" parent="Schiffe" instance=ExtResource( 4 )]
@@ -618,9 +617,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 318.0
-margin_top = -139.0
+margin_top = -174.0
 margin_right = 318.0
-margin_bottom = -139.0
+margin_bottom = -174.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="3" parent="Schiffe" instance=ExtResource( 2 )]
@@ -629,9 +628,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -152.0
-margin_top = -233.0
+margin_top = -281.0
 margin_right = -152.0
-margin_bottom = -233.0
+margin_bottom = -281.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="4" parent="Schiffe" instance=ExtResource( 2 )]
@@ -640,9 +639,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 107.0
-margin_top = -139.0
+margin_top = -174.0
 margin_right = 107.0
-margin_bottom = -139.0
+margin_bottom = -174.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="5" parent="Schiffe" instance=ExtResource( 3 )]
@@ -651,9 +650,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -305.0
-margin_top = -139.0
+margin_top = -174.0
 margin_right = -305.0
-margin_bottom = -139.0
+margin_bottom = -174.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="6" parent="Schiffe" instance=ExtResource( 5 )]
@@ -662,9 +661,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 255.0
-margin_top = -233.0
+margin_top = -281.0
 margin_right = 255.0
-margin_bottom = -233.0
+margin_bottom = -281.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="Raketen" type="Control" parent="."]
@@ -1073,8 +1072,8 @@ __meta__ = {
 [node name="Content" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 6480.0
-margin_bottom = 11520.0
+margin_right = 10800.0
+margin_bottom = 19200.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

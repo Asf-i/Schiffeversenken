@@ -668,9 +668,9 @@ texture = ExtResource( 15 )
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_left = 110.0
-margin_top = 90.0
+margin_top = 56.0
 margin_right = -110.0
-margin_bottom = 314.0
+margin_bottom = 280.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_styles/normal = SubResource( 20 )
 text = "Platziere die Schiffe
@@ -691,9 +691,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -526.0
-margin_top = -1341.0
+margin_top = -1405.0
 margin_right = 526.0
-margin_bottom = -289.002
+margin_bottom = -353.004
 custom_styles/disabled = SubResource( 21 )
 disabled = true
 __meta__ = {
@@ -706,9 +706,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -512.0
-margin_top = -1327.0
+margin_top = -1391.0
 margin_right = 512.0
-margin_bottom = -303.0
+margin_bottom = -367.002
 color = Color( 0.156863, 0.156863, 0.156863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -719,8 +719,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -815.0
-margin_bottom = -815.0
+margin_left = -0.00012207
+margin_top = -879.002
+margin_right = -0.00012207
+margin_bottom = -879.002
 
 [node name="Tween" type="Tween" parent="Felder"]
 
@@ -739,9 +741,9 @@ margin_bottom = 530.998
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -405.0
-margin_top = 385.002
+margin_top = 352.0
 margin_right = -275.0
-margin_bottom = 515.002
+margin_bottom = 482.0
 rect_pivot_offset = Vector2( -1293, -341 )
 theme = ExtResource( 19 )
 disabled = true
@@ -760,9 +762,9 @@ centered = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -805.0
-margin_top = 385.002
+margin_top = 352.0
 margin_right = -675.0
-margin_bottom = 515.002
+margin_bottom = 482.0
 theme = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -778,9 +780,9 @@ centered = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -605.0
-margin_top = 385.002
+margin_top = 352.0
 margin_right = -475.0
-margin_bottom = 515.002
+margin_bottom = 482.0
 theme = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -825,9 +827,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -463.0
-margin_top = -233.002
+margin_top = -281.002
 margin_right = -463.0
-margin_bottom = -233.002
+margin_bottom = -281.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="2" parent="Schiffe" instance=ExtResource( 4 )]
@@ -836,9 +838,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 318.0
-margin_top = -139.002
+margin_top = -174.002
 margin_right = 318.0
-margin_bottom = -139.002
+margin_bottom = -174.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="3" parent="Schiffe" instance=ExtResource( 2 )]
@@ -847,9 +849,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -152.0
-margin_top = -233.002
+margin_top = -281.002
 margin_right = -152.0
-margin_bottom = -233.002
+margin_bottom = -281.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="4" parent="Schiffe" instance=ExtResource( 2 )]
@@ -858,9 +860,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 107.0
-margin_top = -139.002
+margin_top = -174.002
 margin_right = 107.0
-margin_bottom = -139.002
+margin_bottom = -174.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="5" parent="Schiffe" instance=ExtResource( 3 )]
@@ -869,9 +871,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -305.0
-margin_top = -139.002
+margin_top = -174.002
 margin_right = -305.0
-margin_bottom = -139.002
+margin_bottom = -174.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="6" parent="Schiffe" instance=ExtResource( 5 )]
@@ -880,9 +882,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 255.0
-margin_top = -233.002
+margin_top = -281.002
 margin_right = 255.0
-margin_bottom = -233.002
+margin_bottom = -281.002
 rect_scale = Vector2( 2, 2 )
 
 [node name="EigenschiffControl" type="Control" parent="."]
@@ -1195,8 +1197,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 19440.0
-margin_bottom = 34460.0
+margin_right = 22680.0
+margin_bottom = 40220.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1271,8 +1273,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 3240.0
-margin_bottom = 5760.0
+margin_right = 6480.0
+margin_bottom = 11520.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1583,8 +1585,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 19440.0
-margin_bottom = 34560.0
+margin_right = 22680.0
+margin_bottom = 40320.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

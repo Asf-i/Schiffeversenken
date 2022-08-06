@@ -16,7 +16,11 @@ var versch_namen = ["VersionsLabel", "GradientControl", "NameButton", "SettingBu
 
 #Zum Saven
 const SAVE_PATH = "user://schiffeversenken.save"
-var savegame_data = {"sp1name": "Spieler_1", "sp2name": "Spieler_2", "rotier_mode": false, "sound_an" : false, "vibration" : true, "screenshake_value" : 10, "verschiebung" : 0.0}
+var savegame_data = {
+	"sp1name": "Spieler_1", "sp2name": "Spieler_2",
+	"rotier_mode": false, "sound_an" : false, "vibration" : true,
+	"screenshake_value" : 10, "verschiebung" : 0.0, "musiklautstaerke" : 0
+	}
 
 func _ready():
 	load_data()
@@ -79,3 +83,7 @@ func load_data():
 	
 	save_game.open(SAVE_PATH, File.READ)
 	savegame_data = parse_json(save_game.get_line())
+
+func musik_restart():
+	print("Musik restart")
+	$"/root/Musik".play()

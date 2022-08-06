@@ -1,7 +1,7 @@
 extends Control
 
 export var anzahl_schiffe : int = 6
-var feldverschiebung : int = 150
+const FELDVERSCHIEBUNG : int = 200
 
 var selected_schiffli
 var unselectbar : bool = true
@@ -214,12 +214,14 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 
 func zu_phase_zwei_wechseln():
 	$Felder.clear(false)
+	for i in anzahl_schiffe:
+		get_node("Schiffe/" + str(i + 1)).visible = false
 	clear()
-	$Schiffe.visible = true
+#	$Schiffe.visible = true
 	#Felder gehen runter
-	$Felder/Tween.interpolate_property($Felder, "rect_position:y", $Felder.rect_position.y, $Felder.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Felder/Tween.interpolate_property($FelderHintergrund, "rect_position:y", $FelderHintergrund.rect_position.y, $FelderHintergrund.rect_position.y + feldverschiebung, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Felder/Tween.interpolate_property($Felder, "rect_position:y", $Felder.rect_position.y, $Felder.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Felder/Tween.interpolate_property($FelderHintergrund, "rect_position:y", $FelderHintergrund.rect_position.y, $FelderHintergrund.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($EigenschiffControl, "rect_position:y", Autoload.actual_screen_height - 814.998, 400, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.start()
 	#Mehr
@@ -248,8 +250,6 @@ func zu_phase_zwei_wechseln():
 	Server.rpc_id(Server.spielpartner_id, "besetzdinger_senden", besetzfeld_dinger, centerfeld_schifflaengen, centerfeld_zweite_schiffe)
 	yield(Server, "data_received")
 	for i in anzahl_schiffe:
-		get_node("Schiffe/" + str(i + 1)).visible = false
-	for i in anzahl_schiffe:
 		vollschiffcheck(str(i + 1))
 	for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
 		if spieler2_ist_dran:
@@ -257,7 +257,7 @@ func zu_phase_zwei_wechseln():
 		else:
 			$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 	
-	if $Felder.rect_position.y != $Felder.rect_position.y + feldverschiebung: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
+	if $Felder.rect_position.y != $Felder.rect_position.y + FELDVERSCHIEBUNG: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
 		yield($Felder/Tween, "tween_completed")
 	
 	for i in Autoload.spieler1_centerfelder.size():

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Schiffkaputt.wav-4795351ef0ade5b34c73c2dc1d5d1d83.sample"
+
+[deps]
+
+source_file="res://Audio/Schiffkaputt.wav"
+dest_files=[ "res://.import/Schiffkaputt.wav-4795351ef0ade5b34c73c2dc1d5d1d83.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

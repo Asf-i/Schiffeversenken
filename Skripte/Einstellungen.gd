@@ -14,6 +14,7 @@ func _ready():
 	$AudioButton.pressed = Autoload.savegame_data.sound_an
 	$Vibration.pressed = Autoload.savegame_data.vibration
 	$ScreenshakeSlider.value = Autoload.savegame_data.screenshake_value
+	$MusicSlider.value = Autoload.savegame_data.musiklautstaerke
 	#VerschiebungSlider wird in Start.gd gesetzt
 	richtunganders = 1
 
@@ -82,6 +83,7 @@ func _on_AudioButton_toggled(button_pressed):
 	Autoload.savegame_data.sound_an = button_pressed
 	Autoload.save()
 	on_off_switch($AudioButton, button_pressed)
+	AudioServer.set_bus_mute(2, not button_pressed)
 
 func _on_Vibration_toggled(button_pressed):
 	Autoload.savegame_data.vibration = button_pressed
@@ -98,3 +100,10 @@ func _on_VerschiebungSlider_value_changed(value):
 		get_parent().get_node("VersionsLabel").rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
 		for i in range(1, 6):
 			get_parent().get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
+
+func _on_MusicSlider_value_changed(value):
+	Autoload.savegame_data.musiklautstaerke = value
+	if value == 0:
+		AudioServer.set_bus_volume_db(1, -80)
+	else:
+		AudioServer.set_bus_volume_db(1, value - 20)
