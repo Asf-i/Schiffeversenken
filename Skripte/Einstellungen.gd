@@ -106,4 +106,4 @@ func _on_MusicSlider_value_changed(value):
 	if value == 0:
 		AudioServer.set_bus_volume_db(1, -80)
 	else:
-		AudioServer.set_bus_volume_db(1, value - 20)
+		AudioServer.set_bus_volume_db(1, value - 40)

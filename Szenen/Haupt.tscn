@@ -274,6 +274,10 @@ script = ExtResource( 11 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -159.0
+margin_top = -171.0
+margin_right = 159.0
+margin_bottom = 171.0
 color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -281,7 +285,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="ColorRect"]
 modulate = Color( 0.278431, 0.596078, 0.74902, 0.498039 )
-position = Vector2( 552, 1563 )
+position = Vector2( 699, 1762 )
 scale = Vector2( 0.847, 0.847 )
 texture = ExtResource( 14 )
 
@@ -1072,8 +1076,8 @@ __meta__ = {
 [node name="Content" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 10800.0
-margin_bottom = 19200.0
+margin_right = 12960.0
+margin_bottom = 23040.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

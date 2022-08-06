@@ -312,3 +312,6 @@ func _on_nein_pressed():
 	yield($ZumHauptmenu/Control/AnimationPlayer, "animation_finished")
 	$ZumHauptmenu.visible = false
 	$Einstellungen.sonst_okay = true
+
+func _on_SchriftLabel_AnimationPlayer_animation_finished(_anim_name):
+	$SchriftLabel.visible = false

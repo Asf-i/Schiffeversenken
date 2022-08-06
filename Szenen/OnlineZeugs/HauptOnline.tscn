@@ -654,6 +654,10 @@ script = ExtResource( 7 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -219.0
+margin_top = -194.0
+margin_right = 219.0
+margin_bottom = 193.998
 color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -661,7 +665,7 @@ __meta__ = {
 
 [node name="SchwarzHintergrund" type="Sprite" parent="ColorRect"]
 modulate = Color( 1, 1, 1, 0.498039 )
-position = Vector2( 542, 1721 )
+position = Vector2( 761, 1791 )
 scale = Vector2( 0.847, 0.847 )
 texture = ExtResource( 15 )
 
@@ -1197,8 +1201,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 22680.0
-margin_bottom = 40220.0
+margin_right = 27000.0
+margin_bottom = 47900.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1273,8 +1277,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 6480.0
-margin_bottom = 11520.0
+margin_right = 10800.0
+margin_bottom = 19200.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1585,8 +1589,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 22680.0
-margin_bottom = 40320.0
+margin_right = 27000.0
+margin_bottom = 48000.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1714,6 +1718,7 @@ script = ExtResource( 14 )
 
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
+[connection signal="animation_finished" from="SchriftLabel/AnimationPlayer" to="." method="_on_SchriftLabel_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="FertigButton" to="." method="_on_FertigButton_pressed"]
 [connection signal="pressed" from="RandomButton" to="." method="_on_RandomButton_pressed"]
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]

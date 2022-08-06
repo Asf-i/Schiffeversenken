@@ -407,6 +407,10 @@ script = ExtResource( 8 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -166.0
+margin_top = -143.0
+margin_right = 166.0
+margin_bottom = 142.998
 color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -414,7 +418,7 @@ __meta__ = {
 
 [node name="gruenHintergrund" type="Sprite" parent="ColorRect"]
 modulate = Color( 0.32549, 0.74902, 0.278431, 0.498039 )
-position = Vector2( 544, 1286 )
+position = Vector2( 703, 1383 )
 scale = Vector2( 0.847059, 0.847059 )
 texture = ExtResource( 14 )
 
@@ -791,8 +795,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 24840.0
-margin_bottom = 44160.0
+margin_right = 28080.0
+margin_bottom = 49920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -856,7 +860,7 @@ anims/open = SubResource( 63 )
 
 [node name="Sprite" type="Sprite" parent="NotifyRect/Control"]
 position = Vector2( 540, 1037 )
-scale = Vector2( 3.8125, 3.8125 )
+scale = Vector2( 0.335937, 0.335937 )
 texture = ExtResource( 23 )
 
 [node name="Gewonnen" type="ColorRect" parent="."]
@@ -1046,8 +1050,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 19440.0
-margin_bottom = 34560.0
+margin_right = 22680.0
+margin_bottom = 40320.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1178,6 +1182,7 @@ script = ExtResource( 9 )
 
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
+[connection signal="animation_finished" from="SchriftLabel/AnimationPlayer" to="." method="_on_SchriftLabel_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="FertigButton" to="." method="_on_FertigButton_pressed"]
 [connection signal="pressed" from="RandomButton" to="." method="_on_RandomButton_pressed"]
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
