@@ -28,7 +28,7 @@ func _ready():
 	AudioServer.set_bus_mute(2, not Autoload.savegame_data.sound_an)
 	
 	if get_node_or_null("/root/Musik") == null:
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(1), "timeout")
 		get_parent().add_child(load("res://Szenen/Musik.tscn").instance())
 	# warning-ignore:return_value_discarded
 		$"/root/Musik".connect("finished", Autoload, "musik_restart")
@@ -39,6 +39,11 @@ func _input(event):
 
 func _on_Multiplayer_pressed():
 	if not swiping:
+		$Einstellungen.sonst_okay = false
+		$VerbindeRect/Control/Label.set_text("verbinde...")
+		$VerbindeRect/Control/Button.set_text("X")
+		$VerbindeRect.visible = true
+		$VerbindeRect/VerbindeRectTimer.start()
 		Server.connect_to_server()
 
 func _on_Singleplayer_pressed():
@@ -170,3 +175,13 @@ func _on_Sprite_pressed():
 
 func _on_Sprite2_pressed():
 	$NameButton/NameHintergrund/Spieler2.grab_focus()
+
+func _on_VerbindeRectTimer_timeout():
+	if get_node_or_null("OnlineListe") == null:
+		$VerbindeRect/Control/AnimationPlayer.play("hi")
+
+func _on_Button_pressed():
+	$Einstellungen.sonst_okay = true
+	get_tree().network_peer = null
+	print("Network peer removed")
+	$VerbindeRect/Control/AnimationPlayer.play_backwards("hi")

@@ -60,6 +60,8 @@ func _on_Button_pressed():
 	Server.available = false
 	Server.rpc_id(1, "peer_disconnecten", get_tree().get_network_unique_id())
 	Server.network.close_connection()
+	get_tree().network_peer = null
+	print("Network peer removed")
 #	Server.available = true
 	$ListPlayer.play_backwards("open")
 	yield($ListPlayer, "animation_finished")

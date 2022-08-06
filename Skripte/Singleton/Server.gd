@@ -16,6 +16,7 @@ var spielpartner_name : String
 signal data_received
 
 func connect_to_server():
+	ingame = false
 	network = NetworkedMultiplayerENet.new()
 	network.create_client(ip, port)
 	get_tree().set_network_peer(network)
@@ -23,9 +24,20 @@ func connect_to_server():
 	
 	network.connect("connection_failed", self, "_on_connection_failed")
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
+	
+	network.connect("server_disconnected", self, "_on_server_disconnected")
+
+func _on_server_disconnected():
+	print("verbindung zum server ist weg")
+	ingame = false
+	get_tree().network_peer = null
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
 
 func _on_connection_failed():
 	print("Failed to connect") #Es funktioniert, kommt aber erst nach einer Weile.. glaub ich
+	$"/root/Start/VerbindeRect/Control/Label".set_text("fehlgeschlagen")
+	$"/root/Start/VerbindeRect/Control/Button".set_text("ok")
 
 func _on_connection_succeeded():
 	var liste = LISTE.instance()
@@ -34,6 +46,9 @@ func _on_connection_succeeded():
 	get_parent().get_node("Start").add_child(liste)
 	onlinelistnode = get_parent().get_node("Start/OnlineListe")
 	onlinelistnode.get_node("ListPlayer").play("open")
+	$"/root/Start/VerbindeRect".visible = false
+	$"/root/Start/VerbindeRect/Control".visible = false
+	$"/root/Start/Einstellungen".sonst_okay = true
 
 remote func client_was_gesendet(sendezeugs):
 	print(sendezeugs)

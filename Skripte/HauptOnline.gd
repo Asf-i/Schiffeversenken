@@ -218,6 +218,8 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 	$Felder/Abdeckung.visible = false
 
 func zu_phase_zwei_wechseln():
+# warning-ignore:return_value_discarded
+	Server.connect("data_received", self, "wenn_server_data_received")
 	$Felder.clear(false)
 	for i in anzahl_schiffe:
 		get_node("Schiffe/" + str(i + 1)).visible = false
@@ -228,7 +230,7 @@ func zu_phase_zwei_wechseln():
 	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($FelderHintergrund, "rect_position:y", $FelderHintergrund.rect_position.y, $FelderHintergrund.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($EigenschiffControl, "rect_position:y", Autoload.actual_screen_height - 814.998, 400, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Felder/Tween.start()
+#	$Felder/Tween.start()
 	#Mehr
 	$EigenschiffControl.visible = true
 	$EigenschiffControl/AnimationPlayer.play("shrink")
@@ -253,7 +255,10 @@ func zu_phase_zwei_wechseln():
 				centerfeld_schifflaengen.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_schifflaenge)
 				centerfeld_zweite_schiffe.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_zweites_schiff)
 	Server.rpc_id(Server.spielpartner_id, "besetzdinger_senden", besetzfeld_dinger, centerfeld_schifflaengen, centerfeld_zweite_schiffe)
-	yield(Server, "data_received")
+#	yield(Server, "data_received")
+
+func wenn_server_data_received():
+	$Felder/Tween.start()
 	for i in anzahl_schiffe:
 		vollschiffcheck(str(i + 1))
 	for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
@@ -262,8 +267,8 @@ func zu_phase_zwei_wechseln():
 		else:
 			$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 	
-	if $Felder.rect_position.y != $Felder.rect_position.y + FELDVERSCHIEBUNG: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
-		yield($Felder/Tween, "tween_completed")
+#	if $Felder.rect_position.y != $Felder.rect_position.y + FELDVERSCHIEBUNG: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
+	yield($Felder/Tween, "tween_completed")
 	
 	for i in Autoload.spieler1_centerfelder.size():
 		if spieler2_ist_dran:
@@ -395,7 +400,6 @@ func _on_nein_pressed():
 	yield($ZumHauptmenu/Control/AnimationPlayer, "animation_finished")
 	$ZumHauptmenu.visible = false
 	$Einstellungen.sonst_okay = true
-
 
 func _on_SchriftLabel_AnimationPlayer_animation_finished(_anim_name):
 	$SchriftLabel.visible = false

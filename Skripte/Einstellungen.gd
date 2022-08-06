@@ -7,8 +7,6 @@ var richtunganders : int = 1
 var sonst_okay : bool = true
 var swipe_event_relative
 
-var settings_immer : bool = false #Fürs Testen
-
 func _ready():
 	$Rotieren.pressed = Autoload.savegame_data.rotier_mode
 	$AudioButton.pressed = Autoload.savegame_data.sound_an
@@ -21,23 +19,19 @@ func _ready():
 func _on_SwipeDetector_swipe(local_swipe, event_relative, start):
 	visible = true
 	swipe_event_relative = event_relative
-	if settings_immer or (abs(get_parent().get_node("SwipeDetector").start_direction.y) > abs(get_parent().get_node("SwipeDetector").start_direction.x) && (get_parent().get_node("SwipeDetector").start_direction.y * richtunganders < 0 && not get_parent().get_node("SettingWegButton").visible or get_parent().get_node("SwipeDetector").start_direction.y * richtunganders > 0 && get_parent().get_node("SettingWegButton").visible) && get_parent().get_node_or_null("OnlineListe") == null && sonst_okay && start.y < Autoload.actual_screen_height - 100):
+	if abs(get_parent().get_node("SwipeDetector").start_direction.y) > abs(get_parent().get_node("SwipeDetector").start_direction.x) && (get_parent().get_node("SwipeDetector").start_direction.y * richtunganders < 0 && not get_parent().get_node("SettingWegButton").visible or get_parent().get_node("SwipeDetector").start_direction.y * richtunganders > 0 && get_parent().get_node("SettingWegButton").visible) && get_parent().get_node_or_null("OnlineListe") == null && sonst_okay && start.y < Autoload.actual_screen_height - 100:
 		rect_position.y += event_relative.y * richtunganders / (0.5 * abs(local_swipe.y) / swipe_verlangsamung + 1)
 	if rect_position.y < Autoload.actual_screen_height - rect_size.y:
 		rect_position.y = Autoload.actual_screen_height - rect_size.y
 	elif rect_position.y > Autoload.actual_screen_height:
 		rect_position.y = Autoload.actual_screen_height + 1
-	
-	#Fürs Testen
-	if settings_immer:
-		get_parent().move_child(self, get_parent().get_child_count())
 
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func _on_SwipeDetector_swipe_done(start, end, local_swipe):
 	var start_direction = get_parent().get_node("SwipeDetector").start_direction.y
-	if settings_immer or (abs(start_direction) > abs(get_parent().get_node("SwipeDetector").start_direction.x) && get_parent().get_node_or_null("OnlineListe") == null && sonst_okay && swipe_event_relative.y * (start_direction / abs(start_direction)) > 0 && start.y < Autoload.actual_screen_height - 100):
+	if abs(start_direction) > abs(get_parent().get_node("SwipeDetector").start_direction.x) && get_parent().get_node_or_null("OnlineListe") == null && sonst_okay && swipe_event_relative.y * (start_direction / abs(start_direction)) > 0 && start.y < Autoload.actual_screen_height - 100:
 		if get_parent().get_node("SwipeDetector").start_direction.y * richtunganders < 0 && not get_parent().get_node("SettingWegButton").visible:
 			get_parent().get_node("SettingWegButton").visible = true
 			$Tween.interpolate_property(self, "rect_position:y", rect_position.y, Autoload.actual_screen_height - rect_size.y, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

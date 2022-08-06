@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Texturen/Stift.png" type="Texture" id=1]
 [ext_resource path="res://Szenen/Start.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Texturen/ComputerBild.png" type="Texture" id=14]
 [ext_resource path="res://Szenen/Einstellungen.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=16]
+[ext_resource path="res://UI/CleanDark.tres" type="Theme" id=17]
 
 [sub_resource type="DynamicFont" id=14]
 size = 40
@@ -128,6 +129,95 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.796078, 0.796078, 0.796078, 0.894118 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color( 0, 0, 0, 0.129412 )
+shadow_size = 48
+
+[sub_resource type="Animation" id=32]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "hi"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
 [node name="Start" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -180,7 +270,7 @@ margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.4.5"
+text = "v0.4.6"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -417,9 +507,9 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -8.0
+margin_left = -424.0
 margin_top = -190.0
-margin_right = 840.0
+margin_right = 424.0
 margin_bottom = -6.0
 custom_styles/disabled = SubResource( 25 )
 disabled = true
@@ -516,6 +606,79 @@ __meta__ = {
 anims/RESET = SubResource( 29 )
 anims/hin = SubResource( 30 )
 
+[node name="VerbindeRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VerbindeRectTimer" type="Timer" parent="VerbindeRect"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Control" type="Control" parent="VerbindeRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintergrundButton" type="Button" parent="VerbindeRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 236.0
+margin_top = 1076.0
+margin_right = 804.0
+margin_bottom = 1288.0
+custom_styles/disabled = SubResource( 31 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="VerbindeRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 476.0
+margin_top = 1180.0
+margin_right = 564.0
+margin_bottom = 1276.0
+theme = ExtResource( 17 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VerbindeRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 76.0
+margin_top = 1080.0
+margin_right = 964.0
+margin_bottom = 1162.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "verbinde..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VerbindeRect/Control"]
+anims/RESET = SubResource( 32 )
+anims/hi = SubResource( 33 )
+
 [node name="EingebeCover" type="ColorRect" parent="."]
 anchor_right = 1.0
 margin_top = -448.0
@@ -543,4 +706,6 @@ __meta__ = {
 [connection signal="pressed" from="NameButton/NameHintergrund/Spieler1/Sprite" to="." method="_on_Sprite_pressed"]
 [connection signal="text_changed" from="NameButton/NameHintergrund/Spieler2" to="." method="_on_Spieler2_text_changed"]
 [connection signal="pressed" from="NameButton/NameHintergrund/Spieler2/Sprite" to="." method="_on_Sprite2_pressed"]
+[connection signal="timeout" from="VerbindeRect/VerbindeRectTimer" to="." method="_on_VerbindeRectTimer_timeout"]
+[connection signal="pressed" from="VerbindeRect/Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
