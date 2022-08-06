@@ -1,4 +1,4 @@
-[gd_scene load_steps=205 format=2]
+[gd_scene load_steps=206 format=2]
 
 [ext_resource path="res://Skripte/Schiff.gd" type="Script" id=1]
 [ext_resource path="res://Texturen/Schiffe/2erSchiffFrames/0124.png" type="Texture" id=2]
@@ -202,6 +202,7 @@
 [ext_resource path="res://Texturen/Schiffe/2erSchiffFrames/0063.png" type="Texture" id=200]
 [ext_resource path="res://Texturen/Schiffe/2erSchiffFrames/0061.png" type="Texture" id=201]
 [ext_resource path="res://Texturen/Schiffe/2erSchiffFrames/0064.png" type="Texture" id=202]
+[ext_resource path="res://Audio/Schiffkaputt.wav" type="AudioStream" id=203]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -234,7 +235,7 @@ modulate = Color( 0, 0, 0, 0.137255 )
 position = Vector2( 26, 2.89083e-06 )
 scale = Vector2( 0.414063, 0.4375 )
 frames = SubResource( 9 )
-frame = 185
+frame = 25
 speed_scale = 3.5
 playing = true
 
@@ -242,7 +243,7 @@ playing = true
 position = Vector2( 26, 0 )
 scale = Vector2( 0.396, 0.396 )
 frames = SubResource( 9 )
-frame = 184
+frame = 24
 speed_scale = 3.5
 playing = true
 
@@ -250,6 +251,10 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 6 )
+
+[node name="Schiffkaputt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 203 )
+bus = "Sound"
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="released" from="Button" to="." method="_on_Button_released"]

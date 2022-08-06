@@ -60,13 +60,16 @@ func machen():
 		$Explosion.play()
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(50)
-		$"/root/Welt".vollschiffcheck(check_schiffli_name)
+		$"/root/Welt".vollschiffcheck(check_schiffli_name, name)
 		$"/root/Welt".gewinnercheck()
 	else:
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
 		$PlatschPengPlayer.play("Platsch")
 		$Platschsound.play()
+		if get_node_or_null("/root/Start") != null:
+			Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
+			Server.rpc_id(Server.spielpartner_id, "feldanimation", name, false)
 		yield($PlatschPengPlayer, "animation_finished")
 		$"/root/Welt".spielerparatfeld_anzeigen()
 

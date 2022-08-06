@@ -253,11 +253,10 @@ func zu_phase_zwei_wechseln():
 	for i in Autoload.spieler1_centerfelder.size():
 		$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
 
-func vollschiffcheck(schiffname):
+func vollschiffcheck(schiffname, _von_feld = null):
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			print("------SCHIFF GEFUNDEN")
-			$Sound/Schiffkaputt.play()
 			if not spieler2_ist_dran:
 				get_node("Schiffe/" + schiffname).visible = true
 				get_node("Schiffe/" + schiffname).todesanimation()

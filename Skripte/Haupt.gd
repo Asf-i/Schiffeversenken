@@ -278,7 +278,7 @@ func zu_phase_zwei_wechseln():
 	$EigenschiffControl.visible = true
 	$SchriftLabel.visible = false
 
-func vollschiffcheck(schiffname):
+func vollschiffcheck(schiffname, _von_feld = null):
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			get_node("Schiffe/" + schiffname).visible = true

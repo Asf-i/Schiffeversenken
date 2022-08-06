@@ -181,6 +181,18 @@ remote func rakete_fliegen(feldname):
 	rakete.ziel = feld.rect_global_position + feld.rect_size / 2
 	rakete.nur_schoen = true
 	rakete.fliegen($"/root/Welt/Felder".rect_position)
+	
+remote func feldanimation(feld, treffer : bool):
+	var anim_feld = get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + feld)
+	if treffer:
+		anim_feld.get_node("PlatschPengPlayer").play("Peng")
+		anim_feld.get_node("Explosion").play()
+	else:
+		anim_feld.get_node("PlatschPengPlayer").play("Platsch")
+		anim_feld.get_node("Platschsound").play()
+
+remote func schiffzerstoer(schiff):
+	get_node("/root/Welt/EigenschiffControl/EigeneSchiffe/" + schiff).todesanimation()
 
 remote func besetzdinger_senden(besetzdinger_array, schifflaengen_array, zweitschiffe_array):
 	# Die Besetzfeld-Dinger-Schiff-Namen werden in den Feldern des anderen Spielers gespeichert.

@@ -17,6 +17,8 @@ var spieler2_punkte : int = 0
 var spieler1_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
 var spieler2_versenkte = {"1" : 2, "2" : 2, "3" : 3, "4" : 3, "5" : 4, "6" : 5}
 
+var aufgedeckte_schiffe = []
+
 func _ready():
 	Server.ingame = true
 	randomize()
@@ -46,6 +48,9 @@ func _input(event):
 	yield(get_tree().create_timer(0.01), "timeout")
 	if event is InputEventScreenTouch && event.is_pressed() && unselectbar && spielphase == 1:
 		schiffli_selected("nix")
+	
+	if event.is_action_pressed("ui_right"):
+		print(spieler1_punkte, spieler2_punkte)
 
 func _on_RotateButton_pressed(mit_centerfeld : bool = true):
 	if selected_schiffli.im_feld:
@@ -207,7 +212,7 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 	$NotifyRect.visible = true
 	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
 	$NochDaTimer.start()
-	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
+#	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
 	$NochDaCheckTimer.start()
 	yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
 	$Felder/Abdeckung.visible = false
@@ -266,12 +271,16 @@ func zu_phase_zwei_wechseln():
 		else:
 			$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
 
-func vollschiffcheck(schiffname):
+func vollschiffcheck(schiffname, von_feld = null):
 	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene)
+	if von_feld != null:
+		Server.rpc_id(Server.spielpartner_id, "feldanimation", von_feld, true)
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			get_node("Schiffe/" + schiffname).visible = true
 			get_node("Schiffe/" + schiffname).todesanimation()
+			aufgedeckte_schiffe.append(schiffname)
+			Server.rpc_id(Server.spielpartner_id, "schiffzerstoer", schiffname)
 
 func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, das unten auch ausgeführt wird, wenn die punkte nicht erreicht sind
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
@@ -294,6 +303,8 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
 				false:
 					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
+		for schiff in aufgedeckte_schiffe.size():
+			get_node("Gewonnen/Control/FertigSchiffe/" + aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
 
 func _on_ZurListeButton_pressed():
 	if anderer_noch_da:
