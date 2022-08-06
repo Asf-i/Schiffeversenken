@@ -13,7 +13,7 @@
 [ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=11]
 [ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=12]
 [ext_resource path="res://Szenen/TransitionBlackness.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Texturen/Hintergrund/blauHintergrund.png" type="Texture" id=14]
+[ext_resource path="res://Texturen/Hintergrund/Wave.png" type="Texture" id=14]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=15]
 [ext_resource path="res://Texturen/Symbole/Shuffle.png" type="Texture" id=16]
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=17]
@@ -275,13 +275,15 @@ script = ExtResource( 11 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.156863, 0.156863, 0.156863, 1 )
+color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HintergrundBlau" type="Sprite" parent="ColorRect"]
-position = Vector2( 452, 1074 )
+[node name="Sprite" type="Sprite" parent="ColorRect"]
+modulate = Color( 0.278431, 0.596078, 0.74902, 0.498039 )
+position = Vector2( 552, 1563 )
+scale = Vector2( 0.847, 0.847 )
 texture = ExtResource( 14 )
 
 [node name="SchriftLabel" type="Label" parent="."]
@@ -1071,8 +1073,8 @@ __meta__ = {
 [node name="Content" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 4320.0
-margin_bottom = 7680.0
+margin_right = 6480.0
+margin_bottom = 11520.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -12,8 +12,8 @@ config_version=4
 
 config/name="Schiffeversenken"
 run/main_scene="res://Szenen/Start.tscn"
-boot_splash/image="res://Bootsplash.png"
-boot_splash/bg_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+boot_splash/image="res://Texturen/Boot.png"
+boot_splash/bg_color=Color( 0.0588235, 0.0588235, 0.0588235, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -28,8 +28,6 @@ window/size/height=1920
 window/size/test_width=480
 window/size/test_height=854
 window/handheld/orientation="portrait"
-mouse_cursor/custom_image="res://Cursor ding.png"
-mouse_cursor/custom_image_hotspot=Vector2( 3, 3 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep_width"
 

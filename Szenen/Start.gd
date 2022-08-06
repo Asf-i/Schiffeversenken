@@ -30,7 +30,7 @@ func _input(event):
 
 func _on_Multiplayer_pressed():
 	if not swiping:
-		Server.connect_to_server($Einstellungen/LineEdit.text)
+		Server.connect_to_server()
 
 func _on_Singleplayer_pressed():
 	if not swiping:

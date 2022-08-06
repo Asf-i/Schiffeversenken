@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bootsplash.png-de01beca2bf83fff7a55ddc112134055.stex"
+path="res://.import/Checkbox.png-d641de508a41f85b4e52c69a0bf6c625.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Bootsplash.png"
-dest_files=[ "res://.import/Bootsplash.png-de01beca2bf83fff7a55ddc112134055.stex" ]
+source_file="res://Texturen/Symbole/Checkbox.png"
+dest_files=[ "res://.import/Checkbox.png-d641de508a41f85b4e52c69a0bf6c625.stex" ]
 
 [params]
 

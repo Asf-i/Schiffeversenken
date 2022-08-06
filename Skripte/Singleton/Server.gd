@@ -5,7 +5,7 @@ const BUTTON = preload("res://Szenen/OnlineZeugs/SpielerButton.tscn")
 const RAKETE = preload("res://Szenen/Rakete.tscn")
 
 var network
-var localhost_ip = "127.0.0.1"
+var ip = "85.4.251.112"
 var port = 9998
 var onlinelistnode
 var available : bool = false #War vor dem Random Gegner finden true
@@ -15,10 +15,8 @@ var spielpartner_name : String
 
 signal data_received
 
-func connect_to_server(ip):
+func connect_to_server():
 	network = NetworkedMultiplayerENet.new()
-	if ip == "":
-		ip = localhost_ip
 	network.create_client(ip, port)
 	get_tree().set_network_peer(network)
 	print("Network peer created. IP = " + ip)

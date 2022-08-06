@@ -13,7 +13,7 @@
 [ext_resource path="res://Texturen/Symbole/Shuffle.png" type="Texture" id=11]
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=12]
 [ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=13]
-[ext_resource path="res://Texturen/Hintergrund/gruenHintergrund.png" type="Texture" id=14]
+[ext_resource path="res://Texturen/Hintergrund/Tech.png" type="Texture" id=14]
 [ext_resource path="res://Szenen/Schiff 2er.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Szenen/Schiff 5er.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Szenen/Felder.tscn" type="PackedScene" id=18]
@@ -407,13 +407,15 @@ script = ExtResource( 8 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="gruenHintergrund" type="Sprite" parent="ColorRect"]
-position = Vector2( 562, 1000 )
+modulate = Color( 0.32549, 0.74902, 0.278431, 0.498039 )
+position = Vector2( 544, 1286 )
+scale = Vector2( 0.847059, 0.847059 )
 texture = ExtResource( 14 )
 
 [node name="SchriftLabel" type="Label" parent="."]
@@ -789,8 +791,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 9720.0
-margin_bottom = 17280.0
+margin_right = 14040.0
+margin_bottom = 24960.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1044,8 +1046,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 4320.0
-margin_bottom = 7680.0
+margin_right = 8640.0
+margin_bottom = 15360.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

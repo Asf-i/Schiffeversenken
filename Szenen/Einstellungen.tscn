@@ -1,15 +1,12 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
-[ext_resource path="res://Texturen/Slider/Grabber Area.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Texturen/onoff.png" type="Texture" id=4]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=5]
 [ext_resource path="res://Texturen/Slider/Grabber.png" type="Texture" id=6]
 [ext_resource path="res://Texturen/Slider/Slider.png" type="Texture" id=7]
 [ext_resource path="res://Texturen/Slider/Tick.png" type="Texture" id=8]
-[ext_resource path="res://Texturen/Slider/Grabber Highlight.png" type="Texture" id=9]
-[ext_resource path="res://Texturen/Schiffe/niceschiff.png" type="Texture" id=10]
+[ext_resource path="res://Texturen/Symbole/Checkbox.png" type="Texture" id=10]
 
 [sub_resource type="Shader" id=26]
 code = "shader_type canvas_item;
@@ -41,33 +38,19 @@ shadow_color = Color( 0, 0, 0, 0.0941176 )
 shadow_size = 12
 
 [sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0.945098, 0.945098, 0.945098, 0.847059 )
+bg_color = Color( 0.886275, 0.886275, 0.886275, 0.847059 )
 border_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=17]
 
-[sub_resource type="DynamicFont" id=4]
-size = 44
-font_data = ExtResource( 3 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.443137, 0.443137, 0.443137, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="StyleBoxTexture" id=29]
 texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 946, 24 )
-
-[sub_resource type="StyleBoxTexture" id=31]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 946, 24 )
+region_rect = Rect2( 0, 0, 946, 28 )
 
 [sub_resource type="StyleBoxTexture" id=30]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 946, 24 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 946, 28 )
+modulate_color = Color( 0.509804, 0.509804, 0.509804, 1 )
 
 [sub_resource type="DynamicFont" id=32]
 size = 42
@@ -96,11 +79,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 736, 968 )
-scale = Vector2( 0.531482, 0.531482 )
-texture = ExtResource( 10 )
-
 [node name="Tween" type="Tween" parent="."]
 
 [node name="EinstellungsLabel" type="Label" parent="."]
@@ -127,6 +105,7 @@ custom_styles/pressed = SubResource( 19 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
+action_mode = 0
 text = "   Rotieren"
 align = 0
 __meta__ = {
@@ -134,10 +113,11 @@ __meta__ = {
 }
 
 [node name="OnOff" type="Sprite" parent="Rotieren"]
-position = Vector2( 965.26, 48 )
-scale = Vector2( 0.707182, 0.75 )
-texture = ExtResource( 4 )
-hframes = 2
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 960, 48 )
+rotation = 3.14159
+scale = Vector2( 0.333562, 0.353758 )
+texture = ExtResource( 10 )
 
 [node name="Vibration" type="Button" parent="."]
 margin_top = 352.0
@@ -148,6 +128,7 @@ custom_styles/pressed = SubResource( 19 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
+action_mode = 0
 text = "   Vibration"
 align = 0
 __meta__ = {
@@ -155,10 +136,11 @@ __meta__ = {
 }
 
 [node name="OnOff" type="Sprite" parent="Vibration"]
-position = Vector2( 965.26, 48 )
-scale = Vector2( 0.707182, 0.75 )
-texture = ExtResource( 4 )
-hframes = 2
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 960, 48 )
+rotation = 3.14159
+scale = Vector2( 0.333562, 0.353758 )
+texture = ExtResource( 10 )
 
 [node name="AudioButton" type="Button" parent="."]
 margin_top = 128.0
@@ -169,6 +151,7 @@ custom_styles/pressed = SubResource( 19 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
+action_mode = 0
 text = "   Sound"
 align = 0
 __meta__ = {
@@ -176,40 +159,11 @@ __meta__ = {
 }
 
 [node name="OnOff" type="Sprite" parent="AudioButton"]
-position = Vector2( 965.26, 48 )
-scale = Vector2( 0.707182, 0.75 )
-texture = ExtResource( 4 )
-hframes = 2
-
-[node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 40.0
-margin_top = 1136.0
-margin_right = 1040.0
-margin_bottom = 1208.0
-custom_fonts/font = SubResource( 4 )
-custom_styles/normal = SubResource( 3 )
-text = "85.4.251.112"
-placeholder_text = "IP-Adresse (Nur fürs Testen)"
-caret_blink = true
-caret_blink_speed = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LineEdit3" type="LineEdit" parent="."]
-modulate = Color( 0.980392, 0.686275, 0.686275, 1 )
-margin_left = 40.0
-margin_top = 1056.0
-margin_right = 1040.0
-margin_bottom = 1128.0
-custom_fonts/font = SubResource( 4 )
-custom_styles/normal = SubResource( 3 )
-placeholder_text = "online, available, namen, all"
-caret_blink = true
-caret_blink_speed = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+position = Vector2( 960, 48 )
+rotation = 3.14159
+scale = Vector2( 0.333562, 0.353758 )
+texture = ExtResource( 10 )
 
 [node name="MusicSlider" type="HSlider" parent="."]
 anchor_left = 0.5
@@ -219,13 +173,14 @@ margin_top = 528.0
 margin_right = 473.0
 margin_bottom = 570.0
 custom_icons/tick = ExtResource( 8 )
-custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber_highlight = ExtResource( 6 )
 custom_icons/grabber = ExtResource( 6 )
 custom_styles/slider = SubResource( 29 )
-custom_styles/grabber_area_highlight = SubResource( 31 )
+custom_styles/grabber_area_highlight = SubResource( 30 )
 custom_styles/grabber_area = SubResource( 30 )
 max_value = 20.0
 step = 2.0
+value = 8.0
 rounded = true
 tick_count = 11
 __meta__ = {
@@ -255,10 +210,10 @@ margin_top = 656.0
 margin_right = 473.0
 margin_bottom = 698.0
 custom_icons/tick = ExtResource( 8 )
-custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber_highlight = ExtResource( 6 )
 custom_icons/grabber = ExtResource( 6 )
 custom_styles/slider = SubResource( 29 )
-custom_styles/grabber_area_highlight = SubResource( 31 )
+custom_styles/grabber_area_highlight = SubResource( 30 )
 custom_styles/grabber_area = SubResource( 30 )
 max_value = 20.0
 step = 2.0
@@ -291,10 +246,10 @@ margin_top = 784.0
 margin_right = 473.0
 margin_bottom = 826.0
 custom_icons/tick = ExtResource( 8 )
-custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber_highlight = ExtResource( 6 )
 custom_icons/grabber = ExtResource( 6 )
 custom_styles/slider = SubResource( 29 )
-custom_styles/grabber_area_highlight = SubResource( 31 )
+custom_styles/grabber_area_highlight = SubResource( 30 )
 custom_styles/grabber_area = SubResource( 30 )
 max_value = 220.0
 step = 22.0
@@ -322,6 +277,5 @@ __meta__ = {
 [connection signal="toggled" from="Rotieren" to="." method="_on_CheckButton_toggled"]
 [connection signal="toggled" from="Vibration" to="." method="_on_Vibration_toggled"]
 [connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
-[connection signal="text_entered" from="LineEdit3" to="." method="_on_LineEdit3_text_entered"]
 [connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]
 [connection signal="value_changed" from="VerschiebungSlider" to="." method="_on_VerschiebungSlider_value_changed"]

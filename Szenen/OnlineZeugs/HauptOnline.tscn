@@ -14,7 +14,7 @@
 [ext_resource path="res://UI/TestTheme.tres" type="Theme" id=12]
 [ext_resource path="res://UI/HauptmenuButton.tres" type="Theme" id=13]
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
-[ext_resource path="res://Texturen/Hintergrund/schwarzHintergrund.png" type="Texture" id=15]
+[ext_resource path="res://Texturen/Hintergrund/Connect.png" type="Texture" id=15]
 [ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=16]
 [ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
@@ -654,13 +654,15 @@ script = ExtResource( 7 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.290196, 0.505882, 0.368627, 1 )
+color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SchwarzHintergrund" type="Sprite" parent="ColorRect"]
-position = Vector2( 196, 1009 )
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 542, 1721 )
+scale = Vector2( 0.847, 0.847 )
 texture = ExtResource( 15 )
 
 [node name="SchriftLabel" type="Label" parent="."]

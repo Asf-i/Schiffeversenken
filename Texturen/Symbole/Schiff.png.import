@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/schwarzHintergrund.png-9ef9b09156a08cee29f6639726c81c79.stex"
+path="res://.import/Schiff.png-63d55f42a8122f567dc3c47bbf3864b9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texturen/Hintergrund/schwarzHintergrund.png"
-dest_files=[ "res://.import/schwarzHintergrund.png-9ef9b09156a08cee29f6639726c81c79.stex" ]
+source_file="res://Texturen/Symbole/Schiff.png"
+dest_files=[ "res://.import/Schiff.png-63d55f42a8122f567dc3c47bbf3864b9.stex" ]
 
 [params]
 

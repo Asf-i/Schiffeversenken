@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/niceschiff.png-57fbb96adabec32111daf5ea3c77f974.stex"
+path="res://.import/Kreis.png-1aefff4eea027b842ce572bece773610.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texturen/Schiffe/niceschiff.png"
-dest_files=[ "res://.import/niceschiff.png-57fbb96adabec32111daf5ea3c77f974.stex" ]
+source_file="res://Texturen/Symbole/Kreis.png"
+dest_files=[ "res://.import/Kreis.png-1aefff4eea027b842ce572bece773610.stex" ]
 
 [params]
 

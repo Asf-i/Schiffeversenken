@@ -67,9 +67,11 @@ func _on_SettingWegButton_pressed():
 
 func on_off_switch(button, pressed):
 	if pressed:
-		button.get_node("OnOff").frame = 1
+#		button.get_node("OnOff").frame = 1
+		button.get_node("OnOff").rotation_degrees = 0
 	else:
-		button.get_node("OnOff").frame = 0
+#		button.get_node("OnOff").frame = 0
+		button.get_node("OnOff").rotation_degrees = 180
 
 func _on_CheckButton_toggled(button_pressed):
 	Autoload.savegame_data.rotier_mode = button_pressed
@@ -85,17 +87,6 @@ func _on_Vibration_toggled(button_pressed):
 	Autoload.savegame_data.vibration = button_pressed
 	Autoload.save()
 	on_off_switch($Vibration, button_pressed)
-
-func _on_LineEdit3_text_entered(new_text):
-	var ohh : String = ""
-	if new_text.length() > 4:
-		for i in 6:
-			ohh += new_text[i]
-		if ohh == "clear ":
-			ohh = ""
-			for i in new_text.length() - 6:
-				ohh += new_text[i + 6]
-			Server.rpc_id(1, "sachen_clearen", ohh)
 
 func _on_ScreenshakeSlider_value_changed(value):
 	Autoload.savegame_data.screenshake_value = value

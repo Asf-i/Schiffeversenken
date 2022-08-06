@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cursor ding.png-551c78a4ed5d99b9e1a10dfcadb80712.stex"
+path="res://.import/Boot.png-82ffe42e7bf2c88f0988b3b18647a43c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cursor ding.png"
-dest_files=[ "res://.import/Cursor ding.png-551c78a4ed5d99b9e1a10dfcadb80712.stex" ]
+source_file="res://Texturen/Boot.png"
+dest_files=[ "res://.import/Boot.png-82ffe42e7bf2c88f0988b3b18647a43c.stex" ]
 
 [params]
 
