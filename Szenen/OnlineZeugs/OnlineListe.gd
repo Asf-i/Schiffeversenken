@@ -6,6 +6,10 @@ var angefragter_id
 
 const HAUPTONLINE = preload("res://Szenen/OnlineZeugs/HauptOnline.tscn")
 
+func _ready():
+	$anfragNode/ColorRect.rect_position.y = Autoload.actual_screen_height - 688
+	$MomentNode/ColorRect.rect_position.y = Autoload.actual_screen_height - 344
+
 func button_pressed(button_name):
 	angefragter_id = int(button_name)
 	Server.available = false
@@ -14,8 +18,10 @@ func button_pressed(button_name):
 	$Zufall.disabled = false
 	Server.rpc_id(int(button_name), "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name)
 	$MomentNode.visible = true
-	$MomentNode/ColorRect/AnimationPlayer.play("InsBild")
-	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$AnfragWeg.visible = true
+	$ColorRect2/AnimationPlayer.play("InsBild")
+#	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:x", $MomentNode/ColorRect.rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.start()
 	$NochDaCheckTimer.start()
 
@@ -32,8 +38,11 @@ func _on_accept_pressed():
 func _on_deny_pressed(mit_update : bool = true):
 	if mit_update:
 		Server.rpc_id(anfrager_id, "reagiert_auf_anfrage", 5318008, Autoload.savegame_data.sp1name, false) #Die Ip hier ist total unnötig. BOOBIES
-	$anfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-	$anfragNode/ColorRect/Tween.interpolate_property($anfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	if $MomentNode.visible == false or $MomentNode/ColorRect/Tween.is_active():
+		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
+		$AnfragWeg.visible = false
+#	$anfragNode/ColorRect/Tween.interpolate_property($anfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$anfragNode/ColorRect/Tween.interpolate_property($anfragNode/ColorRect, "rect_position:x", $anfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$anfragNode/ColorRect/Tween.start()
 	yield($anfragNode/ColorRect/Tween, "tween_completed")
 	$anfragNode.visible = false
@@ -46,8 +55,12 @@ func _on_deny_pressed(mit_update : bool = true):
 
 func _on_Abbrechen_pressed():
 	Server.rpc_id(angefragter_id, "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, false)
-	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:x", $MomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.start()
+	if $anfragNode.visible == false or $anfragNode/ColorRect/Tween.is_active():
+		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
+		$AnfragWeg.visible = false
 	yield($MomentNode/ColorRect/Tween, "tween_completed")
 	$MomentNode.visible = false
 	
@@ -106,3 +119,9 @@ func _on_Suche_pressed():
 		if $SuchEdit.text == $ScrollContainer/VBoxContainer.get_children()[i].get_node("Label").text && $ScrollContainer/VBoxContainer.get_children()[i].get_node("Ingame").visible == false:
 			button_pressed($ScrollContainer/VBoxContainer.get_children()[i].name)
 			break
+
+func _on_AnfragWeg_pressed():
+	if $anfragNode.visible:
+		_on_deny_pressed()
+	if $MomentNode.visible:
+		_on_Abbrechen_pressed()

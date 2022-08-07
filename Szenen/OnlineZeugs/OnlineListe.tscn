@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Szenen/OnlineZeugs/OnlineListe.gd" type="Script" id=1]
 [ext_resource path="res://UI/TestTheme.tres" type="Theme" id=2]
@@ -60,6 +60,37 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
+[sub_resource type="Animation" id=39]
+resource_name = "InsBild"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=40]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
 [sub_resource type="StyleBoxFlat" id=30]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.952941 )
 corner_radius_top_left = 40
@@ -116,69 +147,7 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxEmpty" id=34]
 
-[sub_resource type="Animation" id=39]
-resource_name = "InsBild"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
-}
-
-[sub_resource type="Animation" id=40]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0.368627 ) ]
-}
-
 [sub_resource type="StyleBoxEmpty" id=36]
-
-[sub_resource type="Animation" id=37]
-resource_name = "InsBild"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
-}
-
-[sub_resource type="Animation" id=38]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0.368627 ) ]
-}
 
 [sub_resource type="Animation" id=41]
 length = 0.001
@@ -192,7 +161,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 270, 480 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rect_scale")
@@ -204,7 +173,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:modulate")
@@ -216,7 +185,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=42]
@@ -260,8 +229,14 @@ tracks/2/keys = {
 }
 
 [node name="OnlineListe" type="Control"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 270.0
+margin_top = 480.0
+margin_right = 270.0
+margin_bottom = 480.0
+rect_scale = Vector2( 0.5, 0.5 )
 theme = ExtResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -427,25 +402,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="anfragNode" type="ColorRect" parent="."]
-visible = false
+[node name="ColorRect2" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.368627 )
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnfragWeg" type="Button" parent="anfragNode"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
+root_node = NodePath("../../anfragNode/ColorRect")
+anims/InsBild = SubResource( 39 )
+anims/RESET = SubResource( 40 )
+
+[node name="AnfragWeg" type="Button" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anfragNode" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="Button" parent="anfragNode"]
-margin_left = 53.0
-margin_top = 1920.0
-margin_right = 1027.0
-margin_bottom = 2224.0
+margin_left = -975.0
+margin_top = 1232.0
+margin_right = -1.0
+margin_bottom = 1536.0
 custom_styles/disabled = SubResource( 30 )
 disabled = true
 __meta__ = {
@@ -538,25 +532,14 @@ scale = Vector2( 0.349, 0.349 )
 texture = ExtResource( 11 )
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="anfragNode/ColorRect"]
-anims/InsBild = SubResource( 39 )
-anims/RESET = SubResource( 40 )
-
 [node name="Tween" type="Tween" parent="anfragNode/ColorRect"]
 
 [node name="MomentNode" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.368627 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MomentWeg" type="Button" parent="MomentNode"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-flat = true
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -564,10 +547,10 @@ __meta__ = {
 [node name="ColorRect" type="Button" parent="MomentNode"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -487.0
-margin_top = 1920.0
-margin_right = 487.0
-margin_bottom = 2224.0
+margin_left = -1515.0
+margin_top = 1576.0
+margin_right = -541.0
+margin_bottom = 1880.0
 custom_styles/disabled = SubResource( 30 )
 disabled = true
 __meta__ = {
@@ -617,10 +600,6 @@ scale = Vector2( 0.349, 0.349 )
 texture = ExtResource( 11 )
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MomentNode/ColorRect"]
-anims/InsBild = SubResource( 37 )
-anims/RESET = SubResource( 38 )
-
 [node name="Tween" type="Tween" parent="MomentNode/ColorRect"]
 
 [node name="TransitionBlackness" parent="." instance=ExtResource( 3 )]
@@ -646,10 +625,9 @@ one_shot = true
 [connection signal="pressed" from="Zufall" to="." method="_on_Zufall_pressed"]
 [connection signal="pressed" from="Suche" to="." method="_on_Suche_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="anfragNode/AnfragWeg" to="." method="_on_deny_pressed"]
+[connection signal="pressed" from="AnfragWeg" to="." method="_on_AnfragWeg_pressed"]
 [connection signal="pressed" from="anfragNode/ColorRect/accept" to="." method="_on_accept_pressed"]
 [connection signal="pressed" from="anfragNode/ColorRect/deny" to="." method="_on_deny_pressed"]
-[connection signal="pressed" from="MomentNode/MomentWeg" to="." method="_on_Abbrechen_pressed"]
 [connection signal="pressed" from="MomentNode/ColorRect/Abbrechen" to="." method="_on_Abbrechen_pressed"]
 [connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
 [connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]

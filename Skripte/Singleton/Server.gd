@@ -85,15 +85,20 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 		onlinelistnode.anfrager_name = anfrager_name
 #		onlinelistnode.anfrager_name = anfrager_name
 		onlinelistnode.get_node("anfragNode").visible = true
+		onlinelistnode.get_node("AnfragWeg").visible = true
 		onlinelistnode.get_node("anfragNode/ColorRect/Label").set_text(str(anfrager_name))
-		onlinelistnode.get_node("anfragNode/ColorRect/AnimationPlayer").play("InsBild")
-		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		onlinelistnode.get_node("ColorRect2/AnimationPlayer").play("InsBild")
+#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
 		onlinelistnode.get_node("NochDaCheckTimer").start()
 	else:
 #		rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id())
-		onlinelistnode.get_node("anfragNode/ColorRect/AnimationPlayer").play_backwards("InsBild")
-		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		if onlinelistnode.get_node("MomentNode").visible == false or onlinelistnode.get_node("MomentNode/ColorRect/Tween").is_active():
+			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play_backwards("InsBild")
+			onlinelistnode.get_node("AnfragWeg").visible = false
+#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
 		yield(onlinelistnode.get_node("anfragNode/ColorRect/Tween"), "tween_completed")
 		onlinelistnode.get_node("anfragNode").visible = false
@@ -115,8 +120,11 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 			rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 			onlinelistnode.get_node("TransitionBlackness").black()
 	else:
-		onlinelistnode.get_node("MomentNode/ColorRect/AnimationPlayer").play_backwards("InsBild")
-		onlinelistnode.get_node("MomentNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("MomentNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		if onlinelistnode.get_node("anfragNode").visible == false or onlinelistnode.get_node("anfragNode/ColorRect/Tween").is_active():
+			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play_backwards("InsBild")
+			onlinelistnode.get_node("AnfragWeg").visible = false
+#		onlinelistnode.get_node("MomentNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("MomentNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		onlinelistnode.get_node("MomentNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("MomentNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("MomentNode/ColorRect").rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("MomentNode/ColorRect/Tween").start()
 		yield(onlinelistnode.get_node("MomentNode/ColorRect/Tween"), "tween_completed")
 		onlinelistnode.get_node("MomentNode").visible = false
