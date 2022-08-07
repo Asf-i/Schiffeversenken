@@ -73,6 +73,11 @@ remote func spielerbuttons_updaten(momentane_spieler, spieler_namen, spieler_ing
 				button.get_node("Ingame").visible = true
 				button.get_node("Online").visible = false
 		onlinelistnode.get_node("ScrollContainer/VBoxContainer/" + str(get_tree().get_network_unique_id())).queue_free()
+	
+	if onlinelistnode.get_node("MomentNode").visible && not onlinelistnode.angefragter_id in momentane_spieler:
+		reagiert_auf_anfrage(onlinelistnode.angefragter_id, "unwichtig", false)
+	if onlinelistnode.get_node("anfragNode").visible &&  not onlinelistnode.anfrager_id in momentane_spieler:
+		anfrage(onlinelistnode.anfrager_id, onlinelistnode.anfrager_name, false)
 
 remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = true, nochmal_anfragen : bool = false, pass_id = null, pass_name = null):
 	if anfrage:
@@ -82,7 +87,7 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 			anfrage(onlinelistnode.anfrager_id, onlinelistnode.anfrager_name, false, true, anfrager_id, anfrager_name)
 		else:
 			available = false
-			rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
+			rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id(), false) #False nach id geadded, unsicher
 			onlinelistnode.get_node("Zufall").set_text("Zufall")
 			onlinelistnode.get_node("Zufall").disabled = false
 			onlinelistnode.anfrager_id = anfrager_id
@@ -95,7 +100,7 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 	#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
-			onlinelistnode.get_node("NochDaCheckTimer").start()
+#			onlinelistnode.get_node("NochDaCheckTimer").start()
 	elif anfrager_id == onlinelistnode.anfrager_id:
 #		rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id())
 		if onlinelistnode.get_node("MomentNode").visible == false or onlinelistnode.get_node("MomentNode/ColorRect/Tween").is_active():
@@ -119,8 +124,8 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 			get_parent().get_node("Start/OnlineListe/TransitionBlackness").black(false)
 			spielpartner_id = anderer_id
 			spielpartner_name = anderer_name
-			onlinelistnode.get_node("NochDaTimer").stop()
-			onlinelistnode.get_node("NochDaCheckTimer").stop()
+#			onlinelistnode.get_node("NochDaTimer").stop()
+#			onlinelistnode.get_node("NochDaCheckTimer").stop()
 			rpc_id(anderer_id, "reagiert_auf_anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, true, true)
 		else:
 			onlinelistnode.anfrager_id = null
@@ -145,8 +150,8 @@ remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 :
 	rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 	spielpartner_id = anderer_id
 	spielpartner_name = anderer_name
-	onlinelistnode.get_node("NochDaTimer").stop()
-	onlinelistnode.get_node("NochDaCheckTimer").stop()
+#	onlinelistnode.get_node("NochDaTimer").stop()
+#	onlinelistnode.get_node("NochDaCheckTimer").stop()
 	onlinelistnode.anfrager_id = null
 	onlinelistnode.get_node("TransitionBlackness").black(spieler2)
 
@@ -165,7 +170,7 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 				$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
 				$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 				$"/root/Welt/NotifyRect".visible = true
-				$"/root/Welt/NochDaCheckTimer".start()
+#				$"/root/Welt/NochDaCheckTimer".start()
 		#Hier neu dazu geschrieben:
 		else:
 			rpc_id(spielpartner_id, "bin_bereit", true, true)
@@ -177,7 +182,7 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 			$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
 			$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 			$"/root/Welt/NotifyRect".visible = true
-			$"/root/Welt/NochDaCheckTimer".start()
+#			$"/root/Welt/NochDaCheckTimer".start()
 	
 	#Das hier mit vorherigem neu dazu geschrieben:
 	else:
@@ -261,16 +266,18 @@ remote func anderer_spiel_verlassen():
 		$"/root/Welt/NotifyRect/Control/HintergrundButton2".visible = true
 		$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 		$"/root/Welt/NotifyRect".visible = true
-		$"/root/Welt/NochDaCheckTimer".stop()
+#		$"/root/Welt/NochDaCheckTimer".stop()
+	if not $"/root/Welt".spieler2_ist_dran:
+		rpc_id(1, "spielpartner_eingeben", false, get_tree().get_network_unique_id(), spielpartner_id)
 
-remote func noch_da(frager_id, frage : bool = false):
-	if frage && ((get_node_or_null("/root/Welt") && spielpartner_id == frager_id) or (get_node_or_null("/root/Start/OnlineListe") && not ingame)):
-		rpc_id(frager_id, "noch_da", 5318008) #Id wieder unnötig, BOOBIES
-	elif get_node_or_null("/root/Welt") != null:
-		$"/root/Welt/NochDaTimer".stop()
-	else:
-		print("NochDaTimer gestoppt")
-		$"/root/Start/OnlineListe/NochDaTimer".stop()
+#remote func noch_da(frager_id, frage : bool = false):
+#	if frage && ((get_node_or_null("/root/Welt") && spielpartner_id == frager_id) or (get_node_or_null("/root/Start/OnlineListe") && not ingame)):
+#		rpc_id(frager_id, "noch_da", 5318008) #Id wieder unnötig, BOOBIES
+#	elif get_node_or_null("/root/Welt") != null:
+#		$"/root/Welt/NochDaTimer".stop()
+#	else:
+#		print("NochDaTimer gestoppt")
+#		$"/root/Start/OnlineListe/NochDaTimer".stop()
 
 remote func revanche(anfrage : bool = true):
 	if anfrage:

@@ -642,18 +642,6 @@ visible = false
 anims/RESET = SubResource( 41 )
 anims/open = SubResource( 42 )
 
-[node name="NochDaTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="NochDaSchlussTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="NochDaCheckTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [connection signal="pressed" from="ListenWegButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Zufall" to="." method="_on_Zufall_pressed"]
 [connection signal="pressed" from="ZufallAbbruch" to="." method="_on_ZufallAbbruch_pressed"]
@@ -664,6 +652,3 @@ one_shot = true
 [connection signal="pressed" from="anfragNode/ColorRect/deny" to="." method="_on_deny_pressed"]
 [connection signal="pressed" from="MomentNode/ColorRect/Abbrechen" to="." method="_on_Abbrechen_pressed"]
 [connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
-[connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]
-[connection signal="timeout" from="NochDaSchlussTimer" to="." method="_on_NochDaSchlussTimer_timeout"]
-[connection signal="timeout" from="NochDaCheckTimer" to="." method="_on_NochDaCheckTimer_timeout"]

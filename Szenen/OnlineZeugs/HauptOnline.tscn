@@ -1248,8 +1248,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 1350.0
-margin_bottom = 2300.0
+margin_right = 2430.0
+margin_bottom = 4220.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1328,8 +1328,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 19710.0
-margin_bottom = 35040.0
+margin_right = 20790.0
+margin_bottom = 36960.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1421,14 +1421,6 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NotifyRect/Control"]
 anims/RESET = SubResource( 62 )
 anims/open = SubResource( 63 )
-
-[node name="NochDaTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
-
-[node name="NochDaCheckTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -1644,8 +1636,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 1350.0
-margin_bottom = 2400.0
+margin_right = 2430.0
+margin_bottom = 4320.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1783,8 +1775,6 @@ script = ExtResource( 14 )
 [connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
 [connection signal="pressed" from="Gewonnen/ZurListeButton" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="pressed" from="NotifyRect/Control/ListenButton" to="." method="_on_ZurListeButton_pressed"]
-[connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]
-[connection signal="timeout" from="NochDaCheckTimer" to="." method="_on_NochDaCheckTimer_timeout"]
 [connection signal="pressed" from="AnfragWeg" to="." method="_on_AnfragWeg_pressed"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/accept" to="." method="revanche_akzeptieren"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/deny" to="." method="anfrage_ablehnen"]

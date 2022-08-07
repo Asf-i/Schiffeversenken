@@ -24,6 +24,8 @@ func _ready():
 	randomize()
 	$"/root/Start/OnlineListe/ColorRect2/AnimationPlayer".play_backwards("InsBild")
 	$"/root/Start/OnlineListe/AnfragWeg".visible = false
+	$IngameAnfragNode/ColorRect.rect_position.y = Autoload.actual_screen_height - 688
+	$IngameMomentNode/ColorRect.rect_position.y = Autoload.actual_screen_height - 344
 	
 	$Felder.felder_platzieren()
 	$EigenschiffControl/EigeneFelder.felder_platzieren()
@@ -54,6 +56,8 @@ func _input(event):
 	
 	if event.is_action_pressed("ui_right"):
 		print(spieler1_punkte, spieler2_punkte)
+		if not spieler2_ist_dran:
+			Server.rpc_id(1, "spielpartner_eingeben", false, get_tree().get_network_unique_id(), Server.spielpartner_id)
 
 func _on_RotateButton_pressed(mit_centerfeld : bool = true):
 	if selected_schiffli.im_feld:
@@ -197,13 +201,13 @@ func _on_FertigButton_pressed():
 #	$WarteAufControl/Control/AnimationPlayer.play("open")
 #	$WarteAufControl/Control/WarteAufLabel.set_text(Server.spielpartner_name)
 #	$WarteAufControl.visible = true
-	if not $NochDaCheckTimer.time_left > 0:
-		$NochDaCheckTimer.start()
-		schiffe_fertig_platziert()
+#	if not $NochDaCheckTimer.time_left > 0:
+#		$NochDaCheckTimer.start()
+	schiffe_fertig_platziert()
 
 func schiffe_fertig_platziert():
 	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-	$NochDaTimer.start()
+#	$NochDaTimer.start()
 	spielphase = 2
 	Server.rpc_id(Server.spielpartner_id, "schiffdaten_senden", Autoload.spieler1_felder, Autoload.spieler1_centerfelder, Autoload.spieler2_felder, Autoload.spieler2_centerfelder)
 	Server.rpc_id(Server.spielpartner_id, "bin_bereit")
@@ -214,9 +218,9 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 	$NotifyRect/Control/AnimationPlayer.play("open")
 	$NotifyRect.visible = true
 	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-	$NochDaTimer.start()
+#	$NochDaTimer.start()
 #	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
-	$NochDaCheckTimer.start()
+#	$NochDaCheckTimer.start()
 	yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
 	$Felder/Abdeckung.visible = false
 
@@ -301,7 +305,7 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 	
 	if peimel == false:
 		$Gewonnen.visible = true
-		$NochDaCheckTimer.start()
+#		$NochDaCheckTimer.start()
 		$Gewonnen/Control/FertigFelder.felder_platzieren()
 		$Gewonnen/Control/FertigFelder.felder_laden(not spieler2_ist_dran)
 		$Gewonnen/Control/FertigFelder.treffer_markieren(spieler2_ist_dran)
@@ -329,37 +333,35 @@ func _on_ZurListeButton_pressed():
 	$TransitionBlackness.black()
 	Server.ingame = false
 
-func _on_NochDaTimer_timeout():
-	$NochDaCheckTimer.stop()
-	anderer_noch_da = false
-	if not $Gewonnen.visible:
-		$WarteAufControl.visible = false
-		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
-		$NotifyRect/Control/InfoLabel.set_text("ist nicht mehr da...")
-		$NotifyRect/Control/ListenButton.visible = true
-		$NotifyRect/Control/HintergrundButton.visible = false
-		$NotifyRect/Control/HintergrundButton2.visible = true
-		$NotifyRect/Control/AnimationPlayer.play("open")
-		$NotifyRect.visible = true
-	else:
-		$Gewonnen/Revanche.disabled = true
-#		$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-#		$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
-		$AnfragWeg.visible = false
-		$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:x", $IngameAnfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$IngameAnfragNode/ColorRect/Tween.start()
-		$IngameMomentNode/ColorRect/Tween.start()
-		yield($IngameAnfragNode/ColorRect/Tween, "tween_all_completed")
-		$IngameAnfragNode.visible = false
-		$IngameMomentNode.visible = false
+#func _on_NochDaTimer_timeout():
+#	$NochDaCheckTimer.stop()
+#	anderer_noch_da = false
+#	if not $Gewonnen.visible:
+#		$WarteAufControl.visible = false
+#		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
+#		$NotifyRect/Control/InfoLabel.set_text("ist nicht mehr da...")
+#		$NotifyRect/Control/ListenButton.visible = true
+#		$NotifyRect/Control/HintergrundButton.visible = false
+#		$NotifyRect/Control/HintergrundButton2.visible = true
+#		$NotifyRect/Control/AnimationPlayer.play("open")
+#		$NotifyRect.visible = true
+#	else:
+#		$Gewonnen/Revanche.disabled = true
+#		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
+#		$AnfragWeg.visible = false
+#		$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:x", $IngameAnfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		$IngameAnfragNode/ColorRect/Tween.start()
+#		$IngameMomentNode/ColorRect/Tween.start()
+#		yield($IngameAnfragNode/ColorRect/Tween, "tween_all_completed")
+#		$IngameAnfragNode.visible = false
+#		$IngameMomentNode.visible = false
 
-func _on_NochDaCheckTimer_timeout():
-	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-	$NochDaTimer.start()
-	if ($NotifyRect.visible or $WarteAufControl.visible or $Gewonnen.visible): #hier war hinten dran noch && spielphase != 3
-		$NochDaCheckTimer.start()
+#func _on_NochDaCheckTimer_timeout():
+#	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
+#	$NochDaTimer.start()
+#	if ($NotifyRect.visible or $WarteAufControl.visible or $Gewonnen.visible): #hier war hinten dran noch && spielphase != 3
+#		$NochDaCheckTimer.start()
 
 func _on_Revanche_pressed():
 	Server.rpc_id(Server.spielpartner_id, "revanche")
@@ -407,6 +409,8 @@ func _on_TransitionBlackness_end_done(_s2dran):
 		$"/root/Welt".im_feld = 6
 	else:
 		get_parent().get_node("Start/OnlineListe/TransitionBlackness").black_reverse()
+		if not spieler2_ist_dran:
+			Server.rpc_id(1, "spielpartner_eingeben", false, get_tree().get_network_unique_id(), Server.spielpartner_id)
 	queue_free()
 
 func _on_AnimationPlayer_animation_finished(_anim_name):

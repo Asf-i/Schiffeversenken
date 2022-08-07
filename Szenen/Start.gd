@@ -35,7 +35,16 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_right"):
-		$VersionsLabel.rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
+		var lel = {"vagina": "nice", "penis": "stange"}
+		var wort = "nice"
+		if wort in lel:
+			print("direkt")
+			print("yay")
+		else:
+			for i in lel:
+				if lel[i] == wort:
+					print("yay")
+					print(lel.keys()[i])
 
 func _on_Multiplayer_pressed():
 	if not swiping:
