@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -127,6 +127,65 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=67]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "erscheinen"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=69]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.498039, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=70]
+resource_name = "pulsieren"
+length = 6.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.498039, -0.25, 0, 0.25, 0, 0.0862745, -0.25, 0, 0.25, 0, 0.498039, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 3, 6 )
+}
+
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.894118 )
 corner_radius_top_left = 40
@@ -152,7 +211,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 270, 480 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rect_scale")
@@ -164,7 +223,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("..:modulate")
@@ -176,7 +235,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=61]
@@ -247,7 +306,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 270, 480 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rect_scale")
@@ -259,7 +318,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("..:modulate")
@@ -271,7 +330,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=63]
@@ -312,6 +371,37 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "InsBild"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
+}
+
+[sub_resource type="Animation" id=72]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
 }
 
 [sub_resource type="StyleBoxFlat" id=30]
@@ -366,37 +456,6 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxEmpty" id=51]
 
-[sub_resource type="Animation" id=56]
-resource_name = "InsBild"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
-}
-
-[sub_resource type="Animation" id=57]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ) ]
-}
-
 [sub_resource type="StyleBoxFlat" id=52]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 draw_center = false
@@ -437,37 +496,6 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-
-[sub_resource type="Animation" id=58]
-resource_name = "InsBild"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.368627 ) ]
-}
-
-[sub_resource type="Animation" id=59]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ) ]
-}
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
@@ -558,7 +586,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 270, 480 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rect_scale")
@@ -570,7 +598,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 0.5, 0.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("..:modulate")
@@ -582,7 +610,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=65]
@@ -672,9 +700,9 @@ texture = ExtResource( 15 )
 [node name="SchriftLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_left = 110.0
-margin_top = 56.0
+margin_top = 90.0
 margin_right = -110.0
-margin_bottom = 280.0
+margin_bottom = 314.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_styles/normal = SubResource( 20 )
 text = "Platziere die Schiffe
@@ -1039,6 +1067,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite" type="Sprite" parent="Gewonnen"]
+modulate = Color( 1, 1, 1, 0.498039 )
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 541, 1345 )
+scale = Vector2( 0.847, 0.847 )
+texture = ExtResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gewonnen/Sprite"]
+anims/RESET = SubResource( 67 )
+anims/erscheinen = SubResource( 68 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gewonnen/Sprite"]
+autoplay = "pulsieren"
+anims/RESET = SubResource( 69 )
+anims/pulsieren = SubResource( 70 )
+
 [node name="Tween" type="Tween" parent="Gewonnen"]
 
 [node name="Control" type="Control" parent="Gewonnen"]
@@ -1188,6 +1232,7 @@ __meta__ = {
 
 [node name="WarteAufControl" type="ColorRect" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -0.000244141
@@ -1201,8 +1246,11 @@ __meta__ = {
 [node name="Control" type="Control" parent="WarteAufControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 29160.0
-margin_bottom = 51740.0
+margin_left = 270.0
+margin_top = 480.0
+margin_right = 1350.0
+margin_bottom = 2300.0
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1263,6 +1311,7 @@ anims/open = SubResource( 61 )
 
 [node name="NotifyRect" type="ColorRect" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -0.000244141
@@ -1277,8 +1326,11 @@ __meta__ = {
 [node name="Control" type="Control" parent="NotifyRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 12960.0
-margin_bottom = 23040.0
+margin_left = 270.0
+margin_top = 480.0
+margin_right = 19710.0
+margin_bottom = 35040.0
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1378,19 +1430,34 @@ one_shot = true
 wait_time = 4.0
 one_shot = true
 
-[node name="IngameAnfragNode" type="ColorRect" parent="."]
-visible = false
+[node name="ColorRect2" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Anfragweg" type="Button" parent="IngameAnfragNode"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
+anims/InsBild = SubResource( 71 )
+anims/RESET = SubResource( 72 )
+
+[node name="AnfragWeg" type="Button" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IngameAnfragNode" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1400,10 +1467,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -487.0
-margin_top = -0.00195313
-margin_right = 487.0
-margin_bottom = 303.998
+margin_left = -1515.0
+margin_top = -688.002
+margin_right = -541.0
+margin_bottom = -384.002
 custom_styles/disabled = SubResource( 30 )
 disabled = true
 __meta__ = {
@@ -1475,25 +1542,14 @@ scale = Vector2( 0.349, 0.349 )
 texture = ExtResource( 24 )
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="IngameAnfragNode/ColorRect"]
-anims/InsBild = SubResource( 56 )
-anims/RESET = SubResource( 57 )
-
 [node name="Tween" type="Tween" parent="IngameAnfragNode/ColorRect"]
 
 [node name="IngameMomentNode" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MomentWeg" type="Button" parent="IngameMomentNode"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1503,10 +1559,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -487.0
-margin_top = -0.00195313
-margin_right = 487.0
-margin_bottom = 303.998
+margin_left = -1515.0
+margin_top = -344.002
+margin_right = -541.0
+margin_bottom = -40.002
 custom_styles/disabled = SubResource( 30 )
 disabled = true
 __meta__ = {
@@ -1554,10 +1610,6 @@ scale = Vector2( 0.349, 0.349 )
 texture = ExtResource( 24 )
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="IngameMomentNode/ColorRect"]
-anims/InsBild = SubResource( 58 )
-anims/RESET = SubResource( 59 )
-
 [node name="Tween" type="Tween" parent="IngameMomentNode/ColorRect"]
 
 [node name="SettingWegButton" type="Button" parent="."]
@@ -1579,6 +1631,7 @@ visible = false
 
 [node name="ZumHauptmenu" type="ColorRect" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.160784 )
@@ -1589,8 +1642,11 @@ __meta__ = {
 [node name="Control" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 29160.0
-margin_bottom = 51840.0
+margin_left = 270.0
+margin_top = 480.0
+margin_right = 1350.0
+margin_bottom = 2400.0
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1729,10 +1785,9 @@ script = ExtResource( 14 )
 [connection signal="pressed" from="NotifyRect/Control/ListenButton" to="." method="_on_ZurListeButton_pressed"]
 [connection signal="timeout" from="NochDaTimer" to="." method="_on_NochDaTimer_timeout"]
 [connection signal="timeout" from="NochDaCheckTimer" to="." method="_on_NochDaCheckTimer_timeout"]
-[connection signal="pressed" from="IngameAnfragNode/Anfragweg" to="." method="anfrage_ablehnen"]
+[connection signal="pressed" from="AnfragWeg" to="." method="_on_AnfragWeg_pressed"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/accept" to="." method="revanche_akzeptieren"]
 [connection signal="pressed" from="IngameAnfragNode/ColorRect/deny" to="." method="anfrage_ablehnen"]
-[connection signal="pressed" from="IngameMomentNode/MomentWeg" to="." method="revanche_abbrechen"]
 [connection signal="pressed" from="IngameMomentNode/ColorRect/Abbrechen" to="." method="revanche_abbrechen"]
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
 [connection signal="pressed" from="ZumHauptmenu/Control/nein2" to="." method="_on_nein_pressed"]

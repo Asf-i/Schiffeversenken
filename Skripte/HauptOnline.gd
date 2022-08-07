@@ -22,6 +22,9 @@ var aufgedeckte_schiffe = []
 func _ready():
 	Server.ingame = true
 	randomize()
+	$"/root/Start/OnlineListe/ColorRect2/AnimationPlayer".play_backwards("InsBild")
+	$"/root/Start/OnlineListe/AnfragWeg".visible = false
+	
 	$Felder.felder_platzieren()
 	$EigenschiffControl/EigeneFelder.felder_platzieren()
 	$Gewonnen.rect_position.y = -$Gewonnen.rect_size.y
@@ -310,6 +313,9 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 					$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
 		for schiff in aufgedeckte_schiffe.size():
 			get_node("Gewonnen/Control/FertigSchiffe/" + aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+		
+		yield($Gewonnen/Tween, "tween_completed")
+		$Gewonnen/Sprite/AnimationPlayer.play("erscheinen")
 
 func _on_ZurListeButton_pressed():
 	if anderer_noch_da:
@@ -337,10 +343,12 @@ func _on_NochDaTimer_timeout():
 		$NotifyRect.visible = true
 	else:
 		$Gewonnen/Revanche.disabled = true
-		$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-		$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-		$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:y", $IngameAnfragNode/ColorRect.rect_position.y, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", $IngameMomentNode/ColorRect.rect_position.y, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
+#		$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
+		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
+		$AnfragWeg.visible = false
+		$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:x", $IngameAnfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$IngameAnfragNode/ColorRect/Tween.start()
 		$IngameMomentNode/ColorRect/Tween.start()
 		yield($IngameAnfragNode/ColorRect/Tween, "tween_all_completed")
@@ -356,14 +364,21 @@ func _on_NochDaCheckTimer_timeout():
 func _on_Revanche_pressed():
 	Server.rpc_id(Server.spielpartner_id, "revanche")
 	$IngameMomentNode.visible = true
-	$IngameMomentNode/ColorRect/AnimationPlayer.play("InsBild")
-	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	$IngameMomentNode/ColorRect/AnimationPlayer.play("InsBild")
+	$ColorRect2/AnimationPlayer.play("InsBild")
+	$AnfragWeg.visible = true
+#	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameMomentNode/ColorRect/Tween.start()
 
 func revanche_abbrechen():
 	Server.rpc_id(Server.spielpartner_id, "revanche", false)
-	$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	if $IngameAnfragNode.visible == false or $IngameAnfragNode/ColorRect/Tween.is_active():
+#		$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
+		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
+		$AnfragWeg.visible = false
+#	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameMomentNode/ColorRect/Tween.start()
 	yield($IngameMomentNode/ColorRect/Tween, "tween_completed")
 	$IngameMomentNode.visible = false
@@ -375,8 +390,12 @@ func revanche_akzeptieren():
 
 func anfrage_ablehnen():
 	Server.rpc_id(Server.spielpartner_id, "reagiert_auf_revanche", false)
-	$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
-	$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	if $IngameMomentNode.visible == false or $IngameMomentNode/ColorRect/Tween.is_active():
+#		$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
+		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
+		$AnfragWeg.visible = false
+#	$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:x", $IngameAnfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameAnfragNode/ColorRect/Tween.start()
 	yield($IngameAnfragNode/ColorRect/Tween, "tween_completed")
 	$IngameAnfragNode.visible = false
@@ -403,3 +422,9 @@ func _on_nein_pressed():
 
 func _on_SchriftLabel_AnimationPlayer_animation_finished(_anim_name):
 	$SchriftLabel.visible = false
+
+func _on_AnfragWeg_pressed():
+	if $IngameAnfragNode.visible:
+		anfrage_ablehnen()
+	if $IngameMomentNode.visible:
+		revanche_abbrechen()

@@ -340,6 +340,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ZufallAbbruch" type="Button" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -255.0
+margin_top = 581.0
+margin_right = -174.0
+margin_bottom = 663.0
+theme = ExtResource( 10 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SuchEdit" type="LineEdit" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -557,6 +571,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="anfragevon" type="Label" parent="MomentNode/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -457.0
+margin_top = -125.5
+margin_right = 457.0
+margin_bottom = -74.5
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_fonts/font = SubResource( 31 )
+text = "GAYLORD5000"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="MomentNode/ColorRect"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -623,6 +656,7 @@ one_shot = true
 
 [connection signal="pressed" from="ListenWegButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Zufall" to="." method="_on_Zufall_pressed"]
+[connection signal="pressed" from="ZufallAbbruch" to="." method="_on_ZufallAbbruch_pressed"]
 [connection signal="pressed" from="Suche" to="." method="_on_Suche_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="AnfragWeg" to="." method="_on_AnfragWeg_pressed"]

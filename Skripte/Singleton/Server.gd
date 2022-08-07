@@ -134,6 +134,7 @@ remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 :
 	available = false
 	onlinelistnode.get_node("Zufall").set_text("Zufall")
 	onlinelistnode.get_node("Zufall").disabled = false
+	onlinelistnode.get_node("ZufallAbbruch").visible = false
 	rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 	spielpartner_id = anderer_id
 	spielpartner_name = anderer_name
@@ -267,12 +268,19 @@ remote func noch_da(frager_id, frage : bool = false):
 remote func revanche(anfrage : bool = true):
 	if anfrage:
 		$"/root/Welt/IngameAnfragNode".visible = true
-		$"/root/Welt/IngameAnfragNode/ColorRect/AnimationPlayer".play("InsBild")
-		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		$"/root/Welt/IngameAnfragNode/ColorRect/AnimationPlayer".play("InsBild")
+		$"/root/Welt/ColorRect2/AnimationPlayer".play("InsBild")
+		$"/root/Welt/AnfragWeg".visible = true
+#		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:x", $"/root/Welt/IngameAnfragNode/ColorRect".rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".start()
 	else:
-		$"/root/Welt/IngameAnfragNode/ColorRect/AnimationPlayer".play_backwards("InsBild")
-		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		if $"/root/Welt/IngameMomentNode".visible == false or $"/root/Welt/IngameMomentNode/ColorRect/Tween".is_active():
+#			$"/root/Welt/IngameAnfragNode/ColorRect/AnimationPlayer".play_backwards("InsBild")
+			$"/root/Welt/ColorRect2/AnimationPlayer".play_backwards("InsBild")
+			$"/root/Welt/AnfragWeg".visible = false
+#		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:x", $"/root/Welt/IngameAnfragNode/ColorRect".rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".start()
 		yield($"/root/Welt/IngameAnfragNode/ColorRect/Tween", "tween_completed")
 		$"/root/Welt/IngameAnfragNode".visible = false
@@ -282,8 +290,12 @@ remote func reagiert_auf_revanche(accepted : bool = true):
 		$"/root/Welt".name = "NichtWelt"
 		$"/root/NichtWelt/TransitionBlackness".black()
 	else:
-		$"/root/Welt/IngameMomentNode/ColorRect/AnimationPlayer".play_backwards("InsBild")
-		$"/root/Welt/IngameMomentNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameMomentNode/ColorRect", "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		if $"/root/Welt/IngameAnfragNode".visible == false or $"/root/Welt/IngameAnfragNode/ColorRect/Tween".is_active():
+#			$"/root/Welt/IngameMomentNode/ColorRect/AnimationPlayer".play_backwards("InsBild")
+			$"/root/Welt/ColorRect2/AnimationPlayer".play_backwards("InsBild")
+			$"/root/Welt/AnfragWeg".visible = false
+#		$"/root/Welt/IngameMomentNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameMomentNode/ColorRect", "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$"/root/Welt/IngameMomentNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameMomentNode/ColorRect", "rect_position:x", $"/root/Welt/IngameMomentNode/ColorRect".rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameMomentNode/ColorRect/Tween".start()
 		yield($"/root/Welt/IngameMomentNode/ColorRect/Tween", "tween_completed")
 		$"/root/Welt/IngameMomentNode".visible = false

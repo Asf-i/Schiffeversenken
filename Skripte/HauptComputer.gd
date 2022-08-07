@@ -286,6 +286,9 @@ func gewinnercheck():
 		#Zerstörte Schiffe markieren
 		for schiff in aufgedeckte_schiffe.size():
 			get_node("Gewonnen/Control/FertigSchiffe/" + aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+		
+		yield($Gewonnen/Tween, "tween_completed")
+		$Gewonnen/Sprite/AnimationPlayer.play("erscheinen")
 
 func _on_ZurListeButton_pressed():
 	$TransitionBlackness.black()

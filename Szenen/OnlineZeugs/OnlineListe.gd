@@ -17,6 +17,7 @@ func button_pressed(button_name):
 	$Zufall.set_text("Zufall")
 	$Zufall.disabled = false
 	Server.rpc_id(int(button_name), "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name)
+	$MomentNode/ColorRect/anfragevon.set_text($SuchEdit.text)
 	$MomentNode.visible = true
 	$AnfragWeg.visible = true
 	$ColorRect2/AnimationPlayer.play("InsBild")
@@ -111,6 +112,14 @@ func _on_Zufall_pressed():
 	$Zufall.set_text("Suche...")
 	$Zufall.disabled = true
 	Server.available = true
+	$ZufallAbbruch.visible = true
+
+func _on_ZufallAbbruch_pressed():
+	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id(), false)
+	$Zufall.set_text("Zufall")
+	$Zufall.disabled = false
+	Server.available = false
+	$ZufallAbbruch.visible = false
 
 func _on_Suche_pressed():
 	print("press")
