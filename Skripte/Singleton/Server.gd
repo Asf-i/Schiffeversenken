@@ -74,25 +74,29 @@ remote func spielerbuttons_updaten(momentane_spieler, spieler_namen, spieler_ing
 				button.get_node("Online").visible = false
 		onlinelistnode.get_node("ScrollContainer/VBoxContainer/" + str(get_tree().get_network_unique_id())).queue_free()
 
-remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = true):
+remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = true, nochmal_anfragen : bool = false, pass_id = null, pass_name = null):
 	if anfrage:
 		#Anfrage erhalten
-		available = false
-		rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
-		onlinelistnode.get_node("Zufall").set_text("Zufall")
-		onlinelistnode.get_node("Zufall").disabled = false
-		onlinelistnode.anfrager_id = anfrager_id
-		onlinelistnode.anfrager_name = anfrager_name
-#		onlinelistnode.anfrager_name = anfrager_name
-		onlinelistnode.get_node("anfragNode").visible = true
-		onlinelistnode.get_node("AnfragWeg").visible = true
-		onlinelistnode.get_node("anfragNode/ColorRect/Label").set_text(str(anfrager_name))
-		onlinelistnode.get_node("ColorRect2/AnimationPlayer").play("InsBild")
-#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
-		onlinelistnode.get_node("NochDaCheckTimer").start()
-	else:
+		if onlinelistnode.get_node("anfragNode").visible:
+			rpc_id(onlinelistnode.anfrager_id, "reagiert_auf_anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, false)
+			anfrage(onlinelistnode.anfrager_id, onlinelistnode.anfrager_name, false, true, anfrager_id, anfrager_name)
+		else:
+			available = false
+			rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id())
+			onlinelistnode.get_node("Zufall").set_text("Zufall")
+			onlinelistnode.get_node("Zufall").disabled = false
+			onlinelistnode.anfrager_id = anfrager_id
+			onlinelistnode.anfrager_name = anfrager_name
+	#		onlinelistnode.anfrager_name = anfrager_name
+			onlinelistnode.get_node("anfragNode").visible = true
+			onlinelistnode.get_node("AnfragWeg").visible = true
+			onlinelistnode.get_node("anfragNode/ColorRect/Label").set_text(str(anfrager_name))
+			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play("InsBild")
+	#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
+			onlinelistnode.get_node("NochDaCheckTimer").start()
+	elif anfrager_id == onlinelistnode.anfrager_id:
 #		rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id())
 		if onlinelistnode.get_node("MomentNode").visible == false or onlinelistnode.get_node("MomentNode/ColorRect/Tween").is_active():
 			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play_backwards("InsBild")
@@ -102,6 +106,9 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 		onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
 		yield(onlinelistnode.get_node("anfragNode/ColorRect/Tween"), "tween_completed")
 		onlinelistnode.get_node("anfragNode").visible = false
+		if nochmal_anfragen:
+			yield(get_tree().create_timer(0.2), "timeout")
+			anfrage(pass_id, pass_name, true)
 
 remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, returned : bool = false):
 	if accepted:
