@@ -158,6 +158,7 @@ remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 :
 # Ab hier kommen sachen, die das Spiel an sich betreffen
 remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 	if not antwort:
+		$"/root/Welt/bin_bereit".visible = true
 		if $"/root/Welt".spielphase == 2:
 			rpc_id(spielpartner_id, "bin_bereit", true)
 			$"/root/Welt".zu_phase_zwei_wechseln()
@@ -191,6 +192,7 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 		$"/root/Welt/WarteAufControl".visible = true
 
 remote func schiffdaten_senden(sp1_felder, sp1_centerfelder, sp2_felder, sp2_centerfelder):
+	$"/root/Welt/schiffdaten_senden".visible = true
 	if $"/root/Welt".spieler2_ist_dran:
 		Autoload.spieler1_felder = sp1_felder
 		Autoload.spieler1_centerfelder = sp1_centerfelder
@@ -256,6 +258,11 @@ remote func anderer_spiel_verlassen():
 	$"/root/Welt".anderer_noch_da = false
 	if $"/root/Welt".spielphase == 3:
 		$"/root/Welt/Gewonnen/Revanche".disabled = true
+		#Anfragen verschwinden lassen
+		if $"/root/Welt/IngameMomentNode".visible or $"/root/Welt/IngameAnfragNode".visible:
+			revanche(false)
+			reagiert_auf_revanche(false)
+			
 	else:
 		$"/root/Welt".spielphase = 2
 		$"/root/Welt/WarteAufControl".visible = false

@@ -206,7 +206,7 @@ func _on_FertigButton_pressed():
 	schiffe_fertig_platziert()
 
 func schiffe_fertig_platziert():
-	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
+#	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
 #	$NochDaTimer.start()
 	spielphase = 2
 	Server.rpc_id(Server.spielpartner_id, "schiffdaten_senden", Autoload.spieler1_felder, Autoload.spieler1_centerfelder, Autoload.spieler2_felder, Autoload.spieler2_centerfelder)
@@ -217,7 +217,7 @@ func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Fe
 	$NotifyRect/Control/InfoLabel.set_text("ist dran")
 	$NotifyRect/Control/AnimationPlayer.play("open")
 	$NotifyRect.visible = true
-	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
+#	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
 #	$NochDaTimer.start()
 #	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
 #	$NochDaCheckTimer.start()
@@ -304,6 +304,9 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 		peimel = false
 	
 	if peimel == false:
+		if (spieler2_ist_dran && spieler2_punkte == 19) or (not spieler2_ist_dran && spieler1_punkte == 19):
+			$Gewonnen/Revanche.set_text("Nochmal")
+		
 		$Gewonnen.visible = true
 #		$NochDaCheckTimer.start()
 		$Gewonnen/Control/FertigFelder.felder_platzieren()
