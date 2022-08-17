@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=3]
@@ -36,10 +36,6 @@ bg_color = Color( 1, 1, 1, 0.847059 )
 border_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 shadow_color = Color( 0, 0, 0, 0.0941176 )
 shadow_size = 12
-
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0.886275, 0.886275, 0.886275, 0.847059 )
-border_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=17]
 
@@ -101,7 +97,7 @@ margin_top = 240.0
 margin_right = 1080.0
 margin_bottom = 336.0
 custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
+custom_styles/pressed = SubResource( 18 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
@@ -123,7 +119,7 @@ margin_top = 352.0
 margin_right = 1080.0
 margin_bottom = 448.0
 custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
+custom_styles/pressed = SubResource( 18 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
@@ -145,7 +141,7 @@ margin_top = 128.0
 margin_right = 1080.0
 margin_bottom = 224.0
 custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
+custom_styles/pressed = SubResource( 18 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
