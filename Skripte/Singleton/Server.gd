@@ -28,6 +28,8 @@ func connect_to_server():
 	network.connect("server_disconnected", self, "_on_server_disconnected")
 
 func _on_server_disconnected():
+	if get_node_or_null("/root/Welt") != null:
+		$"/root/Welt".queue_free()
 	print("verbindung zum server ist weg")
 	ingame = false
 	get_tree().network_peer = null
