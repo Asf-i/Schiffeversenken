@@ -9,6 +9,8 @@ const HAUPTONLINE = preload("res://Szenen/OnlineZeugs/HauptOnline.tscn")
 func _ready():
 	$anfragNode/ColorRect.rect_position.y = Autoload.actual_screen_height - 688
 	$MomentNode/ColorRect.rect_position.y = Autoload.actual_screen_height - 344
+	$"/root/Start/VerbindeRect/Control/AnimationPlayer".play("RESET")
+	$"/root/Start/Einstellungen".sonst_okay = true
 
 func button_pressed(button_name):
 	angefragter_id = int(button_name)

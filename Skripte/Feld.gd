@@ -56,6 +56,8 @@ func machen():
 			$"/root/Welt".spieler2_versenkte[sp2_schiffli_name] -= 1
 			check_schiffli_name = sp2_schiffli_name
 		$Button.modulate = get_parent().trefferfarbe
+		$Treffer.visible = true
+		$Vollkreis.visible = true
 		$PlatschPengPlayer.play("Peng")
 		$Explosion.play()
 		if Autoload.savegame_data.vibration:
@@ -65,6 +67,7 @@ func machen():
 	else:
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
+		$Verfehlt.visible = true
 		$PlatschPengPlayer.play("Platsch")
 		$Platschsound.play()
 		if get_node_or_null("/root/Start") != null:

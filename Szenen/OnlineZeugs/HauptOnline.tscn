@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Skripte/HauptOnline.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Skripte/Screenshake.gd" type="Script" id=14]
 [ext_resource path="res://Texturen/Hintergrund/Connect.png" type="Texture" id=15]
 [ext_resource path="res://Texturen/Symbole/Eimer.png" type="Texture" id=16]
-[ext_resource path="res://icon.png" type="Texture" id=17]
 [ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://UI/IngameButtons.tres" type="Theme" id=19]
 [ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=20]
@@ -969,6 +968,7 @@ anchor_bottom = 1.0
 rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="EigeneSchiffe" type="Control" parent="EigenschiffControl"]
+modulate = Color( 1, 1, 1, 0.76 )
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1764,20 +1764,6 @@ current = true
 script = ExtResource( 14 )
 
 [node name="Tween" type="Tween" parent="Camera2D"]
-
-[node name="bin_bereit" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.819608, 0.823529, 0.239216, 1 )
-position = Vector2( 223, -5.99998 )
-scale = Vector2( 0.259766, 0.259766 )
-texture = ExtResource( 17 )
-
-[node name="schiffdaten_senden" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.152941, 0.905882, 0.164706, 1 )
-position = Vector2( 373, -6 )
-scale = Vector2( 0.259766, 0.259766 )
-texture = ExtResource( 17 )
 
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]

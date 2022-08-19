@@ -11,10 +11,10 @@ var bearbeitetes_feld
 var laenge : int
 
 var normalfarbe = Color(0.894118, 0.894118, 0.894118)
-var herumfarbe = Color(0.743137, 0.743137, 0.743137)
-var innenfarbe = Color(0.566667, 0.566667, 0.566667)
-var verfehltfarbe = Color(0.1, 0.1, 0.1)
-var trefferfarbe = Color(0.5, 0.2, 0.2)
+var herumfarbe = Color(0.85, 0.8, 0.8)
+var innenfarbe = Color(0.894118, 0.894118, 0.894118)
+var verfehltfarbe = Color(0.894118, 0.894118, 0.894118)
+var trefferfarbe = Color(0.894118, 0.894118, 0.894118)
 
 func felder_platzieren():
 	var felder_collisions : bool = true
@@ -85,8 +85,11 @@ func treffer_markieren(spieler2_ist_dran):
 		bearbeit_node.aufgedeckt = true
 		if check_dict[check_dict.keys()[checkzahl]] == true:
 			bearbeit_node.get_node("Button").modulate = trefferfarbe
+			bearbeit_node.get_node("Treffer").visible = true
+			bearbeit_node.get_node("Vollkreis").visible = true
 		else:
 			bearbeit_node.get_node("Button").modulate = verfehltfarbe
+			bearbeit_node.get_node("Verfehlt").visible = true
 
 func ist_moeglich(selected_schiffli_im_feld):
 	if nahfeld && selected_schiffli_im_feld:
@@ -219,6 +222,9 @@ func clear(mit_centerfeld : bool):
 		for i in 10:
 			bearbeitetes_feld = get_node(str(i + 1) + "_" + str(n + 1))
 			bearbeitetes_feld.get_node("Button").modulate = normalfarbe
+			bearbeitetes_feld.get_node("Verfehlt").visible = false
+			bearbeitetes_feld.get_node("Treffer").visible = false
+			bearbeitetes_feld.get_node("Vollkreis").visible = false
 			bearbeitetes_feld.schiffli = false
 			if mit_centerfeld:
 				match $"/root/Welt".spieler2_ist_dran:

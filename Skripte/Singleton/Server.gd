@@ -48,9 +48,6 @@ func _on_connection_succeeded():
 	get_parent().get_node("Start").add_child(liste)
 	onlinelistnode = get_parent().get_node("Start/OnlineListe")
 	onlinelistnode.get_node("ListPlayer").play("open")
-	$"/root/Start/VerbindeRect".visible = false
-	$"/root/Start/VerbindeRect/Control".visible = false
-	$"/root/Start/Einstellungen".sonst_okay = true
 
 remote func client_was_gesendet(sendezeugs):
 	print(sendezeugs)
@@ -160,7 +157,6 @@ remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 :
 # Ab hier kommen sachen, die das Spiel an sich betreffen
 remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 	if not antwort:
-		$"/root/Welt/bin_bereit".visible = true
 		if $"/root/Welt".spielphase == 2:
 			rpc_id(spielpartner_id, "bin_bereit", true)
 			$"/root/Welt".zu_phase_zwei_wechseln()
@@ -194,7 +190,6 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 		$"/root/Welt/WarteAufControl".visible = true
 
 remote func schiffdaten_senden(sp1_felder, sp1_centerfelder, sp2_felder, sp2_centerfelder):
-	$"/root/Welt/schiffdaten_senden".visible = true
 	if $"/root/Welt".spieler2_ist_dran:
 		Autoload.spieler1_felder = sp1_felder
 		Autoload.spieler1_centerfelder = sp1_centerfelder

@@ -520,6 +520,7 @@ anchor_right = 0.5
 rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="EigeneSchiffe" type="Control" parent="EigenschiffControl"]
+modulate = Color( 0.756863, 0.890196, 1, 0.760784 )
 anchor_left = 0.5
 anchor_right = 0.5
 rect_scale = Vector2( 0.5, 0.5 )
@@ -1201,6 +1202,7 @@ visible = false
 
 [node name="ZumHauptmenu" type="ColorRect" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.160784 )
@@ -1211,8 +1213,11 @@ __meta__ = {
 [node name="Content" type="Control" parent="ZumHauptmenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2160.0
-margin_bottom = 3840.0
+margin_left = 270.0
+margin_top = 480.0
+margin_right = 4590.0
+margin_bottom = 8160.0
+rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
