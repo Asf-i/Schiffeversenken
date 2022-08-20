@@ -1,7 +1,7 @@
 extends Control
 
 const FELD = preload("res://Szenen/Feld.tscn")
-export var separation_faktor : int = 41
+export var separation_faktor : int = 2
 
 var nahfeld
 var zahl : int

@@ -48,7 +48,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_up"):
-		$Camera2D._screen_shake(1, 5)
+		$Gewonnen/Gewinner1/GewinnerFelder1.visible = false
 	
 	yield(get_tree().create_timer(0.01), "timeout")
 	if event is InputEventScreenTouch && event.is_pressed() && unselectbar && spielphase == 1:
@@ -299,6 +299,7 @@ func gewinnercheck():
 		$Gewonnen/Gewinner1/GewinnerFelder1.felder_platzieren()
 		$Gewonnen/Gewinner2/GewinnerFelder2.felder_platzieren()
 		if spieler1_punkte == 19:
+			yield(get_tree().create_timer(0.5), "timeout")
 			$Gewonnen/Label.set_text(Autoload.savegame_data.sp1name)
 			$Gewonnen/Label3.set_text(Autoload.savegame_data.sp2name + ":")
 			$Gewonnen/Gewinner1/GewinnerFelder1.felder_laden(false)
@@ -313,6 +314,7 @@ func gewinnercheck():
 			for schiff in s2_aufgedeckte_schiffe.size():
 				get_node("Gewonnen/Gewinner1/GewinnerSchiffe1/" + s2_aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
 		elif spieler2_punkte == 19:
+			yield(get_tree().create_timer(0.5), "timeout")
 			$Gewonnen/Label.set_text(Autoload.savegame_data.sp2name)
 			$Gewonnen/Label3.set_text(Autoload.savegame_data.sp1name + ":")
 			$Gewonnen/Gewinner1/GewinnerFelder1.felder_laden(true)

@@ -270,6 +270,7 @@ func vollschiffcheck(schiffname, _von_feld = null):
 
 func gewinnercheck():
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
+		yield(get_tree().create_timer(0.5), "timeout")
 		spieler2_ist_dran = false
 		if spieler1_punkte == 19:
 			$Gewonnen/Label.set_text("Spiel gewonnen!")

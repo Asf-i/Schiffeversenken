@@ -296,6 +296,7 @@ func vollschiffcheck(schiffname, von_feld = null):
 
 func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, das unten auch ausgeführt wird, wenn die punkte nicht erreicht sind
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
+		yield(get_tree().create_timer(0.5), "timeout")
 		$Gewonnen/Label.set_text("Spiel gewonnen!")
 		spielphase = 3
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

@@ -415,10 +415,14 @@ __meta__ = {
 
 [node name="NachLinks" type="TextureButton" parent="."]
 modulate = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
-margin_left = 192.0
-margin_top = 1259.0
-margin_right = 304.0
-margin_bottom = 1565.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -348.0
+margin_top = -661.0
+margin_right = -236.0
+margin_bottom = -355.0
 rect_rotation = 180.0
 rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 9 )
@@ -428,10 +432,14 @@ __meta__ = {
 
 [node name="NachRechts" type="TextureButton" parent="."]
 modulate = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
-margin_left = 896.0
-margin_top = 1048.0
-margin_right = 1008.0
-margin_bottom = 1354.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 356.0
+margin_top = -872.0
+margin_right = 468.0
+margin_bottom = -566.0
 rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 9 )
 __meta__ = {

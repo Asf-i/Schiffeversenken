@@ -59,7 +59,6 @@ func machen():
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(50)
 		$"/root/Welt".vollschiffcheck(check_schiffli_name, name)
-		yield(get_tree().create_timer(0.5), "timeout")
 		$"/root/Welt".gewinnercheck()
 	else:
 		eigene_spieler_beschossene[name] = false
