@@ -1,12 +1,206 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Skripte/Schiff.gd" type="Script" id=1]
 [ext_resource path="res://Texturen/Schiffe/3erSchiff-png.png" type="Texture" id=2]
 [ext_resource path="res://Texturen/Schiffe/3er.png" type="Texture" id=3]
+[ext_resource path="res://Texturen/Partikel/Explos.png" type="Texture" id=4]
 [ext_resource path="res://Audio/Schiffkaputt.wav" type="AudioStream" id=203]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 1, 1 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("KaputtSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("KaputtSprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.490196, 0.843137, 0.0627451, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Tod"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("KaputtSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("KaputtSprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.02, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.490196, 0.843137, 0.0627451, 0 ), Color( 0.490196, 0.843137, 0.0627451, 0 ), Color( 0.490196, 0.843137, 0.0627451, 1 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.0711462, 0.44664, 0.616601, 0.798419, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.898438, 0.639854, 0.164948, 1, 0.881454, 0.53758, 0.161285, 1, 0.800781, 0.282453, 0.14389, 1, 0.836233, 0.290994, 0.110193, 0.243697, 0.847656, 0.408456, 0.0993347, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.858696, 81.3636 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0.421591 ), 0.0, 0.638678, 0, 0, Vector2( 1, 0.948864 ), -0.222325, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 321.4
+initial_velocity_random = 0.12
+angular_velocity = 78.71
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 300.0
+damping_random = 0.27
+damping_curve = SubResource( 12 )
+scale = 2.63
+scale_random = 0.6
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 10 )
 
 [node name="Schiff 3er" type="Control"]
 script = ExtResource( 1 )
@@ -29,6 +223,12 @@ texture = ExtResource( 3 )
 scale = Vector2( 0.346, 0.346 )
 texture = ExtResource( 3 )
 
+[node name="KaputtSprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.490196, 0.843137, 0.0627451, 0 )
+scale = Vector2( 0.346, 0.346 )
+texture = ExtResource( 3 )
+
 [node name="NurtippTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -41,6 +241,49 @@ shape = SubResource( 5 )
 [node name="Schiffkaputt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 203 )
 bus = "Sound"
+
+[node name="Todesplayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/Tod = SubResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+material = SubResource( 8 )
+position = Vector2( -28, -11 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 1
+emitting = false
+amount = 32
+lifetime = 0.35
+one_shot = true
+explosiveness = 0.7
+process_material = SubResource( 15 )
+texture = ExtResource( 4 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+material = SubResource( 8 )
+position = Vector2( -1, 13 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 1
+emitting = false
+amount = 32
+lifetime = 0.35
+one_shot = true
+explosiveness = 0.7
+process_material = SubResource( 15 )
+texture = ExtResource( 4 )
+
+[node name="Particles2D3" type="Particles2D" parent="."]
+material = SubResource( 8 )
+position = Vector2( 47, -10 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 1
+emitting = false
+amount = 32
+lifetime = 0.35
+one_shot = true
+explosiveness = 0.7
+process_material = SubResource( 15 )
+texture = ExtResource( 4 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="released" from="Button" to="." method="_on_Button_released"]

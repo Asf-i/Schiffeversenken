@@ -93,7 +93,7 @@ func _on_NurtippTimer_timeout():
 
 func todesanimation():
 	if not (s1_gesehen && $"/root/Welt".spieler2_ist_dran == false) && not (s2_gesehen && $"/root/Welt".spieler2_ist_dran):
-		modulate = Color(1, 0, 0)
+		$Todesplayer.play("Tod")
 		$Schiffkaputt.play()
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(70)
