@@ -85,11 +85,10 @@ func treffer_markieren(spieler2_ist_dran):
 		bearbeit_node.aufgedeckt = true
 		if check_dict[check_dict.keys()[checkzahl]] == true:
 			bearbeit_node.get_node("Button").modulate = trefferfarbe
-			bearbeit_node.get_node("Treffer").visible = true
-			bearbeit_node.get_node("Vollkreis").visible = true
+			bearbeit_node.get_node("Treffer/Treffplayer").play("aufgedeckt")
 		else:
 			bearbeit_node.get_node("Button").modulate = verfehltfarbe
-			bearbeit_node.get_node("Verfehlt").visible = true
+			bearbeit_node.get_node("Verfehlt/Verfehltplayer").play("aufgedeckt")
 
 func ist_moeglich(selected_schiffli_im_feld):
 	if nahfeld && selected_schiffli_im_feld:
@@ -222,9 +221,8 @@ func clear(mit_centerfeld : bool):
 		for i in 10:
 			bearbeitetes_feld = get_node(str(i + 1) + "_" + str(n + 1))
 			bearbeitetes_feld.get_node("Button").modulate = normalfarbe
-			bearbeitetes_feld.get_node("Verfehlt").visible = false
-			bearbeitetes_feld.get_node("Treffer").visible = false
-			bearbeitetes_feld.get_node("Vollkreis").visible = false
+			bearbeitetes_feld.get_node("Verfehlt/Verfehltplayer").play("RESET")
+			bearbeitetes_feld.get_node("Treffer/Treffplayer").play("RESET")
 			bearbeitetes_feld.schiffli = false
 			if mit_centerfeld:
 				match $"/root/Welt".spieler2_ist_dran:

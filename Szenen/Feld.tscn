@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Skripte/Feld.gd" type="Script" id=1]
-[ext_resource path="res://Texturen/PlatschFrames.png" type="Texture" id=2]
-[ext_resource path="res://Texturen/PengFrames.png" type="Texture" id=3]
 [ext_resource path="res://Audio/Explosion.wav" type="AudioStream" id=4]
 [ext_resource path="res://Audio/Platsch.wav" type="AudioStream" id=5]
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=6]
 [ext_resource path="res://Texturen/Symbole/Kreis.png" type="Texture" id=7]
 [ext_resource path="res://Texturen/Symbole/Vollkreis.png" type="Texture" id=8]
+[ext_resource path="res://Texturen/Partikel/Explos.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 49, 49 )
@@ -17,68 +16,10 @@ bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
-[sub_resource type="Animation" id=6]
-resource_name = "Peng"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Peng:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Peng:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "Platsch"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Platsch:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Platsch:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=21]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Platsch:frame")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -87,10 +28,57 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 4 ]
+"values": [ Color( 0.156863, 0.156863, 0.156863, 0 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "aufgedeckt"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.156863, 0.156863, 0.156863, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "erscheinen"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.156863, 0.156863, 0.156863, 0 ), Color( 0.156863, 0.156863, 0.156863, 1 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.156863, 0.156863, 0.156863, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Platsch:visible")
+tracks/1/path = NodePath("../Vollkreis:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -99,32 +87,105 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Color( 0.780392, 0.341176, 0.341176, 0 ) ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Peng:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+
+[sub_resource type="Animation" id=20]
+resource_name = "aufgedeckt"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Color( 0.156863, 0.156863, 0.156863, 1 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Peng:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Vollkreis:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ Color( 0.780392, 0.341176, 0.341176, 1 ) ]
 }
+
+[sub_resource type="Animation" id=19]
+resource_name = "erscheinen"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.156863, 0.156863, 0.156863, 0 ), Color( 0.156863, 0.156863, 0.156863, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Vollkreis:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.780392, 0.341176, 0.341176, 0 ), Color( 0.780392, 0.341176, 0.341176, 1 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.0711462, 0.44664, 0.616601, 0.798419, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.898438, 0.639854, 0.164948, 1, 0.881454, 0.53758, 0.161285, 1, 0.800781, 0.282453, 0.14389, 1, 0.836233, 0.290994, 0.110193, 0.243697, 0.847656, 0.408456, 0.0993347, 0 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=16]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.858696, 81.3636 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0.421591 ), 0.0, 0.638678, 0, 0, Vector2( 1, 0.948864 ), -0.222325, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 321.4
+initial_velocity_random = 0.12
+angular_velocity = 78.71
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 300.0
+damping_random = 0.27
+damping_curve = SubResource( 17 )
+scale = 2.63
+scale_random = 0.6
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 12 )
 
 [node name="Feld" type="Control"]
 margin_right = 100.0
@@ -152,29 +213,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Platsch" type="Sprite" parent="."]
-visible = false
-position = Vector2( -26, -28 )
-scale = Vector2( 1.2, 1.2 )
-texture = ExtResource( 2 )
-centered = false
-hframes = 5
-frame = 4
-
-[node name="Peng" type="Sprite" parent="."]
-visible = false
-position = Vector2( -26, -28 )
-scale = Vector2( 1.2, 1.2 )
-texture = ExtResource( 3 )
-centered = false
-hframes = 5
-frame = 1
-
-[node name="PlatschPengPlayer" type="AnimationPlayer" parent="."]
-anims/Peng = SubResource( 6 )
-anims/Platsch = SubResource( 7 )
-anims/RESET = SubResource( 8 )
-
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "Sound"
@@ -184,27 +222,46 @@ stream = ExtResource( 5 )
 bus = "Sound"
 
 [node name="Verfehlt" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+modulate = Color( 0.156863, 0.156863, 0.156863, 0 )
 position = Vector2( 15, 15 )
 scale = Vector2( 0.305677, 0.305677 )
 texture = ExtResource( 6 )
 centered = false
 
+[node name="Verfehltplayer" type="AnimationPlayer" parent="Verfehlt"]
+anims/RESET = SubResource( 21 )
+anims/aufgedeckt = SubResource( 22 )
+anims/erscheinen = SubResource( 23 )
+
 [node name="Vollkreis" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.780392, 0.341176, 0.341176, 1 )
+modulate = Color( 0.780392, 0.341176, 0.341176, 0 )
 position = Vector2( 50, 50 )
-scale = Vector2( 0.71875, 0.71875 )
+scale = Vector2( 0.625, 0.625 )
 texture = ExtResource( 8 )
 
 [node name="Treffer" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.156863, 0.156863, 0.156863, 1 )
+modulate = Color( 0.156863, 0.156863, 0.156863, 0 )
 position = Vector2( 25, 25 )
 scale = Vector2( 0.213675, 0.213675 )
 texture = ExtResource( 7 )
 centered = false
+
+[node name="Treffplayer" type="AnimationPlayer" parent="Treffer"]
+anims/RESET = SubResource( 18 )
+anims/aufgedeckt = SubResource( 20 )
+anims/erscheinen = SubResource( 19 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+material = SubResource( 10 )
+position = Vector2( 50, 50 )
+z_index = 1
+emitting = false
+amount = 32
+lifetime = 0.35
+one_shot = true
+explosiveness = 0.7
+process_material = SubResource( 15 )
+texture = ExtResource( 9 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_Feld_pressed"]

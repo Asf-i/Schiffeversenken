@@ -91,12 +91,12 @@ func _on_SwipeDetector_swipe_done(start, end, local_swipe):
 		$HBoxContainer/Tween.interpolate_property($Hintergrundsprite, "position:x", $Hintergrundsprite.position.x, hsprite_xs[aktivbutton_zahl - 1], 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$HBoxContainer/Tween.start()
 		
-		$ModeBeschr/NachLinks.visible = true
-		$ModeBeschr/NachRechts.visible = true
+		$NachLinks.visible = true
+		$NachRechts.visible = true
 		if aktivbutton_zahl == 1:
-			$ModeBeschr/NachLinks.visible = false
+			$NachLinks.visible = false
 		elif aktivbutton_zahl == 3:
-			$ModeBeschr/NachRechts.visible = false
+			$NachRechts.visible = false
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	swiping = false
@@ -163,15 +163,15 @@ func modi_switchen(add_zahl):
 
 func _on_NachLinks_pressed():
 	modi_switchen(-1)
-	$ModeBeschr/NachRechts.visible = true
+	$NachRechts.visible = true
 	if aktivbutton_zahl == 1:
-		$ModeBeschr/NachLinks.visible = false
+		$NachLinks.visible = false
 
 func _on_NachRechts_pressed():
 	modi_switchen(1)
-	$ModeBeschr/NachLinks.visible = true
+	$NachLinks.visible = true
 	if aktivbutton_zahl == 3:
-		$ModeBeschr/NachRechts.visible = false
+		$NachRechts.visible = false
 
 func _on_TransitionBlackness_end_done(_s2dran):
 	match next_scene:

@@ -16,10 +16,6 @@ var coords = Vector2()
 var eigene_spieler_beschossene
 var anderer_spieler_felder
 
-func _input(event):
-	if event.is_action_pressed("ui_right") && get_parent().name == "EigeneFelder":
-		$PlatschPengPlayer.play("Platsch")
-
 func _on_Feld_pressed():
 	if $"/root/Welt".spielphase == 2 && not aufgedeckt && get_parent().name == "Felder" && not $"/root/Welt".paratfeld_im_bild:
 		aufgedeckt = true
@@ -56,24 +52,25 @@ func machen():
 			$"/root/Welt".spieler2_versenkte[sp2_schiffli_name] -= 1
 			check_schiffli_name = sp2_schiffli_name
 		$Button.modulate = get_parent().trefferfarbe
-		$Treffer.visible = true
-		$Vollkreis.visible = true
-		$PlatschPengPlayer.play("Peng")
+		$Treffer/Treffplayer.play("erscheinen")
+		$Particles2D.emitting = true
+#		$PlatschPengPlayer.play("Peng")
 		$Explosion.play()
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(50)
 		$"/root/Welt".vollschiffcheck(check_schiffli_name, name)
+		yield(get_tree().create_timer(0.5), "timeout")
 		$"/root/Welt".gewinnercheck()
 	else:
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
-		$Verfehlt.visible = true
-		$PlatschPengPlayer.play("Platsch")
+		$Verfehlt/Verfehltplayer.play("erscheinen")
+#		$PlatschPengPlayer.play("Platsch")
 		$Platschsound.play()
 		if get_node_or_null("/root/Start") != null:
 			Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
 			Server.rpc_id(Server.spielpartner_id, "feldanimation", name, false)
-		yield($PlatschPengPlayer, "animation_finished")
+		yield(get_tree().create_timer(0.25), "timeout")
 		$"/root/Welt".spielerparatfeld_anzeigen()
 
 func _on_Area2D_body_entered(body):

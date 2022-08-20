@@ -356,8 +356,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -774.0
-margin_bottom = -774.0
+margin_top = -710.0
+margin_bottom = -710.0
+rect_scale = Vector2( 0.8, 0.8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -405,18 +406,18 @@ margin_left = -433.0
 margin_top = 352.0
 margin_right = 433.0
 margin_bottom = 434.0
-text = "vs Computer"
+text = "vs. Computer"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NachLinks" type="TextureButton" parent="ModeBeschr"]
-margin_left = -348.0
-margin_top = 113.0
-margin_right = -236.0
-margin_bottom = 419.0
+[node name="NachLinks" type="TextureButton" parent="."]
+margin_left = 192.0
+margin_top = 1259.0
+margin_right = 304.0
+margin_bottom = 1565.0
 rect_rotation = 180.0
 rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 9 )
@@ -424,11 +425,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NachRechts" type="TextureButton" parent="ModeBeschr"]
-margin_left = 356.0
-margin_top = -98.0001
-margin_right = 468.0
-margin_bottom = 208.0
+[node name="NachRechts" type="TextureButton" parent="."]
+margin_left = 896.0
+margin_top = 1048.0
+margin_right = 1008.0
+margin_bottom = 1354.0
 rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 9 )
 __meta__ = {
@@ -507,9 +508,9 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -424.0
+margin_left = -8.0
 margin_top = -190.0
-margin_right = 424.0
+margin_right = 840.0
 margin_bottom = -6.0
 custom_styles/disabled = SubResource( 25 )
 disabled = true
@@ -697,8 +698,8 @@ __meta__ = {
 [connection signal="pressed" from="HBoxContainer/1" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="HBoxContainer/2" to="." method="_on_Multiplayer_pressed"]
 [connection signal="pressed" from="HBoxContainer/3" to="." method="_on_VsComputer_pressed"]
-[connection signal="pressed" from="ModeBeschr/NachLinks" to="." method="_on_NachLinks_pressed"]
-[connection signal="pressed" from="ModeBeschr/NachRechts" to="." method="_on_NachRechts_pressed"]
+[connection signal="pressed" from="NachLinks" to="." method="_on_NachLinks_pressed"]
+[connection signal="pressed" from="NachRechts" to="." method="_on_NachRechts_pressed"]
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
 [connection signal="button_down" from="NamenWeg" to="." method="_on_NameButton_pressed"]
 [connection signal="pressed" from="NameButton" to="." method="_on_NameButton_pressed"]
