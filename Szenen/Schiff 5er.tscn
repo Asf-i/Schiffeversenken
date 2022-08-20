@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Skripte/Schiff.gd" type="Script" id=1]
 [ext_resource path="res://Texturen/Schiffe/5er.png" type="Texture" id=2]
 [ext_resource path="res://Texturen/Partikel/Explos.png" type="Texture" id=3]
+[ext_resource path="res://Texturen/Schiffe/Kaputt/5erK.png" type="Texture" id=4]
 [ext_resource path="res://Texturen/Schiffe/5erSchiff-png.png" type="Texture" id=7]
 [ext_resource path="res://Audio/Schiffkaputt.wav" type="AudioStream" id=203]
 
@@ -108,6 +109,58 @@ tracks/7/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("KaputtSprite:modulate:r")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("KaputtSprite:modulate:g")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("KaputtSprite:modulate:b")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("KaputtSprite:modulate:a")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "Tod"
@@ -198,16 +251,26 @@ tracks/6/keys = {
 "values": [ true ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("KaputtSprite:modulate")
+tracks/7/path = NodePath("Sprite2:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.02, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 0.858824, 0.607843, 0.00784314, 1 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("KaputtSprite:modulate:a")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.02, 0.2 )
 }
 
 [sub_resource type="CanvasItemMaterial" id=9]
@@ -276,7 +339,7 @@ texture = ExtResource( 2 )
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.391, 0.391 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="NurtippTimer" type="Timer" parent="."]
 wait_time = 0.2

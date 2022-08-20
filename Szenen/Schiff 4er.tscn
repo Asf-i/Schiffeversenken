@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Skripte/Schiff.gd" type="Script" id=1]
 [ext_resource path="res://Texturen/Schiffe/4er.png" type="Texture" id=2]
 [ext_resource path="res://Texturen/Partikel/Explos.png" type="Texture" id=3]
 [ext_resource path="res://Texturen/Schiffe/4erSchiff-png.png" type="Texture" id=4]
+[ext_resource path="res://Texturen/Schiffe/Kaputt/4erK.png" type="Texture" id=5]
 [ext_resource path="res://Audio/Schiffkaputt.wav" type="AudioStream" id=203]
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -81,7 +82,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.992157, 0.101961, 0.101961, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Sprite:visible")
@@ -94,6 +95,58 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("KaputtSprite:modulate:r")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("KaputtSprite:modulate:g")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("KaputtSprite:modulate:b")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("KaputtSprite:modulate:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=8]
@@ -167,22 +220,32 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.02 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false, false ]
+"values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("KaputtSprite:modulate")
+tracks/6/path = NodePath("Sprite2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.992157, 0.101961, 0.101961, 0 ), Color( 0.992157, 0.101961, 0.101961, 1 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("KaputtSprite:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.02, 0.2 )
 }
 
 [sub_resource type="CanvasItemMaterial" id=9]
@@ -251,10 +314,10 @@ texture = ExtResource( 2 )
 
 [node name="KaputtSprite" type="Sprite" parent="."]
 visible = false
-modulate = Color( 0.992157, 0.101961, 0.101961, 0 )
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 24, 0 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 2 )
+scale = Vector2( 0.390625, 0.390625 )
+texture = ExtResource( 5 )
 
 [node name="NurtippTimer" type="Timer" parent="."]
 wait_time = 0.2
