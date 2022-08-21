@@ -6,6 +6,7 @@ var swipe_verlangsamung : int = 240
 var richtunganders : int = 1
 var sonst_okay : bool = true
 var swipe_event_relative
+var ready_done : bool = false
 
 func _ready():
 	$Rotieren.pressed = Autoload.savegame_data.rotier_mode
@@ -15,6 +16,7 @@ func _ready():
 	$MusicSlider.value = Autoload.savegame_data.musiklautstaerke
 	#VerschiebungSlider wird in Start.gd gesetzt
 	richtunganders = 1
+	ready_done = true
 
 func _on_SwipeDetector_swipe(local_swipe, event_relative, start):
 	visible = true
@@ -69,25 +71,35 @@ func on_off_switch(button, pressed):
 		button.get_node("OnOff").rotation_degrees = 180
 
 func _on_CheckButton_toggled(button_pressed):
+	if ready_done:
+		$Clicksound.play()
 	Autoload.savegame_data.rotier_mode = button_pressed
 	Autoload.save()
 	on_off_switch($Rotieren, button_pressed)
 
 func _on_AudioButton_toggled(button_pressed):
+	if ready_done:
+		$Clicksound.play()
 	Autoload.savegame_data.sound_an = button_pressed
 	Autoload.save()
 	on_off_switch($AudioButton, button_pressed)
 	AudioServer.set_bus_mute(2, not button_pressed)
 
 func _on_Vibration_toggled(button_pressed):
+	if ready_done:
+		$Clicksound.play()
 	Autoload.savegame_data.vibration = button_pressed
 	Autoload.save()
 	on_off_switch($Vibration, button_pressed)
 
 func _on_ScreenshakeSlider_value_changed(value):
+	if ready_done:
+		$Schiebsound.play()
 	Autoload.savegame_data.screenshake_value = value
 
 func _on_VerschiebungSlider_value_changed(value):
+	if ready_done:
+		$Schiebsound.play()
 	print("VALUE CHANGED LUL")
 	Autoload.savegame_data.verschiebung = value
 	if get_parent().name == "Start":
@@ -96,6 +108,8 @@ func _on_VerschiebungSlider_value_changed(value):
 			get_parent().get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
 
 func _on_MusicSlider_value_changed(value):
+	if ready_done:
+		$Schiebsound.play()
 	Autoload.savegame_data.musiklautstaerke = value
 	if value == 0:
 		AudioServer.set_bus_volume_db(1, -80)

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Zt.wav-13864f6605e18e0adf9e45bd8f955908.sample"
+
+[deps]
+
+source_file="res://Audio/UI/Zt.wav"
+dest_files=[ "res://.import/Zt.wav-13864f6605e18e0adf9e45bd8f955908.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
+[ext_resource path="res://Audio/UI/Pt.wav" type="AudioStream" id=2]
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Audio/UI/Zt.wav" type="AudioStream" id=4]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=5]
 [ext_resource path="res://Texturen/Slider/Grabber.png" type="Texture" id=6]
 [ext_resource path="res://Texturen/Slider/Slider.png" type="Texture" id=7]
@@ -101,6 +103,7 @@ custom_styles/pressed = SubResource( 18 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
+action_mode = 0
 text = "   Rotieren"
 align = 0
 __meta__ = {
@@ -114,6 +117,22 @@ rotation = 3.14159
 scale = Vector2( 0.333562, 0.353758 )
 texture = ExtResource( 10 )
 
+[node name="Rotieren2" type="Button" parent="Rotieren"]
+margin_left = 851.0
+margin_right = 1080.0
+margin_bottom = 96.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+action_mode = 0
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Vibration" type="Button" parent="."]
 margin_top = 352.0
 margin_right = 1080.0
@@ -123,6 +142,7 @@ custom_styles/pressed = SubResource( 18 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
+action_mode = 0
 text = "   Vibration"
 align = 0
 __meta__ = {
@@ -136,6 +156,22 @@ rotation = 3.14159
 scale = Vector2( 0.333562, 0.353758 )
 texture = ExtResource( 10 )
 
+[node name="Vibration2" type="Button" parent="Vibration"]
+margin_left = 851.0
+margin_right = 1080.0
+margin_bottom = 96.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+action_mode = 0
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AudioButton" type="Button" parent="."]
 margin_top = 128.0
 margin_right = 1080.0
@@ -145,7 +181,8 @@ custom_styles/pressed = SubResource( 18 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
 toggle_mode = true
-text = "   Sound"
+action_mode = 0
+text = "   Ingame Sound"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -157,6 +194,22 @@ position = Vector2( 960, 48 )
 rotation = 3.14159
 scale = Vector2( 0.333562, 0.353758 )
 texture = ExtResource( 10 )
+
+[node name="AudioButton2" type="Button" parent="AudioButton"]
+margin_left = 851.0
+margin_right = 1080.0
+margin_bottom = 96.0
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+action_mode = 0
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MusicSlider" type="HSlider" parent="."]
 anchor_left = 0.5
@@ -267,9 +320,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="toggled" from="Rotieren" to="." method="_on_CheckButton_toggled"]
-[connection signal="toggled" from="Vibration" to="." method="_on_Vibration_toggled"]
-[connection signal="toggled" from="AudioButton" to="." method="_on_AudioButton_toggled"]
+[node name="Clicksound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 15.0
+bus = "UI"
+
+[node name="Schiebsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 15.0
+bus = "UI"
+
+[connection signal="toggled" from="Rotieren/Rotieren2" to="." method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="Vibration/Vibration2" to="." method="_on_Vibration_toggled"]
+[connection signal="toggled" from="AudioButton/AudioButton2" to="." method="_on_AudioButton_toggled"]
 [connection signal="value_changed" from="MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]
 [connection signal="value_changed" from="VerschiebungSlider" to="." method="_on_VerschiebungSlider_value_changed"]

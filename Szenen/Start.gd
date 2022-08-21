@@ -162,12 +162,14 @@ func modi_switchen(add_zahl):
 	$HBoxContainer/Tween.start()
 
 func _on_NachLinks_pressed():
+	$TtClicksound.play()
 	modi_switchen(-1)
 	$NachRechts.visible = true
 	if aktivbutton_zahl == 1:
 		$NachLinks.visible = false
 
 func _on_NachRechts_pressed():
+	$TtClicksound.play()
 	modi_switchen(1)
 	$NachLinks.visible = true
 	if aktivbutton_zahl == 3:

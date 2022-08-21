@@ -268,13 +268,13 @@ func vollschiffcheck(schiffname, _von_feld = null):
 				$MrComputer.state = 0
 
 func gewinnercheck():
-	if spieler1_punkte == 19 or spieler2_punkte == 19:
+	if (spieler1_punkte == 19 or spieler2_punkte == 19) && not spielphase == 3:
+		spielphase = 3
 		yield(get_tree().create_timer(0.5), "timeout")
 		spieler2_ist_dran = false
 		if spieler1_punkte == 19:
 			$Gewonnen/Label.set_text("Spiel gewonnen!")
 			$Gewonnen/Revanche.text = "Nochmal"
-		spielphase = 3
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
 		$Gewonnen.visible = true

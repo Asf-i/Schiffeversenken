@@ -5,7 +5,7 @@
 [ext_resource path="res://Texturen/Partikel/Explos.png" type="Texture" id=3]
 [ext_resource path="res://Texturen/Schiffe/4erSchiff-png.png" type="Texture" id=4]
 [ext_resource path="res://Texturen/Schiffe/Kaputt/4erK.png" type="Texture" id=5]
-[ext_resource path="res://Audio/Schiffkaputt.wav" type="AudioStream" id=203]
+[ext_resource path="res://Audio/Explosion.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 1, 1 )
@@ -468,10 +468,6 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 6 )
 
-[node name="Schiffkaputt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 203 )
-bus = "Sound"
-
 [node name="Todesplayer" type="AnimationPlayer" parent="."]
 anims/NurExplos = SubResource( 18 )
 anims/RESET = SubResource( 7 )
@@ -531,6 +527,11 @@ process_material = SubResource( 16 )
 texture = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Schiffkaputt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+pitch_scale = 0.83
+bus = "Sound"
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="released" from="Button" to="." method="_on_Button_released"]

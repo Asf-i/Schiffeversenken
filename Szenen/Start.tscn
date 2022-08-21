@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Texturen/Stift.png" type="Texture" id=1]
 [ext_resource path="res://Szenen/Start.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Skripte/SwipeDetector.gd" type="Script" id=8]
 [ext_resource path="res://Texturen/Symbole/Wahl.png" type="Texture" id=9]
 [ext_resource path="res://Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Audio/UI/Tt.wav" type="AudioStream" id=11]
 [ext_resource path="res://Texturen/hintergrundbild.png" type="Texture" id=12]
 [ext_resource path="res://Texturen/OnlineBild.png" type="Texture" id=13]
 [ext_resource path="res://Texturen/ComputerBild.png" type="Texture" id=14]
@@ -270,7 +271,7 @@ margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.5.3"
+text = "v0.5.4"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -425,6 +426,7 @@ margin_right = -236.0
 margin_bottom = -355.0
 rect_rotation = 180.0
 rect_scale = Vector2( 0.7, 0.7 )
+action_mode = 0
 texture_normal = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -441,6 +443,7 @@ margin_top = -872.0
 margin_right = 468.0
 margin_bottom = -566.0
 rect_scale = Vector2( 0.7, 0.7 )
+action_mode = 0
 texture_normal = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -699,6 +702,12 @@ __meta__ = {
 }
 
 [node name="TransitionBlackness" parent="." instance=ExtResource( 16 )]
+
+[node name="TtClicksound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = 10.0
+pitch_scale = 1.3
+bus = "UI"
 
 [connection signal="swipe" from="SwipeDetector" to="." method="_on_SwipeDetector_swipe"]
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
