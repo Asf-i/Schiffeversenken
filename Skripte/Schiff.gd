@@ -92,11 +92,17 @@ func _on_NurtippTimer_timeout():
 	nur_tippend = false
 
 func todesanimation():
+	print("Todesanimation")
+	print(get_parent().name)
 	if not (s1_gesehen && $"/root/Welt".spieler2_ist_dran == false) && not (s2_gesehen && $"/root/Welt".spieler2_ist_dran):
-		$Todesplayer.play("Tod")
 		$Schiffkaputt.play()
 		if get_parent().name == "EigeneSchiffe":
-			$KaputtSprite.modulate = Color(1, 0.4, 0.4)
+			$Todesplayer.play("NurExplos")
+			$Tween.interpolate_property(self, "modulate", modulate, Color(1, 0.4, 0.4), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			$Tween.start()
+#			
+		else:
+			$Todesplayer.play("Tod")
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(70)
 		$"/root/Welt/Camera2D"._screen_shake(0.6, laenge * Autoload.savegame_data.screenshake_value)

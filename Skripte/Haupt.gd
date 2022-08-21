@@ -251,8 +251,9 @@ func anderer_spieler_parat():
 		
 		for i in anzahl_schiffe:
 			get_node("Schiffe/" + str(i + 1)).visible = false
+			get_node("EigenschiffControl/EigeneSchiffe/" + str(i + 1)).modulate = Color(1, 1, 1)
 		for i in anzahl_schiffe:
-			vollschiffcheck(str(i + 1))
+			vollschiffcheck(str(i + 1), null, true)
 		for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
 			match spieler2_ist_dran:
 				true:
@@ -281,15 +282,20 @@ func zu_phase_zwei_wechseln():
 	$EigenschiffControl.visible = true
 	$SchriftLabel.visible = false
 
-func vollschiffcheck(schiffname, _von_feld = null):
+func vollschiffcheck(schiffname, _von_feld = null, schontot : bool = false):
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
-			get_node("Schiffe/" + schiffname).visible = true
-			get_node("Schiffe/" + schiffname).todesanimation()
+			if schontot:
+				get_node("Schiffe/" + schiffname + "/Todesplayer").play("Schontot")
+				get_node("Schiffe/" + schiffname).visible = true
+			else:
+				get_node("Schiffe/" + schiffname).todesanimation()
 			if spieler2_ist_dran:
 				s2_aufgedeckte_schiffe.append(schiffname)
 			else:
 				s1_aufgedeckte_schiffe.append(schiffname)
+		if schontot && ((spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0)):
+			get_node("EigenschiffControl/EigeneSchiffe/" + schiffname).modulate = Color(1, 0.4, 0.4)
 
 func gewinnercheck():
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
@@ -310,9 +316,9 @@ func gewinnercheck():
 				$Gewonnen/Gewinner2/GewinnerFelder2.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Gewonnen/Gewinner2/GewinnerSchiffe2)
 				$Gewonnen/Gewinner1/GewinnerFelder1.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $Gewonnen/Gewinner1/GewinnerSchiffe1)
 			for schiff in s1_aufgedeckte_schiffe.size():
-				get_node("Gewonnen/Gewinner2/GewinnerSchiffe2/" + s1_aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+				get_node("Gewonnen/Gewinner2/GewinnerSchiffe2/" + s1_aufgedeckte_schiffe[schiff] + "/Todesplayer").play("Schontot")
 			for schiff in s2_aufgedeckte_schiffe.size():
-				get_node("Gewonnen/Gewinner1/GewinnerSchiffe1/" + s2_aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+				get_node("Gewonnen/Gewinner1/GewinnerSchiffe1/" + s2_aufgedeckte_schiffe[schiff] + "/Todesplayer").play("Schontot")
 		elif spieler2_punkte == 19:
 			yield(get_tree().create_timer(0.5), "timeout")
 			$Gewonnen/Label.set_text(Autoload.savegame_data.sp2name)
@@ -325,9 +331,9 @@ func gewinnercheck():
 				$Gewonnen/Gewinner2/GewinnerFelder2.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $Gewonnen/Gewinner2/GewinnerSchiffe2)
 				$Gewonnen/Gewinner1/GewinnerFelder1.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Gewonnen/Gewinner1/GewinnerSchiffe1)
 			for schiff in s1_aufgedeckte_schiffe.size():
-				get_node("Gewonnen/Gewinner1/GewinnerSchiffe1/" + s1_aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+				get_node("Gewonnen/Gewinner1/GewinnerSchiffe1/" + s1_aufgedeckte_schiffe[schiff] + "/Todesplayer").play("Schontot")
 			for schiff in s2_aufgedeckte_schiffe.size():
-				get_node("Gewonnen/Gewinner2/GewinnerSchiffe2/" + s2_aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+				get_node("Gewonnen/Gewinner2/GewinnerSchiffe2/" + s2_aufgedeckte_schiffe[schiff] + "/Todesplayer").play("Schontot")
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
 		yield($Gewonnen/Tween, "tween_completed")

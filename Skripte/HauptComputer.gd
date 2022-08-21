@@ -258,7 +258,6 @@ func vollschiffcheck(schiffname, _von_feld = null):
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			print("------SCHIFF GEFUNDEN")
 			if not spieler2_ist_dran:
-				get_node("Schiffe/" + schiffname).visible = true
 				get_node("Schiffe/" + schiffname).todesanimation()
 				aufgedeckte_schiffe.append(schiffname) #Um die zerstörten Schiffe zu markieren
 			else:
@@ -286,7 +285,7 @@ func gewinnercheck():
 			$Gewonnen/Control/FertigFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, false, $Gewonnen/Control/FertigSchiffe)
 		#Zerstörte Schiffe markieren
 		for schiff in aufgedeckte_schiffe.size():
-			get_node("Gewonnen/Control/FertigSchiffe/" + aufgedeckte_schiffe[schiff]).modulate = Color(1, 0, 1)
+			get_node("Gewonnen/Control/FertigSchiffe/" + aufgedeckte_schiffe[schiff] + "/Todesplayer").play("Schontot")
 		
 		yield($Gewonnen/Tween, "tween_completed")
 		$Gewonnen/Sprite/AnimationPlayer.play("erscheinen")

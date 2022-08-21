@@ -1115,6 +1115,7 @@ __meta__ = {
 [node name="FertigFelder" parent="Gewonnen/Control" instance=ExtResource( 6 )]
 
 [node name="FertigSchiffe" type="Control" parent="Gewonnen/Control"]
+modulate = Color( 1, 1, 1, 0.760784 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1249,8 +1250,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 2430.0
-margin_bottom = 4220.0
+margin_right = 3510.0
+margin_bottom = 6140.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1329,8 +1330,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 20790.0
-margin_bottom = 36960.0
+margin_right = 21870.0
+margin_bottom = 38880.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1637,8 +1638,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 2430.0
-margin_bottom = 4320.0
+margin_right = 3510.0
+margin_bottom = 6240.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
