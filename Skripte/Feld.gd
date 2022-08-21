@@ -41,6 +41,7 @@ func _on_Feld_pressed():
 
 func machen():
 	var check_schiffli_name = "nix"
+	$Particles2D2.emitting = true
 	if name in anderer_spieler_felder:
 		eigene_spieler_beschossene[name] = true
 		if $"/root/Welt".spieler2_ist_dran:
@@ -54,7 +55,6 @@ func machen():
 		$Button.modulate = get_parent().trefferfarbe
 		$Treffer/Treffplayer.play("erscheinen")
 		$Particles2D.emitting = true
-#		$PlatschPengPlayer.play("Peng")
 		$Explosion.play()
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(50)
@@ -64,7 +64,6 @@ func machen():
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
 		$Verfehlt/Verfehltplayer.play("erscheinen")
-#		$PlatschPengPlayer.play("Platsch")
 		$Platschsound.play()
 		if get_node_or_null("/root/Start") != null:
 			Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)

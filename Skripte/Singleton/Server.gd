@@ -219,12 +219,11 @@ remote func rakete_fliegen(feldname):
 	
 remote func feldanimation(feld, treffer : bool):
 	var anim_feld = get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + feld)
+	anim_feld.get_node("Particles2D2").emitting = true
 	if treffer:
-#		anim_feld.get_node("PlatschPengPlayer").play("Peng")
 		anim_feld.get_node("Particles2D").emitting = true
 		anim_feld.get_node("Explosion").play()
 	else:
-#		anim_feld.get_node("PlatschPengPlayer").play("Platsch")
 		anim_feld.get_node("Platschsound").play()
 
 remote func schiffzerstoer(schiff):

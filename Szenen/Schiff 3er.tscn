@@ -355,12 +355,12 @@ tracks/7/keys = {
 [sub_resource type="CanvasItemMaterial" id=8]
 blend_mode = 1
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=31]
 offsets = PoolRealArray( 0, 0.0711462, 0.44664, 0.616601, 0.798419, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0.898438, 0.639854, 0.164948, 1, 0.881454, 0.53758, 0.161285, 1, 0.800781, 0.282453, 0.14389, 1, 0.836233, 0.290994, 0.110193, 0.243697, 0.847656, 0.408456, 0.0993347, 0 )
 
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
+[sub_resource type="GradientTexture" id=32]
+gradient = SubResource( 31 )
 
 [sub_resource type="Curve" id=11]
 max_value = 100.0
@@ -391,7 +391,7 @@ damping_curve = SubResource( 12 )
 scale = 2.63
 scale_random = 0.6
 scale_curve = SubResource( 14 )
-color_ramp = SubResource( 10 )
+color_ramp = SubResource( 32 )
 
 [node name="Schiff 3er" type="Control"]
 script = ExtResource( 1 )

@@ -63,14 +63,13 @@ func zug():
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	$"/root/Welt/EigenschiffControl/EigeneFelder".treffer_markieren(true)
+	get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D2").emitting = true
 	if besuch_feld.name in Autoload.spieler1_felder:
 		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
 		$"/root/Welt".gewinnercheck()
-#		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/PlatschPengPlayer").play("Peng")
 		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D").emitting = true
 		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").play()
 	else:
-#		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/PlatschPengPlayer").play("Platsch")
 		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").play()
 	
 	#Zug beenden

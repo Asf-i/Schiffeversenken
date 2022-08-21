@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Skripte/Feld.gd" type="Script" id=1]
 [ext_resource path="res://Audio/Explosion.wav" type="AudioStream" id=4]
@@ -146,15 +146,14 @@ tracks/1/keys = {
 "values": [ Color( 0.780392, 0.341176, 0.341176, 0 ), Color( 0.780392, 0.341176, 0.341176, 1 ) ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=10]
-blend_mode = 1
+[sub_resource type="CanvasItemMaterial" id=28]
 
-[sub_resource type="Gradient" id=11]
-offsets = PoolRealArray( 0, 0.0711462, 0.44664, 0.616601, 0.798419, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.898438, 0.639854, 0.164948, 1, 0.881454, 0.53758, 0.161285, 1, 0.800781, 0.282453, 0.14389, 1, 0.836233, 0.290994, 0.110193, 0.243697, 0.847656, 0.408456, 0.0993347, 0 )
+[sub_resource type="Gradient" id=27]
+offsets = PoolRealArray( 0, 0.0711462, 0.347826, 0.537549, 0.735178, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.752941, 0.713726, 0.643137, 0.733333, 0.635254, 0.635254, 0.635254, 0.603922, 0.619629, 0.619629, 0.619629, 0.67451, 0.914063, 0.914063, 0.914063, 0.243697, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=24]
-gradient = SubResource( 11 )
+[sub_resource type="GradientTexture" id=29]
+gradient = SubResource( 27 )
 
 [sub_resource type="Curve" id=16]
 max_value = 100.0
@@ -168,6 +167,34 @@ _data = [ Vector2( 0, 0.421591 ), 0.0, 0.638678, 0, 0, Vector2( 1, 0.948864 ), -
 
 [sub_resource type="CurveTexture" id=26]
 curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=30]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 184.5
+initial_velocity_random = 0.12
+angular_velocity = 173.36
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 300.0
+damping_random = 0.27
+damping_curve = SubResource( 25 )
+scale = 1.65
+scale_random = 1.0
+scale_curve = SubResource( 26 )
+color_ramp = SubResource( 29 )
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=31]
+offsets = PoolRealArray( 0, 0.0711462, 0.44664, 0.616601, 0.798419, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.898438, 0.639854, 0.164948, 1, 0.881454, 0.53758, 0.161285, 1, 0.800781, 0.282453, 0.14389, 1, 0.836233, 0.290994, 0.110193, 0.243697, 0.847656, 0.408456, 0.0993347, 0 )
+
+[sub_resource type="GradientTexture" id=32]
+gradient = SubResource( 31 )
 
 [sub_resource type="ParticlesMaterial" id=15]
 flag_disable_z = true
@@ -185,7 +212,7 @@ damping_curve = SubResource( 25 )
 scale = 2.63
 scale_random = 0.6
 scale_curve = SubResource( 26 )
-color_ramp = SubResource( 24 )
+color_ramp = SubResource( 32 )
 
 [node name="Feld" type="Control"]
 margin_right = 100.0
@@ -250,6 +277,18 @@ centered = false
 anims/RESET = SubResource( 18 )
 anims/aufgedeckt = SubResource( 20 )
 anims/erscheinen = SubResource( 19 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+material = SubResource( 28 )
+position = Vector2( 50, 50 )
+z_index = 1
+emitting = false
+amount = 16
+lifetime = 0.54
+one_shot = true
+explosiveness = 0.76
+process_material = SubResource( 30 )
+texture = ExtResource( 9 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 10 )
