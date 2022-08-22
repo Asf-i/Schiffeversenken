@@ -30,4 +30,6 @@ func fliegen(start):
 func _on_Tween_tween_all_completed():
 	if not nur_schoen:
 		feld.machen()
+	$Particles2D.emitting = false
+	yield(get_tree().create_timer($Particles2D.lifetime), "timeout")
 	queue_free()

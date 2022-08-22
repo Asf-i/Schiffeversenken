@@ -391,7 +391,7 @@ bus = "Sound"
 
 [node name="Schiffplace" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -10.0
+volume_db = -2.0
 bus = "Sound"
 
 [node name="Todesplayer" type="AnimationPlayer" parent="."]
