@@ -435,3 +435,6 @@ func _on_AnfragWeg_pressed():
 		anfrage_ablehnen()
 	if $IngameMomentNode.visible:
 		revanche_abbrechen()
+
+func button_sound():
+	$ButtonSound.play()

@@ -74,7 +74,13 @@ anims/fliegen = SubResource( 2 )
 
 [node name="Swoosh" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-pitch_scale = 0.88
+pitch_scale = 1.12
+bus = "Sound"
+
+[node name="Swoosh2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 0.012
+pitch_scale = 0.78
 autoplay = true
 bus = "Sound"
 

@@ -318,3 +318,6 @@ func _on_nein_pressed():
 
 func _on_SchriftLabel_AnimationPlayer_animation_finished(_anim_name):
 	$SchriftLabel.visible = false
+
+func button_sound():
+	$ButtonSound.play()

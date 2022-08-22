@@ -68,8 +68,10 @@ func zug():
 		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
 		$"/root/Welt".gewinnercheck()
 		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D").emitting = true
+		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").pitch_scale = rand_range(0.8, 1.2)
 		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").play()
 	else:
+		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").pitch_scale = rand_range(0.9, 1.3)
 		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").play()
 	
 	#Zug beenden

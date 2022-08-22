@@ -55,6 +55,7 @@ func machen():
 		$Button.modulate = get_parent().trefferfarbe
 		$Treffer/Treffplayer.play("erscheinen")
 		$Particles2D.emitting = true
+		$Explosion.pitch_scale = rand_range(0.8, 1.2)
 		$Explosion.play()
 		if Autoload.savegame_data.vibration:
 			Input.vibrate_handheld(50)
@@ -64,6 +65,7 @@ func machen():
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
 		$Verfehlt/Verfehltplayer.play("erscheinen")
+		$Platschsound.pitch_scale = rand_range(0.9, 1.3)
 		$Platschsound.play()
 		if get_node_or_null("/root/Start") != null:
 			Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)

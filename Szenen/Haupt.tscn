@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Skripte/Haupt.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Texturen/Symbole/Kreuz.png" type="Texture" id=17]
 [ext_resource path="res://Texturen/Symbole/Haken.png" type="Texture" id=18]
 [ext_resource path="res://Texturen/Symbole/Home.png" type="Texture" id=19]
+[ext_resource path="res://Audio/UI/Pt.wav" type="AudioStream" id=20]
 
 [sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0.796078, 0.796078, 0.796078, 0.788235 )
@@ -1217,8 +1218,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 6750.0
-margin_bottom = 12000.0
+margin_right = 11070.0
+margin_bottom = 19680.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1329,17 +1330,31 @@ script = ExtResource( 15 )
 
 [node name="Tween" type="Tween" parent="Camera2D"]
 
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+volume_db = 5.0
+bus = "UI"
+
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
+[connection signal="button_down" from="FertigButton" to="." method="button_sound"]
 [connection signal="pressed" from="FertigButton" to="." method="_on_FertigButton_pressed"]
+[connection signal="button_down" from="RandomButton" to="." method="button_sound"]
 [connection signal="pressed" from="RandomButton" to="." method="_on_RandomButton_pressed"]
+[connection signal="button_down" from="ClearButton" to="." method="button_sound"]
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
+[connection signal="button_down" from="HauptmenuButton" to="." method="button_sound"]
 [connection signal="pressed" from="HauptmenuButton" to="." method="_on_HauptmenuButton_pressed"]
+[connection signal="button_down" from="AndererSpielerBitte/AndererOkButton" to="." method="button_sound"]
 [connection signal="pressed" from="AndererSpielerBitte/AndererOkButton" to="." method="_on_AndererOkButton_pressed"]
+[connection signal="button_down" from="Gewonnen/Revanche" to="." method="button_sound"]
 [connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
+[connection signal="button_down" from="Gewonnen/Hauptmenu" to="." method="button_sound"]
 [connection signal="pressed" from="Gewonnen/Hauptmenu" to="." method="_on_ja_pressed"]
 [connection signal="pressed" from="SettingWegButton" to="Einstellungen" method="_on_SettingWegButton_pressed"]
 [connection signal="pressed" from="ZumHauptmenu/Content/nein2" to="." method="_on_nein_pressed"]
+[connection signal="button_down" from="ZumHauptmenu/Content/ja" to="." method="button_sound"]
 [connection signal="pressed" from="ZumHauptmenu/Content/ja" to="." method="_on_ja_pressed"]
+[connection signal="button_down" from="ZumHauptmenu/Content/nein" to="." method="button_sound"]
 [connection signal="pressed" from="ZumHauptmenu/Content/nein" to="." method="_on_nein_pressed"]
 [connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]

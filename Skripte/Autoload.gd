@@ -18,7 +18,7 @@ var versch_namen = ["VersionsLabel", "GradientControl", "NameButton", "SettingBu
 const SAVE_PATH = "user://schiffeversenken.save"
 var savegame_data = {
 	"sp1name": "Spieler_1", "sp2name": "Spieler_2",
-	"rotier_mode": false, "sound_an" : false, "vibration" : true,
+	"rotier_mode": false, "sound_an" : true, "ui_sound_an" : true, "vibration" : true,
 	"screenshake_value" : 10, "verschiebung" : 0.0, "musiklautstaerke" : 0
 	}
 

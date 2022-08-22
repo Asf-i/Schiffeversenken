@@ -78,9 +78,11 @@ func _on_Button_released():
 			nahfeld = jetziges_nahfeld
 			felder_node.nahfeld = jetziges_nahfeld
 			if im_feld:
+				$Schiffplace.play()
 				einrasten()
 			get_parent().get_parent()._on_RotateButton_pressed()
 		else:
+			$Schiffplace.play()
 			einrasten()
 		get_parent().get_parent().unselectbar = true
 		button_pressed = false

@@ -138,3 +138,6 @@ func _on_AnfragWeg_pressed():
 		_on_deny_pressed()
 	if $MomentNode.visible:
 		_on_Abbrechen_pressed()
+
+func button_sound():
+	$ListSound.play()

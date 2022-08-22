@@ -362,3 +362,6 @@ func _on_TransitionBlackness_end_done(_s2dran):
 func _on_Revanche_pressed():
 	revanche = true
 	$TransitionBlackness.black()
+
+func button_sound():
+	$ButtonSound.play()

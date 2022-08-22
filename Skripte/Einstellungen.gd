@@ -9,9 +9,10 @@ var swipe_event_relative
 var ready_done : bool = false
 
 func _ready():
-	$Rotieren.pressed = Autoload.savegame_data.rotier_mode
-	$AudioButton.pressed = Autoload.savegame_data.sound_an
-	$Vibration.pressed = Autoload.savegame_data.vibration
+	$Rotieren/Rotieren2.pressed = Autoload.savegame_data.rotier_mode
+	$AudioButton/AudioButton2.pressed = Autoload.savegame_data.sound_an
+	$UiAudioButton/UiAudioButton2.pressed = Autoload.savegame_data.ui_sound_an
+	$Vibration/Vibration2.pressed = Autoload.savegame_data.vibration
 	$ScreenshakeSlider.value = Autoload.savegame_data.screenshake_value
 	$MusicSlider.value = Autoload.savegame_data.musiklautstaerke
 	#VerschiebungSlider wird in Start.gd gesetzt
@@ -71,23 +72,17 @@ func on_off_switch(button, pressed):
 		button.get_node("OnOff").rotation_degrees = 180
 
 func _on_CheckButton_toggled(button_pressed):
-	if ready_done:
-		$Clicksound.play()
 	Autoload.savegame_data.rotier_mode = button_pressed
 	Autoload.save()
 	on_off_switch($Rotieren, button_pressed)
 
 func _on_AudioButton_toggled(button_pressed):
-	if ready_done:
-		$Clicksound.play()
 	Autoload.savegame_data.sound_an = button_pressed
 	Autoload.save()
 	on_off_switch($AudioButton, button_pressed)
 	AudioServer.set_bus_mute(2, not button_pressed)
 
 func _on_Vibration_toggled(button_pressed):
-	if ready_done:
-		$Clicksound.play()
 	Autoload.savegame_data.vibration = button_pressed
 	Autoload.save()
 	on_off_switch($Vibration, button_pressed)
@@ -115,3 +110,13 @@ func _on_MusicSlider_value_changed(value):
 		AudioServer.set_bus_volume_db(1, -80)
 	else:
 		AudioServer.set_bus_volume_db(1, value - 40)
+
+func _on_UiAudioButton2_toggled(button_pressed):
+	Autoload.savegame_data.ui_sound_an = button_pressed
+	Autoload.save()
+	on_off_switch($UiAudioButton, button_pressed)
+	AudioServer.set_bus_mute(3, not button_pressed)
+
+
+func einst_button_sound():
+	$Clicksound.play()

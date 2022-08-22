@@ -15,6 +15,7 @@ var next_scene : int = 1
 func _ready():
 	#nur zum Testen
 	OS.set_window_always_on_top(true)
+	#nur zum Testen fertig
 	
 	$NameButton/NameHintergrund/Spieler1.set_text(Autoload.savegame_data.sp1name)
 	$NameButton.set_text(Autoload.savegame_data.sp1name)
@@ -25,10 +26,13 @@ func _ready():
 	$VersionsLabel.rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
 	for i in range(1, 6):
 		get_node(Autoload.versch_namen[i]).rect_position.y = Autoload.default_versch_values[i] + Autoload.savegame_data.verschiebung
+	$Einstellungen.ready_done = false
 	$Einstellungen/VerschiebungSlider.value = Autoload.savegame_data.verschiebung
+	$Einstellungen.ready_done = true
 	
 	#soundeffekte
 	AudioServer.set_bus_mute(2, not Autoload.savegame_data.sound_an)
+	AudioServer.set_bus_mute(3, not Autoload.savegame_data.ui_sound_an)
 	
 	if get_node_or_null("/root/Musik") == null:
 		yield(get_tree().create_timer(1), "timeout")
@@ -162,14 +166,12 @@ func modi_switchen(add_zahl):
 	$HBoxContainer/Tween.start()
 
 func _on_NachLinks_pressed():
-	$TtClicksound.play()
 	modi_switchen(-1)
 	$NachRechts.visible = true
 	if aktivbutton_zahl == 1:
 		$NachLinks.visible = false
 
 func _on_NachRechts_pressed():
-	$TtClicksound.play()
 	modi_switchen(1)
 	$NachLinks.visible = true
 	if aktivbutton_zahl == 3:
@@ -199,3 +201,9 @@ func _on_Button_pressed():
 	get_tree().network_peer = null
 	print("Network peer removed")
 	$VerbindeRect/Control/AnimationPlayer.play_backwards("hi")
+
+func start_button_sound():
+	$TtClicksound.play()
+
+func alt_button_sound():
+	$PtClicksound.play()

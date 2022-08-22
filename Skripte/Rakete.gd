@@ -13,6 +13,9 @@ func _process(_delta):
 	look_at(ziel)
 
 func fliegen(start):
+	$Swoosh.pitch_scale = rand_range(0.9, 1.15)
+	$Swoosh.play()
+	
 	rotierstart = start
 	rotierziel = ziel
 	if $"/root/Welt".rect_rotation == 180:

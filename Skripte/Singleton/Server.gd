@@ -222,8 +222,10 @@ remote func feldanimation(feld, treffer : bool):
 	anim_feld.get_node("Particles2D2").emitting = true
 	if treffer:
 		anim_feld.get_node("Particles2D").emitting = true
+		anim_feld.get_node("Explosion").pitch_scale = rand_range(0.8, 1.2)
 		anim_feld.get_node("Explosion").play()
 	else:
+		anim_feld.get_node("Platschsound").pitch_scale = rand_range(0.9, 1.3)
 		anim_feld.get_node("Platschsound").play()
 
 remote func schiffzerstoer(schiff):
