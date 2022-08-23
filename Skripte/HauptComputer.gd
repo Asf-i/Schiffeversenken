@@ -255,7 +255,8 @@ func vollschiffcheck(schiffname, _von_feld = null):
 			get_node("NotifyRect/Control/Control/" + str($MrComputer.happiness)).visible = false
 			if not spieler2_ist_dran:
 				get_node("Schiffe/" + schiffname).todesanimation()
-				$MrComputer.happiness += 1
+				if $MrComputer.happiness < 4:
+					$MrComputer.happiness += 1
 				aufgedeckte_schiffe.append(schiffname) #Um die zerstörten Schiffe zu markieren
 			else:
 				if $MrComputer.happiness > 0:
