@@ -26,32 +26,6 @@ func _ready():
 	load_data()
 # warning-ignore:narrowing_conversion
 	actual_screen_height = 1919 + (1920 * (OS.window_size.y - ((1920 * OS.window_size.x) / 1080)) / ((1920 * OS.window_size.x) / 1080))
-	print(actual_screen_height)
-
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		print("spieler1_felder: " +  str(spieler1_felder))
-		print("\nspieler_2_felder: " + str(spieler2_felder))
-# warning-ignore:narrowing_conversion
-		actual_screen_height = 1919 + (1920 * (OS.window_size.y - ((1920 * OS.window_size.x) / 1080)) / ((1920 * OS.window_size.x) / 1080))
-		print(actual_screen_height)
-	
-	elif event.is_action_pressed("ui_up"):
-		print("spieler1_beschossene: " + str(spieler1_beschossene))
-		print("\nspieler2_beschossene: " + str(spieler2_beschossene))
-		print("Im Feld: " + str($"/root/Welt".im_feld))
-	elif event.is_action_pressed("ui_down"):
-		print("spieler1_centerfelder: " + str(spieler1_centerfelder))
-		print("\nspieler2_centerfelder: " + str(spieler2_centerfelder))
-		print("spieler2_ist_dran: " + str($"/root/Welt".spieler2_ist_dran))
-	
-	elif event.is_action_pressed("ui_left"):
-		print(savegame_data)
-		print(to_json(savegame_data))
-	
-	elif event.is_action_pressed("ui_cancel"):
-		for i in spieler1_centerfelder.size():
-			print(get_node("/root/Welt/Felder/" + spieler1_centerfelder.keys()[i]).name + ": " + get_node("/root/Welt/Felder/" + spieler1_centerfelder.keys()[i]).sp1_schiffli_name)
 
 func centerfelder_anpassen(centerfeld, rotiert : bool, laenge : int, zweites : bool, adden : bool):
 	var becenterte_felder
@@ -85,5 +59,4 @@ func load_data():
 	savegame_data = parse_json(save_game.get_line())
 
 func musik_restart():
-	print("Musik restart")
 	$"/root/Musik".play()

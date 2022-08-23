@@ -13,9 +13,7 @@ var hsprite_xs = [-868, -968, -1068]
 var next_scene : int = 1
 
 func _ready():
-	#nur zum Testen
 	OS.set_window_always_on_top(true)
-	#nur zum Testen fertig
 	
 	$NameButton/NameHintergrund/Spieler1.set_text(Autoload.savegame_data.sp1name)
 	$NameButton.set_text(Autoload.savegame_data.sp1name)
@@ -39,19 +37,6 @@ func _ready():
 		get_parent().add_child(load("res://Szenen/Musik.tscn").instance())
 	# warning-ignore:return_value_discarded
 		$"/root/Musik".connect("finished", Autoload, "musik_restart")
-
-func _input(event):
-	if event.is_action_pressed("ui_right"):
-		var lel = {"vagina": "nice", "penis": "stange"}
-		var wort = "nice"
-		if wort in lel:
-			print("direkt")
-			print("yay")
-		else:
-			for i in lel:
-				if lel[i] == wort:
-					print("yay")
-					print(lel.keys()[i])
 
 func _on_Multiplayer_pressed():
 	if not swiping:
@@ -114,8 +99,6 @@ func _on_NameButton_pressed():
 		$NameButton/NameHintergrund/AnimationPlayer.play("hin")
 	$NamenWeg.visible = not $NamenWeg.visible
 	$EingebeCover.visible = not $NamenWeg.visible
-#	$NameButton/NameHintergrund.visible = $NamenWeg.visible
-	print(Autoload.savegame_data)
 
 func _on_LineEdit_text_changed(new_text):
 	#Damit man keine Leerschläge schreiben kann
@@ -199,7 +182,6 @@ func _on_VerbindeRectTimer_timeout():
 func _on_Button_pressed():
 	$Einstellungen.sonst_okay = true
 	get_tree().network_peer = null
-	print("Network peer removed")
 	$VerbindeRect/Control/AnimationPlayer.play_backwards("hi")
 
 func start_button_sound():

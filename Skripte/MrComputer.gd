@@ -21,11 +21,6 @@ func _input(_event):
 		emit_signal("press")
 
 func zug():
-	print("state: " + str(state))
-	print("i_letztes: " + str(i_letztes))
-	print("i_richtig: " + str(i_richtig))
-	print("erstes_getroffenes: " + str(erstes_getroffenes))
-	print("letztes_getroffenes: " + str(letztes_getroffenes))
 	randomize()
 	such()
 	
@@ -37,19 +32,16 @@ func zug():
 			state = 1
 		if i_letztes == 4: #Weil in den loops i nur bis 3 geht
 			erstes_getroffenes = besuch_feld
-		print("TREFFER")
 		letztes_getroffenes = besuch_feld
 		Autoload.spieler2_beschossene[besuch_feld.name] = true
 		$"/root/Welt".spieler2_punkte += 1
 		$"/root/Welt".spieler1_versenkte[besuch_feld.sp1_schiffli_name] -= 1
 		
-#		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
 		if erstes_getroffenes == null:
 			state = 0
 	else:
 		if state == 2:
 			state = 3
-		print("VERFEHLT")
 		i_letztes = 4
 		letztes_getroffenes = null
 		Autoload.spieler2_beschossene[besuch_feld.name] = false

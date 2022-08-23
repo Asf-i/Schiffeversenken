@@ -104,10 +104,6 @@ func schiff_move(movezahl):
 	elif get_node_or_null("FertigButton"):
 		$FertigButton.disabled = true
 		$FertigButton/Sprite.modulate = Color(0.415686, 0.415686, 0.415686)
-#	if im_feld == 0 && get_node_or_null("RandomButton"):
-#		$RandomButton.disabled = false
-#	elif get_node_or_null("RandomButton"):
-#		$RandomButton.disabled = true
 
 func _on_RandomButton_pressed():
 	$Felder.clear(true)
@@ -256,8 +252,7 @@ func zu_phase_zwei_wechseln():
 func vollschiffcheck(schiffname, _von_feld = null):
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
-			print("------SCHIFF GEFUNDEN")
-			get_node("NotifyRect/Control/" + str($MrComputer.happiness)).visible = false
+			get_node("NotifyRect/Control/Control/" + str($MrComputer.happiness)).visible = false
 			if not spieler2_ist_dran:
 				get_node("Schiffe/" + schiffname).todesanimation()
 				$MrComputer.happiness += 1
@@ -270,7 +265,7 @@ func vollschiffcheck(schiffname, _von_feld = null):
 				$MrComputer.i_richtig = 4
 				$MrComputer.i_letztes = 4
 				$MrComputer.state = 0
-			get_node("NotifyRect/Control/" + str($MrComputer.happiness)).visible = true
+			get_node("NotifyRect/Control/Control/" + str($MrComputer.happiness)).visible = true
 
 func gewinnercheck():
 	if (spieler1_punkte == 19 or spieler2_punkte == 19) && not spielphase == 3:

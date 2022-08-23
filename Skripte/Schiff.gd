@@ -94,8 +94,6 @@ func _on_NurtippTimer_timeout():
 	nur_tippend = false
 
 func todesanimation():
-	print("Todesanimation")
-	print(get_parent().name)
 	if not (s1_gesehen && $"/root/Welt".spieler2_ist_dran == false) && not (s2_gesehen && $"/root/Welt".spieler2_ist_dran):
 		$Schiffkaputt.play()
 		if get_parent().name == "EigeneSchiffe":

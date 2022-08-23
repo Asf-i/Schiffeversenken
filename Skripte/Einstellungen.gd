@@ -65,10 +65,8 @@ func _on_SettingWegButton_pressed():
 
 func on_off_switch(button, pressed):
 	if pressed:
-#		button.get_node("OnOff").frame = 1
 		button.get_node("OnOff").rotation_degrees = 0
 	else:
-#		button.get_node("OnOff").frame = 0
 		button.get_node("OnOff").rotation_degrees = 180
 
 func _on_CheckButton_toggled(button_pressed):
@@ -95,7 +93,6 @@ func _on_ScreenshakeSlider_value_changed(value):
 func _on_VerschiebungSlider_value_changed(value):
 	if ready_done:
 		$Schiebsound.play()
-	print("VALUE CHANGED LUL")
 	Autoload.savegame_data.verschiebung = value
 	if get_parent().name == "Start":
 		get_parent().get_node("VersionsLabel").rect_position.y = Autoload.actual_screen_height - 1920 + Autoload.default_versch_values[0] - Autoload.savegame_data.verschiebung
@@ -116,7 +113,6 @@ func _on_UiAudioButton2_toggled(button_pressed):
 	Autoload.save()
 	on_off_switch($UiAudioButton, button_pressed)
 	AudioServer.set_bus_mute(3, not button_pressed)
-
 
 func einst_button_sound():
 	$Clicksound.play()

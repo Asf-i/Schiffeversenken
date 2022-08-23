@@ -23,7 +23,6 @@ func button_pressed(button_name):
 	$MomentNode.visible = true
 	$AnfragWeg.visible = true
 	$ColorRect2/AnimationPlayer.play("InsBild")
-#	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:x", $MomentNode/ColorRect.rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.start()
 #	$NochDaCheckTimer.start()
@@ -35,8 +34,6 @@ func _on_accept_pressed():
 	Server.rpc_id(anfrager_id, "reagiert_auf_anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, true)
 	Server.spielpartner_id = anfrager_id
 	Server.spielpartner_name = anfrager_name
-#	anfrager_id = null
-#	$TransitionBlackness.black()
 
 func _on_deny_pressed(mit_update : bool = true):
 	if mit_update:
@@ -49,12 +46,6 @@ func _on_deny_pressed(mit_update : bool = true):
 	$anfragNode/ColorRect/Tween.start()
 	yield($anfragNode/ColorRect/Tween, "tween_completed")
 	$anfragNode.visible = false
-	
-#	if mit_update:
-#		Server.rpc_id(1, "spieler_available_update", true, false, anfrager_id, false)
-#		Server.available = true
-#		Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
-#		anfrager_id = null
 
 func _on_Abbrechen_pressed():
 	Server.rpc_id(angefragter_id, "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, false)
@@ -66,19 +57,12 @@ func _on_Abbrechen_pressed():
 		$AnfragWeg.visible = false
 	yield($MomentNode/ColorRect/Tween, "tween_completed")
 	$MomentNode.visible = false
-	
-#	Server.rpc_id(1, "spieler_available_update", true, false, angefragter_id, false)
-#	Server.available = true
-#	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id())
-#	angefragter_id = null
 
 func _on_Button_pressed():
 	Server.available = false
 	Server.rpc_id(1, "peer_disconnecten", get_tree().get_network_unique_id())
 	Server.network.close_connection()
 	get_tree().network_peer = null
-	print("Network peer removed")
-#	Server.available = true
 	$ListPlayer.play_backwards("open")
 	yield($ListPlayer, "animation_finished")
 	queue_free()
@@ -126,9 +110,7 @@ func _on_ZufallAbbruch_pressed():
 	$ZufallAbbruch.visible = false
 
 func _on_Suche_pressed():
-	print("press")
 	for i in $ScrollContainer/VBoxContainer.get_child_count():
-		print("such")
 		if $SuchEdit.text == $ScrollContainer/VBoxContainer.get_children()[i].get_node("Label").text && $ScrollContainer/VBoxContainer.get_children()[i].get_node("Ingame").visible == false:
 			button_pressed($ScrollContainer/VBoxContainer.get_children()[i].name)
 			break

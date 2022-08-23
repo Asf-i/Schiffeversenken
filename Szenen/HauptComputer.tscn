@@ -900,9 +900,8 @@ visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 200.0
 margin_right = -0.000244141
-margin_bottom = 199.998
+margin_bottom = -0.00195313
 rect_pivot_offset = Vector2( -2426, 314 )
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.133333 )
@@ -979,35 +978,48 @@ __meta__ = {
 anims/RESET = SubResource( 62 )
 anims/open = SubResource( 63 )
 
-[node name="Sprite" type="Sprite" parent="NotifyRect/Control"]
+[node name="Control" type="Control" parent="NotifyRect/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -540.0
+margin_top = -1640.0
+margin_right = -500.0
+margin_bottom = -1600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="NotifyRect/Control/Control"]
 position = Vector2( 540, 1037 )
 scale = Vector2( 0.672, 0.672 )
 texture = ExtResource( 23 )
 
-[node name="0" type="Sprite" parent="NotifyRect/Control"]
+[node name="0" type="Sprite" parent="NotifyRect/Control/Control"]
 position = Vector2( 540, 1037 )
 scale = Vector2( 0.672, 0.672 )
 texture = ExtResource( 25 )
 
-[node name="1" type="Sprite" parent="NotifyRect/Control"]
+[node name="1" type="Sprite" parent="NotifyRect/Control/Control"]
 visible = false
 position = Vector2( 540, 1037 )
 scale = Vector2( 0.672, 0.672 )
 texture = ExtResource( 26 )
 
-[node name="2" type="Sprite" parent="NotifyRect/Control"]
+[node name="2" type="Sprite" parent="NotifyRect/Control/Control"]
 visible = false
 position = Vector2( 540, 1037 )
 scale = Vector2( 0.672, 0.672 )
 texture = ExtResource( 24 )
 
-[node name="3" type="Sprite" parent="NotifyRect/Control"]
+[node name="3" type="Sprite" parent="NotifyRect/Control/Control"]
 visible = false
 position = Vector2( 540, 1037 )
 scale = Vector2( 0.672, 0.672 )
 texture = ExtResource( 27 )
 
-[node name="4" type="Sprite" parent="NotifyRect/Control"]
+[node name="4" type="Sprite" parent="NotifyRect/Control/Control"]
 visible = false
 position = Vector2( 540, 1037 )
 scale = Vector2( 0.672, 0.672 )
@@ -1220,8 +1232,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 36990.0
-margin_bottom = 65760.0
+margin_right = 38070.0
+margin_bottom = 67680.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -53,11 +53,6 @@ func _input(event):
 	yield(get_tree().create_timer(0.01), "timeout")
 	if event is InputEventScreenTouch && event.is_pressed() && unselectbar && spielphase == 1:
 		schiffli_selected("nix")
-	
-	if event.is_action_pressed("ui_right"):
-		print(spieler1_punkte, spieler2_punkte)
-		if not spieler2_ist_dran:
-			Server.rpc_id(1, "spielpartner_eingeben", false, get_tree().get_network_unique_id(), Server.spielpartner_id)
 
 func _on_RotateButton_pressed(mit_centerfeld : bool = true):
 	if selected_schiffli.im_feld:
@@ -114,10 +109,6 @@ func schiff_move(movezahl):
 	elif get_node_or_null("FertigButton"):
 		$FertigButton.disabled = true
 		$FertigButton/Sprite.modulate = Color(0.415686, 0.415686, 0.415686)
-#	if im_feld == 0 && get_node_or_null("RandomButton"):
-#		$RandomButton.disabled = false
-#	elif get_node_or_null("RandomButton"):
-#		$RandomButton.disabled = true
 
 func _on_RandomButton_pressed():
 	$Felder.clear(true)
@@ -198,31 +189,21 @@ func _on_HauptmenuButton_pressed():
 
 func _on_FertigButton_pressed():
 	$Felder.felderstatus_speichern(spieler2_ist_dran)
-#	$WarteAufControl/Control/AnimationPlayer.play("open")
-#	$WarteAufControl/Control/WarteAufLabel.set_text(Server.spielpartner_name)
-#	$WarteAufControl.visible = true
-#	if not $NochDaCheckTimer.time_left > 0:
-#		$NochDaCheckTimer.start()
 	schiffe_fertig_platziert()
 
 func schiffe_fertig_platziert():
-#	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-#	$NochDaTimer.start()
 	spielphase = 2
 	Server.rpc_id(Server.spielpartner_id, "schiffdaten_senden", Autoload.spieler1_felder, Autoload.spieler1_centerfelder, Autoload.spieler2_felder, Autoload.spieler2_centerfelder)
 	Server.rpc_id(Server.spielpartner_id, "bin_bereit")
 
 func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Feld.gd
-	$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
-	$NotifyRect/Control/InfoLabel.set_text("ist dran")
-	$NotifyRect/Control/AnimationPlayer.play("open")
-	$NotifyRect.visible = true
-#	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-#	$NochDaTimer.start()
-#	Server.rpc_id(Server.spielpartner_id, "beschossene_senden", Autoload.spieler1_beschossene, Autoload.spieler2_beschossene, true)
-#	$NochDaCheckTimer.start()
-	yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
-	$Felder/Abdeckung.visible = false
+	if spielphase != 3:
+		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
+		$NotifyRect/Control/InfoLabel.set_text("ist dran")
+		$NotifyRect/Control/AnimationPlayer.play("open")
+		$NotifyRect.visible = true
+		yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
+		$Felder/Abdeckung.visible = false
 
 func zu_phase_zwei_wechseln():
 # warning-ignore:return_value_discarded
@@ -231,13 +212,11 @@ func zu_phase_zwei_wechseln():
 	for i in anzahl_schiffe:
 		get_node("Schiffe/" + str(i + 1)).visible = false
 	clear()
-#	$Schiffe.visible = true
 	#Felder gehen runter
 	$Felder/Tween.interpolate_property($Felder, "rect_position:y", $Felder.rect_position.y, $Felder.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($FelderRaster, "rect_position:y", $FelderRaster.rect_position.y, $FelderRaster.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($FelderHintergrund, "rect_position:y", $FelderHintergrund.rect_position.y, $FelderHintergrund.rect_position.y + FELDVERSCHIEBUNG, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Felder/Tween.interpolate_property($EigenschiffControl, "rect_position:y", Autoload.actual_screen_height - 814.998, 400, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	$Felder/Tween.start()
 	#Mehr
 	$EigenschiffControl.visible = true
 	$EigenschiffControl/AnimationPlayer.play("shrink")
@@ -262,7 +241,6 @@ func zu_phase_zwei_wechseln():
 				centerfeld_schifflaengen.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_schifflaenge)
 				centerfeld_zweite_schiffe.append(get_node("Felder/" + str(i + 1) + "_" + str(n + 1)).sp1_centerfeld_zweites_schiff)
 	Server.rpc_id(Server.spielpartner_id, "besetzdinger_senden", besetzfeld_dinger, centerfeld_schifflaengen, centerfeld_zweite_schiffe)
-#	yield(Server, "data_received")
 
 func wenn_server_data_received():
 	$Felder/Tween.start()
@@ -274,7 +252,6 @@ func wenn_server_data_received():
 		else:
 			$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 	
-#	if $Felder.rect_position.y != $Felder.rect_position.y + FELDVERSCHIEBUNG: #If falls der Tween schon zu Ende, wenn data_received noch nicht emitted wurde
 	yield($Felder/Tween, "tween_completed")
 	
 	for i in Autoload.spieler1_centerfelder.size():
@@ -296,8 +273,8 @@ func vollschiffcheck(schiffname, von_feld = null):
 func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, das unten auch ausgeführt wird, wenn die punkte nicht erreicht sind
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
 		yield(get_tree().create_timer(0.5), "timeout")
-		$Gewonnen/Label.set_text("Spiel gewonnen!")
 		spielphase = 3
+		$Gewonnen/Label.set_text("Spiel gewonnen!")
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
 		Server.rpc_id(Server.spielpartner_id, "spiel_wurde_gewonnen")
@@ -369,20 +346,16 @@ func _on_ZurListeButton_pressed():
 func _on_Revanche_pressed():
 	Server.rpc_id(Server.spielpartner_id, "revanche")
 	$IngameMomentNode.visible = true
-#	$IngameMomentNode/ColorRect/AnimationPlayer.play("InsBild")
 	$ColorRect2/AnimationPlayer.play("InsBild")
 	$AnfragWeg.visible = true
-#	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameMomentNode/ColorRect/Tween.start()
 
 func revanche_abbrechen():
 	Server.rpc_id(Server.spielpartner_id, "revanche", false)
 	if $IngameAnfragNode.visible == false or $IngameAnfragNode/ColorRect/Tween.is_active():
-#		$IngameMomentNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
 		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
 		$AnfragWeg.visible = false
-#	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameMomentNode/ColorRect/Tween.start()
 	yield($IngameMomentNode/ColorRect/Tween, "tween_completed")
@@ -396,10 +369,8 @@ func revanche_akzeptieren():
 func anfrage_ablehnen():
 	Server.rpc_id(Server.spielpartner_id, "reagiert_auf_revanche", false)
 	if $IngameMomentNode.visible == false or $IngameMomentNode/ColorRect/Tween.is_active():
-#		$IngameAnfragNode/ColorRect/AnimationPlayer.play_backwards("InsBild")
 		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
 		$AnfragWeg.visible = false
-#	$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:x", $IngameAnfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$IngameAnfragNode/ColorRect/Tween.start()
 	yield($IngameAnfragNode/ColorRect/Tween, "tween_completed")

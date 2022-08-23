@@ -36,15 +36,6 @@ func felder_platzieren():
 
 func felderstatus_speichern(spieler2_ist_dran):
 	var bearbeitfeld
-	
-	#FELDER DICT
-#	for n in 10:
-#		for i in 10:
-#			bearbeitfeld = get_node(str(i + 1) + "_" + str(n + 1))
-#			match spieler2_ist_dran:
-#				false: Autoload.spieler1_felder[bearbeitfeld.name] = bearbeitfeld.schiffli
-#				true: Autoload.spieler2_felder[bearbeitfeld.name] = bearbeitfeld.schiffli
-	
 	for n in 10:
 		for i in 10:
 			bearbeitfeld = get_node(str(i + 1) + "_" + str(n + 1))
@@ -54,14 +45,6 @@ func felderstatus_speichern(spieler2_ist_dran):
 					true: Autoload.spieler2_felder.append(bearbeitfeld.name)
 
 func felder_laden(spieler2_ist_dran):
-#	for n in 10:
-#		for i in 10:
-#			match spieler2_ist_dran:
-#				false: get_node(str(i + 1) + "_" + str(n + 1)).schiffli = Autoload.spieler1_felder[str(i + 1) + "_" + str(n + 1)]
-#				true: get_node(str(i + 1) + "_" + str(n + 1)).schiffli = Autoload.spieler2_felder[str(i + 1) + "_" + str(n + 1)]
-#			if get_node(str(i + 1) + "_" + str(n + 1)).schiffli:
-#				get_node(str(i + 1) + "_" + str(n + 1)).modulate = innenfarbe
-	
 	var check_array
 	if spieler2_ist_dran:
 		check_array = Autoload.spieler2_felder
@@ -136,7 +119,7 @@ func besetztfelder_markieren(loeschen : bool, schiffli_name : String):
 			else:
 				bearbeitetes_feld = get_node(str(nahfeld.coords.x + laengen_zahl) + "_" + str(nahfeld.coords.y))
 			if loeschen:
-				bearbeitetes_feld.schiffli = false #hier Absturz oder so kein Plan -> Es wird immernoch nach Feldern wie '11_8' geschaut. [Ok maybe hab ich das gefixt :0]
+				bearbeitetes_feld.schiffli = false
 				match $"/root/Welt".spieler2_ist_dran:
 					true: bearbeitetes_feld.sp2_schiffli_name = ""
 					false: bearbeitetes_feld.sp1_schiffli_name = ""
@@ -149,7 +132,6 @@ func besetztfelder_markieren(loeschen : bool, schiffli_name : String):
 				bearbeitetes_feld.get_node("Button").modulate = innenfarbe
 
 func schiff_in_feld_platzieren(centerfeld, gegenteil : bool = false, mit_centerfeld_wegen_random : bool = true, schiffcontainer_node = null):
-	print("EIGENE SCHIFFE: " + str(schiffcontainer_node))
 	$"/root/Welt/Schiffe".visible = true
 	var spieler_centerfelder
 	var centerfeld_schifflaenge

@@ -20,40 +20,31 @@ func connect_to_server():
 	network = NetworkedMultiplayerENet.new()
 	network.create_client(ip, port)
 	get_tree().set_network_peer(network)
-	print("Network peer created. IP = " + ip)
 	
 	network.connect("connection_failed", self, "_on_connection_failed")
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
-	
 	network.connect("server_disconnected", self, "_on_server_disconnected")
 
 func _on_server_disconnected():
 	if get_node_or_null("/root/Welt") != null:
 		$"/root/Welt".queue_free()
-	print("verbindung zum server ist weg")
 	ingame = false
 	get_tree().network_peer = null
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
 func _on_connection_failed():
-	print("Failed to connect") #Es funktioniert, kommt aber erst nach einer Weile.. glaub ich
 	$"/root/Start/VerbindeRect/Control/Label".set_text("fehlgeschlagen")
 	$"/root/Start/VerbindeRect/Control/Button".set_text("ok")
 
 func _on_connection_succeeded():
 	var liste = LISTE.instance()
-	print("Succesfully connected")
 	rpc_id(1, "spielername_kriegen", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name)
 	get_parent().get_node("Start").add_child(liste)
 	onlinelistnode = get_parent().get_node("Start/OnlineListe")
 	onlinelistnode.get_node("ListPlayer").play("open")
 
-remote func client_was_gesendet(sendezeugs):
-	print(sendezeugs)
-
 remote func spielerbuttons_updaten(momentane_spieler, spieler_namen, spieler_ingame):
-	print("SPIELERBUTONS UPDATEN")
 	for n in get_parent().get_node("Start/OnlineListe/ScrollContainer/VBoxContainer").get_children():
 		onlinelistnode.get_node("ScrollContainer/VBoxContainer").remove_child(n)
 		n.queue_free()
@@ -91,21 +82,16 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 			onlinelistnode.get_node("Zufall").disabled = false
 			onlinelistnode.anfrager_id = anfrager_id
 			onlinelistnode.anfrager_name = anfrager_name
-	#		onlinelistnode.anfrager_name = anfrager_name
 			onlinelistnode.get_node("anfragNode").visible = true
 			onlinelistnode.get_node("AnfragWeg").visible = true
 			onlinelistnode.get_node("anfragNode/ColorRect/Label").set_text(str(anfrager_name))
 			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play("InsBild")
-	#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
-#			onlinelistnode.get_node("NochDaCheckTimer").start()
 	elif anfrager_id == onlinelistnode.anfrager_id:
-#		rpc_id(1, "spieler_available_update", true, get_tree().get_network_unique_id())
 		if onlinelistnode.get_node("MomentNode").visible == false or onlinelistnode.get_node("MomentNode/ColorRect/Tween").is_active():
 			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play_backwards("InsBild")
 			onlinelistnode.get_node("AnfragWeg").visible = false
-#		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("anfragNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("anfragNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("anfragNode/ColorRect").rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("anfragNode/ColorRect/Tween").start()
 		yield(onlinelistnode.get_node("anfragNode/ColorRect/Tween"), "tween_completed")
@@ -116,8 +102,6 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 
 remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, returned : bool = false):
 	if accepted:
-# warning-ignore:return_value_discarded
-#		get_parent().add_child($"/root/Start/OnlineListe".HAUPTONLINE.instance())
 		if not returned:
 			rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 			get_parent().get_node("Start/OnlineListe/TransitionBlackness").black(false)
@@ -134,12 +118,10 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 		if onlinelistnode.get_node("anfragNode").visible == false or onlinelistnode.get_node("anfragNode/ColorRect/Tween").is_active():
 			onlinelistnode.get_node("ColorRect2/AnimationPlayer").play_backwards("InsBild")
 			onlinelistnode.get_node("AnfragWeg").visible = false
-#		onlinelistnode.get_node("MomentNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("MomentNode/ColorRect"), "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("MomentNode/ColorRect/Tween").interpolate_property(onlinelistnode.get_node("MomentNode/ColorRect"), "rect_position:x", onlinelistnode.get_node("MomentNode/ColorRect").rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		onlinelistnode.get_node("MomentNode/ColorRect/Tween").start()
 		yield(onlinelistnode.get_node("MomentNode/ColorRect/Tween"), "tween_completed")
 		onlinelistnode.get_node("MomentNode").visible = false
-		print("Anfrage wurde abgelehnt")
 
 remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 : bool):
 	available = false
@@ -169,7 +151,6 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 				$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
 				$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 				$"/root/Welt/NotifyRect".visible = true
-#				$"/root/Welt/NochDaCheckTimer".start()
 		#Hier neu dazu geschrieben:
 		else:
 			rpc_id(spielpartner_id, "bin_bereit", true, true)
@@ -181,7 +162,6 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 			$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
 			$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 			$"/root/Welt/NotifyRect".visible = true
-#			$"/root/Welt/NochDaCheckTimer".start()
 	
 	#Das hier mit vorherigem neu dazu geschrieben:
 	else:
@@ -288,18 +268,14 @@ remote func anderer_spiel_verlassen():
 remote func revanche(anfrage : bool = true):
 	if anfrage:
 		$"/root/Welt/IngameAnfragNode".visible = true
-#		$"/root/Welt/IngameAnfragNode/ColorRect/AnimationPlayer".play("InsBild")
 		$"/root/Welt/ColorRect2/AnimationPlayer".play("InsBild")
 		$"/root/Welt/AnfragWeg".visible = true
-#		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:y", Autoload.actual_screen_height, Autoload.actual_screen_height - 344, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:x", $"/root/Welt/IngameAnfragNode/ColorRect".rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".start()
 	else:
 		if $"/root/Welt/IngameMomentNode".visible == false or $"/root/Welt/IngameMomentNode/ColorRect/Tween".is_active():
-#			$"/root/Welt/IngameAnfragNode/ColorRect/AnimationPlayer".play_backwards("InsBild")
 			$"/root/Welt/ColorRect2/AnimationPlayer".play_backwards("InsBild")
 			$"/root/Welt/AnfragWeg".visible = false
-#		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameAnfragNode/ColorRect", "rect_position:x", $"/root/Welt/IngameAnfragNode/ColorRect".rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameAnfragNode/ColorRect/Tween".start()
 		yield($"/root/Welt/IngameAnfragNode/ColorRect/Tween", "tween_completed")
@@ -311,10 +287,8 @@ remote func reagiert_auf_revanche(accepted : bool = true):
 		$"/root/NichtWelt/TransitionBlackness".black()
 	else:
 		if $"/root/Welt/IngameAnfragNode".visible == false or $"/root/Welt/IngameAnfragNode/ColorRect/Tween".is_active():
-#			$"/root/Welt/IngameMomentNode/ColorRect/AnimationPlayer".play_backwards("InsBild")
 			$"/root/Welt/ColorRect2/AnimationPlayer".play_backwards("InsBild")
 			$"/root/Welt/AnfragWeg".visible = false
-#		$"/root/Welt/IngameMomentNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameMomentNode/ColorRect", "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameMomentNode/ColorRect/Tween".interpolate_property($"/root/Welt/IngameMomentNode/ColorRect", "rect_position:x", $"/root/Welt/IngameMomentNode/ColorRect".rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$"/root/Welt/IngameMomentNode/ColorRect/Tween".start()
 		yield($"/root/Welt/IngameMomentNode/ColorRect/Tween", "tween_completed")

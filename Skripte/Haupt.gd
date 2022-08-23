@@ -109,10 +109,6 @@ func schiff_move(movezahl):
 	elif get_node_or_null("FertigButton"):
 		$FertigButton.disabled = true
 		$FertigButton/Sprite.modulate = Color(0.415686, 0.415686, 0.415686)
-#	if im_feld == 0 && get_node_or_null("RandomButton"):
-#		$RandomButton.disabled = false
-#	elif get_node_or_null("RandomButton"):
-#		$RandomButton.disabled = true
 
 func _on_RandomButton_pressed():
 	$Felder.clear(true)
@@ -193,9 +189,6 @@ func _on_HauptmenuButton_pressed():
 
 func _on_FertigButton_pressed():
 	$Felder.felderstatus_speichern(spieler2_ist_dran)
-	
-#	$Felder.clear(false)
-#	clear()
 	$Schiffe.visible = true
 	$RandomButton.disabled = false
 	$FertigButton.disabled = true
@@ -209,15 +202,10 @@ func spielerparatfeld_anzeigen():
 	$AndererSpielerBitte/Tween.start()
 	
 	if spieler2_ist_dran && Autoload.savegame_data.rotier_mode:
-#		rect_rotation = 0
-#		rect_position = Vector2(0, 0)
 		$Camera2D.rotation_degrees = 0
 		$Camera2D.position = Vector2(0, 0)
 		$Einstellungen.richtunganders = 1
 	elif Autoload.savegame_data.rotier_mode:
-		print("rotier lel")
-#		rect_rotation = 180
-#		rect_position = Vector2(1080, Autoload.actual_screen_height)
 		$Camera2D.rotation_degrees = 180
 		$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
 		$Einstellungen.richtunganders = -1

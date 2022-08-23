@@ -19,8 +19,6 @@ var anderer_spieler_felder
 func _on_Feld_pressed():
 	if $"/root/Welt".spielphase == 2 && not aufgedeckt && get_parent().name == "Felder" && not $"/root/Welt".paratfeld_im_bild:
 		aufgedeckt = true
-#		var eigene_spieler_beschossene
-#		var anderer_spieler_felder
 		
 		if $"/root/Welt".spieler2_ist_dran:
 			eigene_spieler_beschossene = Autoload.spieler2_beschossene
