@@ -257,15 +257,20 @@ func vollschiffcheck(schiffname, _von_feld = null):
 	if schiffname != "nix":
 		if (spieler2_ist_dran && spieler1_versenkte[schiffname] <= 0) or (not spieler2_ist_dran && spieler2_versenkte[schiffname] <= 0):
 			print("------SCHIFF GEFUNDEN")
+			get_node("NotifyRect/Control/" + str($MrComputer.happiness)).visible = false
 			if not spieler2_ist_dran:
 				get_node("Schiffe/" + schiffname).todesanimation()
+				$MrComputer.happiness += 1
 				aufgedeckte_schiffe.append(schiffname) #Um die zerstörten Schiffe zu markieren
 			else:
+				if $MrComputer.happiness > 0:
+					$MrComputer.happiness -= 1
 				get_node("EigenschiffControl/EigeneSchiffe/" + schiffname).todesanimation()
 				$MrComputer.erstes_getroffenes = null
 				$MrComputer.i_richtig = 4
 				$MrComputer.i_letztes = 4
 				$MrComputer.state = 0
+			get_node("NotifyRect/Control/" + str($MrComputer.happiness)).visible = true
 
 func gewinnercheck():
 	if (spieler1_punkte == 19 or spieler2_punkte == 19) && not spielphase == 3:

@@ -9,6 +9,7 @@ var i_richtig : int = 4
 const FELD_NAME_VEKTOREN = [Vector2(1, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1)]
 var start : bool = true
 var state : int = 0
+var happiness : int = 0
 
 signal press()
 
