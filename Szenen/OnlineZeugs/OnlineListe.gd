@@ -113,7 +113,10 @@ func _on_Suche_pressed():
 	for i in $ScrollContainer/VBoxContainer.get_child_count():
 		if $SuchEdit.text == $ScrollContainer/VBoxContainer.get_children()[i].get_node("Label").text && $ScrollContainer/VBoxContainer.get_children()[i].get_node("Ingame").visible == false:
 			button_pressed($ScrollContainer/VBoxContainer.get_children()[i].name)
-			break
+			return
+	$SuchEdit.set("custom_colors/font_color", Color(0.74902, 0.278431, 0.278431))
+	if Autoload.savegame_data.vibration:
+		Input.vibrate_handheld(50)
 
 func _on_AnfragWeg_pressed():
 	if $anfragNode.visible:
@@ -123,3 +126,6 @@ func _on_AnfragWeg_pressed():
 
 func button_sound():
 	$ListSound.play()
+
+func _on_SuchEdit_focus_entered():
+	$SuchEdit.set("custom_colors/font_color", Color(0.156863, 0.156863, 0.156863))

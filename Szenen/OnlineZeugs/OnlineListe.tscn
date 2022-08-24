@@ -364,6 +364,7 @@ margin_right = 283.0
 margin_bottom = 464.0
 theme = ExtResource( 10 )
 custom_colors/cursor_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 max_length = 20
 placeholder_text = "         Anfrage an..."
 caret_blink = true
@@ -653,6 +654,7 @@ bus = "UI"
 [connection signal="pressed" from="Zufall" to="." method="_on_Zufall_pressed"]
 [connection signal="button_down" from="ZufallAbbruch" to="." method="button_sound"]
 [connection signal="pressed" from="ZufallAbbruch" to="." method="_on_ZufallAbbruch_pressed"]
+[connection signal="focus_entered" from="SuchEdit" to="." method="_on_SuchEdit_focus_entered"]
 [connection signal="button_down" from="Suche" to="." method="button_sound"]
 [connection signal="pressed" from="Suche" to="." method="_on_Suche_pressed"]
 [connection signal="button_down" from="Button" to="." method="button_sound"]
