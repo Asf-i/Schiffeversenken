@@ -218,8 +218,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=19]
-resource_name = "Tod"
+[sub_resource type="Animation" id=27]
 length = 0.2
 step = 0.02
 tracks/0/type = "value"
@@ -305,7 +304,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=20]
+[sub_resource type="CanvasItemMaterial" id=28]
 blend_mode = 1
 
 [sub_resource type="Gradient" id=21]
@@ -353,8 +352,8 @@ __meta__ = {
 }
 
 [node name="Button" type="TouchScreenButton" parent="."]
-position = Vector2( -26, -23 )
-scale = Vector2( 0.398438, 0.359375 )
+position = Vector2( -29.9999, -25 )
+scale = Vector2( 0.429687, 0.390625 )
 normal = ExtResource( 182 )
 
 [node name="Sprite2" type="Sprite" parent="."]
@@ -398,10 +397,10 @@ bus = "Sound"
 anims/NurExplos = SubResource( 26 )
 anims/RESET = SubResource( 18 )
 anims/Schontot = SubResource( 25 )
-anims/Tod = SubResource( 19 )
+anims/Tod = SubResource( 27 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-material = SubResource( 20 )
+material = SubResource( 28 )
 position = Vector2( -7, -3 )
 scale = Vector2( 0.6, 0.6 )
 z_index = 1
@@ -414,7 +413,7 @@ process_material = SubResource( 24 )
 texture = ExtResource( 3 )
 
 [node name="Particles2D2" type="Particles2D" parent="."]
-material = SubResource( 20 )
+material = SubResource( 28 )
 position = Vector2( 63, 7 )
 scale = Vector2( 0.6, 0.6 )
 z_index = 1

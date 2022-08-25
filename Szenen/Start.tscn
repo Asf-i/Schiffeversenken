@@ -268,12 +268,27 @@ centered = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 16.0
 margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.5.6"
+text = "v0.5.7"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -56.0
+margin_right = -16.0
+custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "Music by Matthaeus"
 __meta__ = {
 "_edit_use_anchors_": false
 }

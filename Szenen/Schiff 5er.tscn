@@ -475,8 +475,8 @@ __meta__ = {
 laenge = 5
 
 [node name="Button" type="TouchScreenButton" parent="."]
-position = Vector2( -125.4, -26 )
-scale = Vector2( 0.387365, 0.40625 )
+position = Vector2( -124.4, -27 )
+scale = Vector2( 0.384284, 0.421875 )
 normal = ExtResource( 7 )
 
 [node name="Sprite2" type="Sprite" parent="."]
