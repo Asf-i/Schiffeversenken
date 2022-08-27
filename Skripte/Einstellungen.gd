@@ -15,7 +15,8 @@ func _ready():
 	$Vibration/Vibration2.pressed = Autoload.savegame_data.vibration
 	$ScreenshakeSlider.value = Autoload.savegame_data.screenshake_value
 	$MusicSlider.value = Autoload.savegame_data.musiklautstaerke
-	#VerschiebungSlider wird in Start.gd gesetzt
+	if get_node_or_null("/root/Start") == null:
+		$VerschiebungSlider.value = Autoload.savegame_data.verschiebung
 	richtunganders = 1
 	ready_done = true
 

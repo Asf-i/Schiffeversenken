@@ -416,7 +416,7 @@ margin_top = -56.0
 margin_right = -16.0
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 custom_fonts/font = SubResource( 14 )
-text = "v0.5.7"
+text = "v0.5.9"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -631,7 +631,7 @@ anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
 margin_right = 270.0
-margin_bottom = 480.001
+margin_bottom = 480.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
