@@ -116,3 +116,7 @@ func _on_UiAudioButton2_toggled(button_pressed):
 
 func einst_button_sound():
 	$Clicksound.play()
+
+func _on_Credit_pressed():
+# warning-ignore:return_value_discarded
+	OS.shell_open("https://www.youtube.com/channel/UCrhh29JiUo1s0IzUm09BC9w")

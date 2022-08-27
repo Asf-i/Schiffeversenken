@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Skripte/Einstellungen.gd" type="Script" id=1]
 [ext_resource path="res://Audio/UI/Pt.wav" type="AudioStream" id=2]
@@ -53,6 +53,16 @@ modulate_color = Color( 0.509804, 0.509804, 0.509804, 1 )
 [sub_resource type="DynamicFont" id=32]
 size = 42
 font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=35]
+
+[sub_resource type="StyleBoxEmpty" id=36]
+
+[sub_resource type="StyleBoxEmpty" id=37]
 
 [node name="Einstellungen" type="Button"]
 material = SubResource( 27 )
@@ -277,8 +287,39 @@ margin_right = 348.0
 margin_bottom = -7.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_fonts/font = SubResource( 32 )
-text = "Musiklautstärke"
+text = "Musiklautstärke           *Music by:"
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credit" type="Button" parent="MusicSlider"]
+margin_left = 716.0
+margin_top = -56.0
+margin_right = 938.0
+margin_bottom = -7.0
+custom_colors/font_color_focus = Color( 0.32549, 0.262745, 0.890196, 1 )
+custom_colors/font_color = Color( 0.32549, 0.262745, 0.890196, 1 )
+custom_colors/font_color_hover = Color( 0.32549, 0.262745, 0.890196, 1 )
+custom_colors/font_color_pressed = Color( 0.52549, 0.490196, 0.835294, 1 )
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 33 )
+custom_styles/pressed = SubResource( 34 )
+custom_styles/focus = SubResource( 35 )
+custom_styles/disabled = SubResource( 36 )
+custom_styles/normal = SubResource( 37 )
+text = "Matthaeus"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="MusicSlider/Credit"]
+margin_left = 4.0
+margin_top = 43.0
+margin_right = 220.0
+margin_bottom = 46.0
+color = Color( 0.32549, 0.262745, 0.890196, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -375,5 +416,6 @@ bus = "UI"
 [connection signal="button_down" from="Rotieren/Rotieren2" to="." method="einst_button_sound"]
 [connection signal="toggled" from="Rotieren/Rotieren2" to="." method="_on_CheckButton_toggled"]
 [connection signal="value_changed" from="MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="pressed" from="MusicSlider/Credit" to="." method="_on_Credit_pressed"]
 [connection signal="value_changed" from="ScreenshakeSlider" to="." method="_on_ScreenshakeSlider_value_changed"]
 [connection signal="value_changed" from="VerschiebungSlider" to="." method="_on_VerschiebungSlider_value_changed"]

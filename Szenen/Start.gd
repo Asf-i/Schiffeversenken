@@ -13,8 +13,6 @@ var hsprite_xs = [-868, -968, -1068]
 var next_scene : int = 1
 
 func _ready():
-	OS.set_window_always_on_top(true)
-	
 	$NameButton/NameHintergrund/Spieler1.set_text(Autoload.savegame_data.sp1name)
 	$NameButton.set_text(Autoload.savegame_data.sp1name)
 	$NameButton/NameHintergrund/Spieler2.set_text(Autoload.savegame_data.sp2name)

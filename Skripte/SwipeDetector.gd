@@ -17,7 +17,7 @@ func _input(event):
 		else:
 			end_pos = event.position
 			emit_signal("swipe_done", start_pos, end_pos, swipe_vector)
-	
+
 	if event is InputEventScreenDrag:
 		swipe_vector += event.relative
 		if swipe_vector.length() > 20:
