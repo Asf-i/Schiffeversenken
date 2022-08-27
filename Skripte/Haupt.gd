@@ -196,60 +196,110 @@ func _on_FertigButton_pressed():
 	spielerparatfeld_anzeigen()
 
 func spielerparatfeld_anzeigen():
-	paratfeld_im_bild = true
-	$AndererSpielerBitte.visible = true
-	$AndererSpielerBitte/Tween.interpolate_property($AndererSpielerBitte, "rect_position:y", $AndererSpielerBitte.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$AndererSpielerBitte/Tween.start()
+	if not Autoload.offline_schneller_mode or (spielphase == 1 && not spieler2_ist_dran):
+		paratfeld_im_bild = true
+		$AndererSpielerBitte.visible = true
+		$AndererSpielerBitte/Tween.interpolate_property($AndererSpielerBitte, "rect_position:y", $AndererSpielerBitte.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$AndererSpielerBitte/Tween.start()
 	
-	if spieler2_ist_dran && Autoload.savegame_data.rotier_mode:
-		$Camera2D.rotation_degrees = 0
-		$Camera2D.position = Vector2(0, 0)
+	if spielphase != 1 && (not Autoload.savegame_data.rotier_mode or (not spieler2_ist_dran && $Camera2D.rotation_degrees == 180) or (spieler2_ist_dran && $Camera2D.rotation_degrees == 0)):
+		$FelderwackelPlayer.play("wackel")
+		$SchnellclearPlayer.play("nurname")
+		yield(get_tree().create_timer(0.195), "timeout")
+	elif spieler2_ist_dran && Autoload.savegame_data.rotier_mode && $Camera2D.rotation_degrees != 0:
+		if Autoload.offline_schneller_mode:
+			$Camera2D/Tween.interpolate_property($Camera2D, "rotation_degrees", 180, 0, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			$Camera2D/Tween.interpolate_property($Camera2D, "position", Vector2(1080, Autoload.actual_screen_height), Vector2(0, 0), 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			$Camera2D/Tween.start()
+			yield(get_tree().create_timer(0.2), "timeout")
+		else:
+			$Camera2D.rotation_degrees = 0
+			$Camera2D.position = Vector2(0, 0)
 		$Einstellungen.richtunganders = 1
+		$Schiffe.rect_position.x = 0
 	elif Autoload.savegame_data.rotier_mode:
-		$Camera2D.rotation_degrees = 180
-		$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
+		if Autoload.offline_schneller_mode && spielphase != 1 && $Camera2D.rotation_degrees != 180:
+			$Camera2D/Tween.interpolate_property($Camera2D, "rotation_degrees", 0, 180, 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			$Camera2D/Tween.interpolate_property($Camera2D, "position", Vector2(0, 0), Vector2(1080, Autoload.actual_screen_height), 0.4, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+			$Camera2D/Tween.start()
+			yield(get_tree().create_timer(0.2), "timeout")
+		else:
+			$Camera2D.rotation_degrees = 180
+			$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
 		$Einstellungen.richtunganders = -1
+		$Schiffe.rect_position.x = 0
 	
-	yield($AndererSpielerBitte/Tween, "tween_all_completed")
-	$Felder/Abdeckung.visible = false
-	$Felder.clear(false)
-	clear()
-	if spieler2_ist_dran:
-		$Name.set_text(Autoload.savegame_data.sp1name)
-		if spielphase == 1:
-			$Felder.rect_position.y += FELDVERSCHIEBUNG
-			$FelderRaster.rect_position.y += FELDVERSCHIEBUNG
-			$FelderHintergrund.rect_position.y += FELDVERSCHIEBUNG
+	if Autoload.offline_schneller_mode && not (spielphase == 1 && not spieler2_ist_dran):
+		$Felder/Abdeckung.visible = false
+		$Felder.clear(false)
+		clear()
+		if spieler2_ist_dran:
+			$Name.set_text(Autoload.savegame_data.sp1name)
+		else:
+			$Name.set_text(Autoload.savegame_data.sp2name)
+		#Ab jetzt quasi anderer_spieler_parat
+		spieler2_ist_dran = not spieler2_ist_dran
+		if not spieler2_ist_dran && spielphase == 1:
+			spielphase = 2
+			zu_phase_zwei_wechseln()
+			for i in anzahl_schiffe:
+				get_node("Schiffe/" + str(i + 1)).visible = false
+		elif spielphase == 2:
+			$Felder.treffer_markieren(spieler2_ist_dran)
+			for i in anzahl_schiffe:
+				get_node("Schiffe/" + str(i + 1)).visible = false
+				vollschiffcheck(str(i + 1), null, true)
+		for i in Autoload.spieler1_centerfelder.size():
+			if spieler2_ist_dran:
+				$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $Schiffe)
+			else:
+				$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
 	else:
-		$Name.set_text(Autoload.savegame_data.sp2name)
+		yield($AndererSpielerBitte/Tween, "tween_all_completed")
+		$Felder/Abdeckung.visible = false
+		$Felder.clear(false)
+		clear()
+		if spieler2_ist_dran:
+			$Name.set_text(Autoload.savegame_data.sp1name)
+			if spielphase == 1:
+				$Felder.rect_position.y += FELDVERSCHIEBUNG
+#				$Felder/FelderRaster.rect_position.y += FELDVERSCHIEBUNG
+#				$Felder/FelderHintergrund.rect_position.y += FELDVERSCHIEBUNG
+		else:
+			$Name.set_text(Autoload.savegame_data.sp2name)
 
 func anderer_spieler_parat():
+	print(spieler2_ist_dran)
 	if spieler2_ist_dran && spielphase == 1:
 		spielphase = 2
 		zu_phase_zwei_wechseln()
 	
 	spieler2_ist_dran = not spieler2_ist_dran
+	print("Spieler zwei ist dran: " + str(spieler2_ist_dran))
 	
 	if spielphase == 2:
-		$EigenschiffControl/EigeneFelder.clear(false)
+		if not Autoload.offline_schneller_mode:
+			$EigenschiffControl/EigeneFelder.clear(false)
+			$EigenschiffControl/EigeneFelder.felder_laden(spieler2_ist_dran)
+			$EigenschiffControl/EigeneFelder.treffer_markieren(not spieler2_ist_dran)
 		$Felder.clear(false)
-		$EigenschiffControl/EigeneFelder.felder_laden(spieler2_ist_dran)
-		$EigenschiffControl/EigeneFelder.treffer_markieren(not spieler2_ist_dran)
 		$Felder.treffer_markieren(spieler2_ist_dran)
 		
 		for i in anzahl_schiffe:
 			get_node("Schiffe/" + str(i + 1)).visible = false
-			get_node("EigenschiffControl/EigeneSchiffe/" + str(i + 1)).modulate = Color(1, 1, 1)
-		for i in anzahl_schiffe:
 			vollschiffcheck(str(i + 1), null, true)
+			if not Autoload.offline_schneller_mode:
+				get_node("EigenschiffControl/EigeneSchiffe/" + str(i + 1)).modulate = Color(1, 1, 1)
 		for i in Autoload.spieler1_centerfelder.size(): #Hier könnte auch spieler2_centerfelder stehen, es geht nur um die Länge
 			match spieler2_ist_dran:
 				true:
 					$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), true, true, $Schiffe)
-					$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
+					if not Autoload.offline_schneller_mode:
+						$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 				false:
 					$Felder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler2_centerfelder.keys()[i]), true, true, $Schiffe)
-					$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
+					if not Autoload.offline_schneller_mode:
+						$EigenschiffControl/EigeneFelder.schiff_in_feld_platzieren(get_node("Felder/" + Autoload.spieler1_centerfelder.keys()[i]), false, true, $EigenschiffControl/EigeneSchiffe)
 	
 	$AndererSpielerBitte/Tween.interpolate_property($AndererSpielerBitte, "rect_position:y", $AndererSpielerBitte.rect_position.y, -$AndererSpielerBitte.rect_size.y, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$AndererSpielerBitte/Tween.start()
@@ -262,12 +312,15 @@ func anderer_spieler_parat():
 	$AndererSpielerBitte.visible = false
 
 func zu_phase_zwei_wechseln():
-	#Buttons ändern sich
+	if not Autoload.offline_schneller_mode:
+		$EigenschiffControl.visible = true
+	else:
+		$EigenschiffControl.rect_position.y = 0
+		$SchnellclearPlayer.play("schnellclear")
+		yield($SchnellclearPlayer, "animation_finished")
 	$RandomButton.queue_free()
 	$ClearButton.queue_free()
 	$FertigButton.queue_free()
-	#Mehr
-	$EigenschiffControl.visible = true
 	$SchriftLabel.visible = false
 
 func vollschiffcheck(schiffname, _von_feld = null, schontot : bool = false):
@@ -353,3 +406,7 @@ func _on_Revanche_pressed():
 
 func button_sound():
 	$ButtonSound.play()
+
+func _on_SchnellclearPlayer_animation_finished(anim_name):
+	if anim_name == "schnellclear" or anim_name == "nurname":
+		$SchnellclearPlayer.play("finish")

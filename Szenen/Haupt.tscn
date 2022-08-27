@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Skripte/Haupt.gd" type="Script" id=1]
 [ext_resource path="res://Szenen/Schiff 3er.tscn" type="PackedScene" id=2]
@@ -379,6 +379,219 @@ tracks/3/keys = {
 "values": [ Vector2( 1080, 1920 ), Vector2( 1080, 1920 ) ]
 }
 
+[sub_resource type="Animation" id=50]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("FertigButton:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 675, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("RandomButton:rect_position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 275, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ClearButton:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 475, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("SchriftLabel:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 56, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Name:rect_position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 168, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "finish"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Name:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1095, -1.25, 0, 0.028, 0, 168, -0.186, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "nurname"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Name:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 168, -0.25, 0, 0.141, 0, 1095, -0.022, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+
+[sub_resource type="Animation" id=51]
+resource_name = "schnellclear"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("FertigButton:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 675, -0.25, 0, 0.131, 0, -140, -0.048, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("RandomButton:rect_position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 275, -0.25, 0, 0.123, 0, -420, -0.038, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ClearButton:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 475, -0.25, 0, 0.123, 0, -280, -0.068, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("SchriftLabel:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 56, -0.25, 0, 0.133, 0, -265, -0.081, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Name:rect_position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 168, -0.25, 0, 0.141, 0, 1095, -0.022, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2 )
+}
+
+[sub_resource type="Animation" id=54]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Felder:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 540, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Felder:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1041, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Felder:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Schiffe:rect_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "wackel"
+length = 0.4
+step = 0.025
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Felder:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 540, -0.056, 0, 0.054, 0, 510, -0.047, 0, 0.063, 0, 540, -0.1, 30, 0.25, 0 ),
+"times": PoolRealArray( 0.125, 0.2, 0.325 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Felder:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.045, 0, -5, -0.015, 0, 0.024, 0, 0, -0.075, 5, 0.25, 0 ),
+"times": PoolRealArray( 0.125, 0.2, 0.325 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Schiffe:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 30, -0.08, 30, 0.048, 0, 0, -0.043, 0, 0.068, 0, 30, -0.107, 30, 0.25, 0 ),
+"times": PoolRealArray( 0.125, 0.2, 0.325 )
+}
+
 [node name="Welt" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -394,18 +607,18 @@ script = ExtResource( 11 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -159.0
-margin_top = -171.0
-margin_right = 159.0
-margin_bottom = 171.0
+margin_left = -1984.0
+margin_top = -1174.0
+margin_right = 1984.0
+margin_bottom = 1174.0
 color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="ColorRect"]
+[node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.278431, 0.596078, 0.74902, 0.498039 )
-position = Vector2( 699, 1762 )
+position = Vector2( 540, 1591 )
 scale = Vector2( 0.847, 0.847 )
 texture = ExtResource( 14 )
 
@@ -421,35 +634,6 @@ text = "Platziere die Schiffe
 im Feld"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FelderHintergrund" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -526.0
-margin_top = -1405.0
-margin_right = 526.0
-margin_bottom = -353.002
-custom_styles/disabled = SubResource( 18 )
-disabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FelderRaster" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -512.0
-margin_top = -1391.0
-margin_right = 512.0
-margin_bottom = -367.0
-color = Color( 0.156863, 0.156863, 0.156863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -474,6 +658,37 @@ margin_left = -531.0
 margin_top = -531.0
 margin_right = 531.0
 margin_bottom = 530.998
+
+[node name="FelderHintergrund" type="Button" parent="Felder"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -526.0
+margin_top = -526.0
+margin_right = 526.0
+margin_bottom = 525.998
+custom_styles/disabled = SubResource( 18 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FelderRaster" type="ColorRect" parent="Felder"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -512.0
+margin_right = 512.0
+margin_bottom = 512.0
+color = Color( 0.156863, 0.156863, 0.156863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="EigenschiffControl" type="Control" parent="."]
 visible = false
@@ -662,7 +877,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -65.0
 margin_top = -1568.0
-margin_right = 65.0
+margin_right = 65.0002
 margin_bottom = -1438.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -707,9 +922,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 168.0
-margin_top = -100.0
-margin_right = -27.092
-margin_bottom = -18.0
+margin_top = 3740.0
+margin_right = 2132.91
+margin_bottom = 3822.0
 text = "SpielerName "
 align = 2
 clip_text = true
@@ -1218,8 +1433,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 11070.0
-margin_bottom = 19680.0
+margin_right = 13230.0
+margin_bottom = 23520.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1335,6 +1550,16 @@ stream = ExtResource( 20 )
 volume_db = 5.0
 bus = "UI"
 
+[node name="SchnellclearPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 50 )
+anims/finish = SubResource( 52 )
+anims/nurname = SubResource( 53 )
+anims/schnellclear = SubResource( 51 )
+
+[node name="FelderwackelPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 54 )
+anims/wackel = SubResource( 55 )
+
 [connection signal="swipe" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe"]
 [connection signal="swipe_done" from="SwipeDetector" to="Einstellungen" method="_on_SwipeDetector_swipe_done"]
 [connection signal="button_down" from="FertigButton" to="." method="button_sound"]
@@ -1358,3 +1583,4 @@ bus = "UI"
 [connection signal="button_down" from="ZumHauptmenu/Content/nein" to="." method="button_sound"]
 [connection signal="pressed" from="ZumHauptmenu/Content/nein" to="." method="_on_nein_pressed"]
 [connection signal="end_done" from="TransitionBlackness" to="." method="_on_TransitionBlackness_end_done"]
+[connection signal="animation_finished" from="SchnellclearPlayer" to="." method="_on_SchnellclearPlayer_animation_finished"]

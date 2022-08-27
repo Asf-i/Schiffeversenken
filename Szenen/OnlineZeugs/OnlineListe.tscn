@@ -22,7 +22,7 @@
 
 [sub_resource type="StyleBoxEmpty" id=17]
 
-[sub_resource type="Shader" id=26]
+[sub_resource type="Shader" id=44]
 code = "shader_type canvas_item;
 
 uniform float blur : hint_range(0, 6) = 1.5;
@@ -33,7 +33,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=27]
-shader = SubResource( 26 )
+shader = SubResource( 44 )
 shader_param/blur = 2.0
 
 [sub_resource type="StyleBoxFlat" id=28]

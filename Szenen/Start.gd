@@ -46,10 +46,9 @@ func _on_Multiplayer_pressed():
 		Server.connect_to_server()
 
 func _on_Singleplayer_pressed():
-	if not swiping:
-		Server.network = null
-		next_scene = 1
-		$TransitionBlackness.black()
+	Server.network = null
+	next_scene = 1
+	$TransitionBlackness.black()
 
 func _on_VsComputer_pressed():
 	if not swiping:
@@ -187,3 +186,18 @@ func start_button_sound():
 
 func alt_button_sound():
 	$PtClicksound.play()
+
+func _on_Schnell_pressed():
+	Autoload.offline_schneller_mode = true
+	_on_Singleplayer_pressed()
+
+func _on_Standard_pressed():
+	Autoload.offline_schneller_mode = false
+	_on_Singleplayer_pressed()
+
+func _on_1_pressed():
+	if not swiping:
+		$Moduswahl/WahlPlayer.play("open")
+
+func _on_WahlWegButton_pressed():
+	$Moduswahl/WahlPlayer.play_backwards("open")

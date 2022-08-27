@@ -13,6 +13,7 @@ var actual_screen_height : int
 
 var default_versch_values = [1864, 0, 0, 24, 128, -448]
 var versch_namen = ["VersionsLabel", "GradientControl", "NameButton", "SettingButton", "SettingWegButton", "EingebeCover"]
+var offline_schneller_mode : bool = true
 
 #Zum Saven
 const SAVE_PATH = "user://schiffeversenken.save"
