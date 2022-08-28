@@ -914,8 +914,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 3510.0
-margin_bottom = 6240.0
+margin_right = 5670.0
+margin_bottom = 10080.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1232,8 +1232,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 41310.0
-margin_bottom = 73440.0
+margin_right = 43470.0
+margin_bottom = 77280.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false

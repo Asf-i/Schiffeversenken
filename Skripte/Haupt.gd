@@ -27,7 +27,7 @@ func _ready():
 	$Gewonnen.rect_position.y = -$Gewonnen.rect_size.y
 	
 	#Anderes
-	$AndererSpielerBitte/Label.set_text(Autoload.savegame_data.sp2name)
+	$AndererSpielerBitte/Control/Label.set_text(Autoload.savegame_data.sp2name)
 	$Einstellungen.rect_position.y = Autoload.actual_screen_height + 1
 	$Name.set_text(Autoload.savegame_data.sp1name + " ")
 	
@@ -48,7 +48,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_up"):
-		$Gewonnen/Gewinner1/GewinnerFelder1.visible = false
+		$Schiffe.rect_position.x = 0
 	
 	yield(get_tree().create_timer(0.01), "timeout")
 	if event is InputEventScreenTouch && event.is_pressed() && unselectbar && spielphase == 1:
@@ -202,7 +202,7 @@ func spielerparatfeld_anzeigen():
 		$AndererSpielerBitte/Tween.interpolate_property($AndererSpielerBitte, "rect_position:y", $AndererSpielerBitte.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$AndererSpielerBitte/Tween.start()
 	
-	if spielphase != 1 && (not Autoload.savegame_data.rotier_mode or (not spieler2_ist_dran && $Camera2D.rotation_degrees == 180) or (spieler2_ist_dran && $Camera2D.rotation_degrees == 0)):
+	if spielphase != 1 && Autoload.offline_schneller_mode && (not Autoload.savegame_data.rotier_mode or (not spieler2_ist_dran && $Camera2D.rotation_degrees == 180) or (spieler2_ist_dran && $Camera2D.rotation_degrees == 0)):
 		$FelderwackelPlayer.play("wackel")
 		$SchnellclearPlayer.play("nurname")
 		yield(get_tree().create_timer(0.195), "timeout")
@@ -213,8 +213,9 @@ func spielerparatfeld_anzeigen():
 			$Camera2D/Tween.start()
 			yield(get_tree().create_timer(0.2), "timeout")
 		else:
-			$Camera2D.rotation_degrees = 0
-			$Camera2D.position = Vector2(0, 0)
+#			$Camera2D.rotation_degrees = 0
+#			$Camera2D.position = Vector2(0, 0)
+			$AndererSpielerBitte/Control.rect_rotation = 180
 		$Einstellungen.richtunganders = 1
 		$Schiffe.rect_position.x = 0
 	elif Autoload.savegame_data.rotier_mode:
@@ -224,8 +225,9 @@ func spielerparatfeld_anzeigen():
 			$Camera2D/Tween.start()
 			yield(get_tree().create_timer(0.2), "timeout")
 		else:
-			$Camera2D.rotation_degrees = 180
-			$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
+#			$Camera2D.rotation_degrees = 180
+#			$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
+			$AndererSpielerBitte/Control.rect_rotation = 180
 		$Einstellungen.richtunganders = -1
 		$Schiffe.rect_position.x = 0
 	
@@ -261,12 +263,20 @@ func spielerparatfeld_anzeigen():
 		clear()
 		if spieler2_ist_dran:
 			$Name.set_text(Autoload.savegame_data.sp1name)
+			if Autoload.savegame_data.rotier_mode:
+				$Camera2D.rotation_degrees = 0
+				$Camera2D.position = Vector2(0, 0)
+				$AndererSpielerBitte/Control.rect_rotation = 0
 			if spielphase == 1:
 				$Felder.rect_position.y += FELDVERSCHIEBUNG
 #				$Felder/FelderRaster.rect_position.y += FELDVERSCHIEBUNG
 #				$Felder/FelderHintergrund.rect_position.y += FELDVERSCHIEBUNG
 		else:
 			$Name.set_text(Autoload.savegame_data.sp2name)
+			if Autoload.savegame_data.rotier_mode:
+				$Camera2D.rotation_degrees = 180
+				$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
+				$AndererSpielerBitte/Control.rect_rotation = 0
 
 func anderer_spieler_parat():
 	print(spieler2_ist_dran)
@@ -306,8 +316,8 @@ func anderer_spieler_parat():
 	
 	yield($AndererSpielerBitte/Tween, "tween_completed")
 	match spieler2_ist_dran:
-		true: $AndererSpielerBitte/Label.set_text(Autoload.savegame_data.sp1name)
-		false: $AndererSpielerBitte/Label.set_text(Autoload.savegame_data.sp2name)
+		true: $AndererSpielerBitte/Control/Label.set_text(Autoload.savegame_data.sp1name)
+		false: $AndererSpielerBitte/Control/Label.set_text(Autoload.savegame_data.sp2name)
 	paratfeld_im_bild = false
 	$AndererSpielerBitte.visible = false
 

@@ -817,9 +817,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 135.0
-margin_top = -1568.0
+margin_top = -1579.0
 margin_right = 265.0
-margin_bottom = -1438.0
+margin_bottom = -1449.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
 custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -847,9 +847,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -265.0
-margin_top = -1568.0
+margin_top = -1579.0
 margin_right = -135.0
-margin_bottom = -1438.0
+margin_bottom = -1449.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
 custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -876,9 +876,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -65.0
-margin_top = -1568.0
+margin_top = -1579.0
 margin_right = 65.0002
-margin_bottom = -1438.0
+margin_bottom = -1449.0
 custom_colors/font_color_disabled = Color( 0.290196, 0.290196, 0.290196, 1 )
 custom_colors/font_color_focus = Color( 0.909804, 0.909804, 0.909804, 1 )
 custom_colors/font_color = Color( 0.909804, 0.909804, 0.909804, 1 )
@@ -923,7 +923,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 168.0
 margin_top = -100.0
-margin_right = -22.0
+margin_right = -38.0002
 margin_bottom = -18.0
 text = "SpielerName"
 align = 2
@@ -1015,7 +1015,6 @@ __meta__ = {
 }
 
 [node name="AndererSpielerBitte" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1920.0
@@ -1027,7 +1026,16 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="AndererSpielerBitte"]
 
-[node name="Label" type="Label" parent="AndererSpielerBitte"]
+[node name="Control" type="Control" parent="AndererSpielerBitte"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="AndererSpielerBitte/Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1045,7 +1053,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="AndererSpielerBitte"]
+[node name="Label2" type="Label" parent="AndererSpielerBitte/Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1063,15 +1071,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AndererOkButton" type="Button" parent="AndererSpielerBitte"]
+[node name="AndererOkButton" type="Button" parent="AndererSpielerBitte/Control"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -196.0
-margin_top = -655.0
+margin_top = 305.0
 margin_right = 196.0
-margin_bottom = -405.0
+margin_bottom = 555.0
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 45 )
 text = "OK"
@@ -1433,8 +1441,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 13230.0
-margin_bottom = 23520.0
+margin_right = 16470.0
+margin_bottom = 29280.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1570,8 +1578,8 @@ anims/wackel = SubResource( 55 )
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
 [connection signal="button_down" from="HauptmenuButton" to="." method="button_sound"]
 [connection signal="pressed" from="HauptmenuButton" to="." method="_on_HauptmenuButton_pressed"]
-[connection signal="button_down" from="AndererSpielerBitte/AndererOkButton" to="." method="button_sound"]
-[connection signal="pressed" from="AndererSpielerBitte/AndererOkButton" to="." method="_on_AndererOkButton_pressed"]
+[connection signal="button_down" from="AndererSpielerBitte/Control/AndererOkButton" to="." method="button_sound"]
+[connection signal="pressed" from="AndererSpielerBitte/Control/AndererOkButton" to="." method="_on_AndererOkButton_pressed"]
 [connection signal="button_down" from="Gewonnen/Revanche" to="." method="button_sound"]
 [connection signal="pressed" from="Gewonnen/Revanche" to="." method="_on_Revanche_pressed"]
 [connection signal="button_down" from="Gewonnen/Hauptmenu" to="." method="button_sound"]

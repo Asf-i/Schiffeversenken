@@ -21,62 +21,63 @@ func _input(_event):
 		emit_signal("press")
 
 func zug():
-	randomize()
-	such()
-	
-	if besuch_feld.name in Autoload.spieler1_felder:
-		if state == 1:
-			i_richtig = i_letztes
-			state = 2
-		elif state == 0:
-			state = 1
-		if i_letztes == 4: #Weil in den loops i nur bis 3 geht
-			erstes_getroffenes = besuch_feld
-		letztes_getroffenes = besuch_feld
-		Autoload.spieler2_beschossene[besuch_feld.name] = true
-		$"/root/Welt".spieler2_punkte += 1
-		$"/root/Welt".spieler1_versenkte[besuch_feld.sp1_schiffli_name] -= 1
+	if $"/root/Welt".spielphase != 3:
+		randomize()
+		such()
 		
-		if erstes_getroffenes == null:
-			state = 0
-	else:
-		if state == 2:
-			state = 3
-		i_letztes = 4
-		letztes_getroffenes = null
-		Autoload.spieler2_beschossene[besuch_feld.name] = false
-	
-	#Rakete Abschiessen
-	var feld = get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name)
-	var rakete = RAKETE.instance()
-	$"/root/Welt/Raketen".add_child(rakete)
-	rakete.ziel = feld.rect_global_position + feld.rect_size / 2
-	rakete.nur_schoen = true
-	rakete.fliegen($"/root/Welt/Felder".rect_position)
-	
-	yield(get_tree().create_timer(0.5), "timeout")
-	$"/root/Welt/EigenschiffControl/EigeneFelder".treffer_markieren(true)
-	get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D2").emitting = true
-	if besuch_feld.name in Autoload.spieler1_felder:
-		$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
-		$"/root/Welt".gewinnercheck()
-		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D").emitting = true
-		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").pitch_scale = rand_range(0.8, 1.2)
-		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").play()
-	else:
-		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").pitch_scale = rand_range(0.9, 1.3)
-		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").play()
-	
-	#Zug beenden
-	start = false
-	if letztes_getroffenes == null:
-		$"/root/Welt/NotifyRect/Control/AnimationPlayer".play_backwards("open")
-		yield($"/root/Welt/NotifyRect/Control/AnimationPlayer", "animation_finished")
-		$"/root/Welt/NotifyRect".visible = false
+		if besuch_feld.name in Autoload.spieler1_felder:
+			if state == 1:
+				i_richtig = i_letztes
+				state = 2
+			elif state == 0:
+				state = 1
+			if i_letztes == 4: #Weil in den loops i nur bis 3 geht
+				erstes_getroffenes = besuch_feld
+			letztes_getroffenes = besuch_feld
+			Autoload.spieler2_beschossene[besuch_feld.name] = true
+			$"/root/Welt".spieler2_punkte += 1
+			$"/root/Welt".spieler1_versenkte[besuch_feld.sp1_schiffli_name] -= 1
+			
+			if erstes_getroffenes == null:
+				state = 0
+		else:
+			if state == 2:
+				state = 3
+			i_letztes = 4
+			letztes_getroffenes = null
+			Autoload.spieler2_beschossene[besuch_feld.name] = false
 		
-		get_parent().spieler2_ist_dran = false
-	else:
-		zug()
+		#Rakete Abschiessen
+		var feld = get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name)
+		var rakete = RAKETE.instance()
+		$"/root/Welt/Raketen".add_child(rakete)
+		rakete.ziel = feld.rect_global_position + feld.rect_size / 2
+		rakete.nur_schoen = true
+		rakete.fliegen($"/root/Welt/Felder".rect_position)
+		
+		yield(get_tree().create_timer(0.5), "timeout")
+		$"/root/Welt/EigenschiffControl/EigeneFelder".treffer_markieren(true)
+		get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D2").emitting = true
+		if besuch_feld.name in Autoload.spieler1_felder:
+			$"/root/Welt".vollschiffcheck(besuch_feld.sp1_schiffli_name)
+			$"/root/Welt".gewinnercheck()
+			get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Particles2D").emitting = true
+			get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").pitch_scale = rand_range(0.8, 1.2)
+			get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Explosion").play()
+		else:
+			get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").pitch_scale = rand_range(0.9, 1.3)
+			get_node("/root/Welt/EigenschiffControl/EigeneFelder/" + besuch_feld.name + "/Platschsound").play()
+		
+		#Zug beenden
+		start = false
+		if letztes_getroffenes == null:
+			$"/root/Welt/NotifyRect/Control/AnimationPlayer".play_backwards("open")
+			yield($"/root/Welt/NotifyRect/Control/AnimationPlayer", "animation_finished")
+			$"/root/Welt/NotifyRect".visible = false
+			
+			get_parent().spieler2_ist_dran = false
+		else:
+			zug()
 
 func such():
 	var such_node
