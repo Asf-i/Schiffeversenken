@@ -25,12 +25,8 @@ func button_pressed(button_name):
 	$ColorRect2/AnimationPlayer.play("InsBild")
 	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:x", $MomentNode/ColorRect.rect_position.x, 53, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.start()
-#	$NochDaCheckTimer.start()
 
 func _on_accept_pressed():
-#	$NochDaTimer.stop()
-#	$NochDaCheckTimer.stop()
-#	$NochDaSchlussTimer.start()
 	Server.rpc_id(anfrager_id, "reagiert_auf_anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, true)
 	Server.spielpartner_id = anfrager_id
 	Server.spielpartner_name = anfrager_name
@@ -41,7 +37,6 @@ func _on_deny_pressed(mit_update : bool = true):
 	if $MomentNode.visible == false or $MomentNode/ColorRect/Tween.is_active():
 		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
 		$AnfragWeg.visible = false
-#	$anfragNode/ColorRect/Tween.interpolate_property($anfragNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$anfragNode/ColorRect/Tween.interpolate_property($anfragNode/ColorRect, "rect_position:x", $anfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$anfragNode/ColorRect/Tween.start()
 	yield($anfragNode/ColorRect/Tween, "tween_completed")
@@ -49,7 +44,6 @@ func _on_deny_pressed(mit_update : bool = true):
 
 func _on_Abbrechen_pressed():
 	Server.rpc_id(angefragter_id, "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, false)
-#	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:y", Autoload.actual_screen_height - 344, Autoload.actual_screen_height, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.interpolate_property($MomentNode/ColorRect, "rect_position:x", $MomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MomentNode/ColorRect/Tween.start()
 	if $anfragNode.visible == false or $anfragNode/ColorRect/Tween.is_active():
@@ -72,28 +66,6 @@ func _on_TransitionBlackness_end_done(s2dran):
 	$"/root/Welt".spieler2_ist_dran = s2dran
 	if not s2dran:
 		Server.rpc_id(1, "spielpartner_eingeben", true, get_tree().get_network_unique_id(), Server.spielpartner_id)
-
-#func _on_NochDaTimer_timeout():
-#	$NochDaCheckTimer.stop()
-#	if $anfragNode.visible:
-#		_on_deny_pressed()
-#	elif $MomentNode.visible:
-#		_on_Abbrechen_pressed()
-#
-#func _on_NochDaCheckTimer_timeout():
-#	if $anfragNode.visible or $MomentNode.visible:
-#		var noch_da_id
-#		if $anfragNode.visible:
-#			noch_da_id = anfrager_id
-#		else:
-#			noch_da_id = angefragter_id
-#
-#		Server.rpc_id(noch_da_id, "noch_da", get_tree().get_network_unique_id(), true)
-#		$NochDaTimer.start()
-#		$NochDaCheckTimer.start()
-#
-#func _on_NochDaSchlussTimer_timeout():
-#	_on_deny_pressed(false)
 
 func _on_Zufall_pressed():
 	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id(), false)

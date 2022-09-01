@@ -272,8 +272,8 @@ func vollschiffcheck(schiffname, von_feld = null):
 
 func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, das unten auch ausgeführt wird, wenn die punkte nicht erreicht sind
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
-		yield(get_tree().create_timer(0.5), "timeout")
 		spielphase = 3
+		yield(get_tree().create_timer(0.5), "timeout")
 		$Gewonnen/Label.set_text("Spiel gewonnen!")
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
@@ -308,40 +308,9 @@ func _on_ZurListeButton_pressed():
 	$"/root/Start/OnlineListe".anfrager_id = null
 	$"/root/Start/OnlineListe/MomentNode".visible = false
 	$"/root/Start/OnlineListe".angefragter_id = null
-#	Server.available = true
 	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id()) #Available war vor randomGegner auf true
 	$TransitionBlackness.black()
 	Server.ingame = false
-
-#func _on_NochDaTimer_timeout():
-#	$NochDaCheckTimer.stop()
-#	anderer_noch_da = false
-#	if not $Gewonnen.visible:
-#		$WarteAufControl.visible = false
-#		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
-#		$NotifyRect/Control/InfoLabel.set_text("ist nicht mehr da...")
-#		$NotifyRect/Control/ListenButton.visible = true
-#		$NotifyRect/Control/HintergrundButton.visible = false
-#		$NotifyRect/Control/HintergrundButton2.visible = true
-#		$NotifyRect/Control/AnimationPlayer.play("open")
-#		$NotifyRect.visible = true
-#	else:
-#		$Gewonnen/Revanche.disabled = true
-#		$ColorRect2/AnimationPlayer.play_backwards("InsBild")
-#		$AnfragWeg.visible = false
-#		$IngameAnfragNode/ColorRect/Tween.interpolate_property($IngameAnfragNode/ColorRect, "rect_position:x", $IngameAnfragNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#		$IngameMomentNode/ColorRect/Tween.interpolate_property($IngameMomentNode/ColorRect, "rect_position:x", $IngameMomentNode/ColorRect.rect_position.x, -975, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#		$IngameAnfragNode/ColorRect/Tween.start()
-#		$IngameMomentNode/ColorRect/Tween.start()
-#		yield($IngameAnfragNode/ColorRect/Tween, "tween_all_completed")
-#		$IngameAnfragNode.visible = false
-#		$IngameMomentNode.visible = false
-
-#func _on_NochDaCheckTimer_timeout():
-#	Server.rpc_id(Server.spielpartner_id, "noch_da", get_tree().get_network_unique_id(), true)
-#	$NochDaTimer.start()
-#	if ($NotifyRect.visible or $WarteAufControl.visible or $Gewonnen.visible): #hier war hinten dran noch && spielphase != 3
-#		$NochDaCheckTimer.start()
 
 func _on_Revanche_pressed():
 	Server.rpc_id(Server.spielpartner_id, "revanche")

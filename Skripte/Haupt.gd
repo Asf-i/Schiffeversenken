@@ -213,8 +213,6 @@ func spielerparatfeld_anzeigen():
 			$Camera2D/Tween.start()
 			yield(get_tree().create_timer(0.2), "timeout")
 		else:
-#			$Camera2D.rotation_degrees = 0
-#			$Camera2D.position = Vector2(0, 0)
 			$AndererSpielerBitte/Control.rect_rotation = 180
 		$Einstellungen.richtunganders = 1
 		$Schiffe.rect_position.x = 0
@@ -225,8 +223,6 @@ func spielerparatfeld_anzeigen():
 			$Camera2D/Tween.start()
 			yield(get_tree().create_timer(0.2), "timeout")
 		else:
-#			$Camera2D.rotation_degrees = 180
-#			$Camera2D.position = Vector2(1080, Autoload.actual_screen_height)
 			$AndererSpielerBitte/Control.rect_rotation = 180
 		$Einstellungen.richtunganders = -1
 		$Schiffe.rect_position.x = 0
@@ -269,8 +265,6 @@ func spielerparatfeld_anzeigen():
 				$AndererSpielerBitte/Control.rect_rotation = 0
 			if spielphase == 1:
 				$Felder.rect_position.y += FELDVERSCHIEBUNG
-#				$Felder/FelderRaster.rect_position.y += FELDVERSCHIEBUNG
-#				$Felder/FelderHintergrund.rect_position.y += FELDVERSCHIEBUNG
 		else:
 			$Name.set_text(Autoload.savegame_data.sp2name)
 			if Autoload.savegame_data.rotier_mode:
@@ -279,14 +273,12 @@ func spielerparatfeld_anzeigen():
 				$AndererSpielerBitte/Control.rect_rotation = 0
 
 func anderer_spieler_parat():
-	print(spieler2_ist_dran)
 	if spieler2_ist_dran && spielphase == 1:
 		spielphase = 2
 		zu_phase_zwei_wechseln()
 	
 	spieler2_ist_dran = not spieler2_ist_dran
-	print("Spieler zwei ist dran: " + str(spieler2_ist_dran))
-	
+
 	if spielphase == 2:
 		if not Autoload.offline_schneller_mode:
 			$EigenschiffControl/EigeneFelder.clear(false)

@@ -107,8 +107,6 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 			get_parent().get_node("Start/OnlineListe/TransitionBlackness").black(false)
 			spielpartner_id = anderer_id
 			spielpartner_name = anderer_name
-#			onlinelistnode.get_node("NochDaTimer").stop()
-#			onlinelistnode.get_node("NochDaCheckTimer").stop()
 			rpc_id(anderer_id, "reagiert_auf_anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name, true, true)
 		else:
 			onlinelistnode.anfrager_id = null
@@ -131,8 +129,6 @@ remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 :
 	rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
 	spielpartner_id = anderer_id
 	spielpartner_name = anderer_name
-#	onlinelistnode.get_node("NochDaTimer").stop()
-#	onlinelistnode.get_node("NochDaCheckTimer").stop()
 	onlinelistnode.anfrager_id = null
 	onlinelistnode.get_node("TransitionBlackness").black(spieler2)
 
@@ -151,7 +147,6 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 				$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
 				$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 				$"/root/Welt/NotifyRect".visible = true
-		#Hier neu dazu geschrieben:
 		else:
 			rpc_id(spielpartner_id, "bin_bereit", true, true)
 	elif not noch_nicht_ready:
@@ -252,18 +247,8 @@ remote func anderer_spiel_verlassen():
 		$"/root/Welt/NotifyRect/Control/HintergrundButton2".visible = true
 		$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 		$"/root/Welt/NotifyRect".visible = true
-#		$"/root/Welt/NochDaCheckTimer".stop()
 	if not $"/root/Welt".spieler2_ist_dran:
 		rpc_id(1, "spielpartner_eingeben", false, get_tree().get_network_unique_id(), spielpartner_id)
-
-#remote func noch_da(frager_id, frage : bool = false):
-#	if frage && ((get_node_or_null("/root/Welt") && spielpartner_id == frager_id) or (get_node_or_null("/root/Start/OnlineListe") && not ingame)):
-#		rpc_id(frager_id, "noch_da", 5318008) #Id wieder unnötig, BOOBIES
-#	elif get_node_or_null("/root/Welt") != null:
-#		$"/root/Welt/NochDaTimer".stop()
-#	else:
-#		print("NochDaTimer gestoppt")
-#		$"/root/Start/OnlineListe/NochDaTimer".stop()
 
 remote func revanche(anfrage : bool = true):
 	if anfrage:
