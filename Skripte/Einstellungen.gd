@@ -120,4 +120,4 @@ func einst_button_sound():
 
 func _on_Credit_pressed():
 # warning-ignore:return_value_discarded
-	OS.shell_open("https://www.youtube.com/channel/UCrhh29JiUo1s0IzUm09BC9w")
+	OS.shell_open("https://www.youtube.com/watch?v=1UrqP-0H9Iw")

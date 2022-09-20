@@ -286,13 +286,14 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -186.0
+margin_left = -241.0
 margin_top = 265.0
 margin_right = 289.0
 margin_bottom = 316.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_fonts/font = SubResource( 12 )
-text = "Erfolgreich verbunden"
+text = "Connection succeeded"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -306,7 +307,7 @@ margin_right = 193.0
 margin_bottom = 775.0
 custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
 custom_fonts/font = SubResource( 12 )
-text = "Spieler Online:"
+text = "Players online:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -315,13 +316,13 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -342.5
-margin_top = 1000.0
+margin_top = 817.0
 margin_right = 342.5
-margin_bottom = 1082.0
+margin_bottom = 899.0
 custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
 custom_fonts/font = SubResource( 43 )
 custom_styles/normal = SubResource( 2 )
-text = "Niemand hier..."
+text = "Nobody here..."
 align = 1
 valign = 1
 __meta__ = {
@@ -336,7 +337,7 @@ margin_top = 581.0
 margin_right = 164.0
 margin_bottom = 663.0
 theme = ExtResource( 10 )
-text = "Zufall"
+text = "Random"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -366,7 +367,7 @@ theme = ExtResource( 10 )
 custom_colors/cursor_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 max_length = 20
-placeholder_text = "         Anfrage an..."
+placeholder_text = "     Send request to..."
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -380,7 +381,7 @@ margin_top = 482.0
 margin_right = 164.0
 margin_bottom = 564.0
 theme = ExtResource( 10 )
-text = "Anfragen"
+text = "Send"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -424,6 +425,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -473,7 +475,7 @@ margin_right = 457.0
 margin_bottom = -74.5
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_fonts/font = SubResource( 31 )
-text = "Anfrage von"
+text = "Request received from"
 align = 1
 valign = 1
 clip_text = true
@@ -579,9 +581,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -457.0
-margin_top = -125.5
+margin_top = -50.0
 margin_right = 457.0
-margin_bottom = -74.5
+margin_bottom = 1.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_fonts/font = SubResource( 31 )
 text = "GAYLORD5000"
@@ -598,11 +600,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -314.0
-margin_top = -84.0
+margin_top = -130.0
 margin_right = 314.0
-margin_bottom = 1.0
+margin_bottom = -45.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Angefragt..."
+text = "Request sent to"
 align = 1
 valign = 1
 __meta__ = {

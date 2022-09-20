@@ -16,7 +16,7 @@ func button_pressed(button_name):
 	angefragter_id = int(button_name)
 	Server.available = false
 	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id(), false) #False nach id geadded, unsicher
-	$Zufall.set_text("Zufall")
+	$Zufall.set_text("Random")
 	$Zufall.disabled = false
 	Server.rpc_id(int(button_name), "anfrage", get_tree().get_network_unique_id(), Autoload.savegame_data.sp1name)
 	$MomentNode/ColorRect/anfragevon.set_text($SuchEdit.text)
@@ -69,14 +69,14 @@ func _on_TransitionBlackness_end_done(s2dran):
 
 func _on_Zufall_pressed():
 	Server.rpc_id(1, "spieler_available_update", true, false, get_tree().get_network_unique_id(), false)
-	$Zufall.set_text("Suche...")
+	$Zufall.set_text("...")
 	$Zufall.disabled = true
 	Server.available = true
 	$ZufallAbbruch.visible = true
 
 func _on_ZufallAbbruch_pressed():
 	Server.rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id(), false)
-	$Zufall.set_text("Zufall")
+	$Zufall.set_text("Random")
 	$Zufall.disabled = false
 	Server.available = false
 	$ZufallAbbruch.visible = false

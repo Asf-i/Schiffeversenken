@@ -18,7 +18,7 @@ var offline_schneller_mode : bool = true
 #Zum Saven
 const SAVE_PATH = "user://schiffeversenken.save"
 var savegame_data = {
-	"sp1name": "Spieler_1", "sp2name": "Spieler_2",
+	"sp1name": "Player_1", "sp2name": "Player_2",
 	"rotier_mode": false, "sound_an" : true, "ui_sound_an" : true, "vibration" : true,
 	"screenshake_value" : 16, "verschiebung" : 0.0, "musiklautstaerke" : 26
 	}

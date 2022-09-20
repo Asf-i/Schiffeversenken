@@ -100,7 +100,6 @@ func todesanimation():
 			$Todesplayer.play("NurExplos")
 			$Tween.interpolate_property(self, "modulate", modulate, Color(1, 0.4, 0.4), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			$Tween.start()
-#			
 		else:
 			$Todesplayer.play("Tod")
 		if Autoload.savegame_data.vibration:

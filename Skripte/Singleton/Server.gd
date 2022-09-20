@@ -50,7 +50,7 @@ remote func spielerbuttons_updaten(momentane_spieler, spieler_namen, spieler_ing
 		n.queue_free()
 	
 	if momentane_spieler.size() < 2:
-		onlinelistnode.get_node("NiemandHierLabel").set_text("Niemand hier...")
+		onlinelistnode.get_node("NiemandHierLabel").set_text("Nobody here...")
 	else:
 		onlinelistnode.get_node("NiemandHierLabel").set_text("")
 		for i in momentane_spieler.size():
@@ -78,7 +78,7 @@ remote func anfrage(anfrager_id, anfrager_name = "spieler", anfrage : bool = tru
 		else:
 			available = false
 			rpc_id(1, "spieler_available_update", false, false, get_tree().get_network_unique_id(), false) #False nach id geadded, unsicher
-			onlinelistnode.get_node("Zufall").set_text("Zufall")
+			onlinelistnode.get_node("Zufall").set_text("Random")
 			onlinelistnode.get_node("Zufall").disabled = false
 			onlinelistnode.anfrager_id = anfrager_id
 			onlinelistnode.anfrager_name = anfrager_name
@@ -123,7 +123,7 @@ remote func reagiert_auf_anfrage(anderer_id, anderer_name, accepted : bool, retu
 
 remote func random_verbinden(anderer_id : int, anderer_name : String, spieler2 : bool):
 	available = false
-	onlinelistnode.get_node("Zufall").set_text("Zufall")
+	onlinelistnode.get_node("Zufall").set_text("Random")
 	onlinelistnode.get_node("Zufall").disabled = false
 	onlinelistnode.get_node("ZufallAbbruch").visible = false
 	rpc_id(1, "spieler_available_update", false, true, get_tree().get_network_unique_id(), true)
@@ -222,7 +222,7 @@ remote func besetzdinger_senden(besetzdinger_array, schifflaengen_array, zweitsc
 
 remote func spiel_wurde_gewonnen():
 	$"/root/Welt/NotifyRect".visible = false
-	$"/root/Welt/Gewonnen/Label".set_text("Spiel verloren")
+	$"/root/Welt/Gewonnen/Label".set_text("You lost")
 	$"/root/Welt/Gewonnen/Tween".interpolate_property($"/root/Welt/Gewonnen", "rect_position:y", $"/root/Welt/Gewonnen".rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$"/root/Welt/Gewonnen/Tween".start()
 	$"/root/Welt".spielphase = 3
@@ -241,7 +241,7 @@ remote func anderer_spiel_verlassen():
 		$"/root/Welt".spielphase = 2
 		$"/root/Welt/WarteAufControl".visible = false
 		$"/root/Welt/NotifyRect/Control/NamenLabel".set_text(spielpartner_name)
-		$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("hat das Spiel verlassen")
+		$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("left the game")
 		$"/root/Welt/NotifyRect/Control/ListenButton".visible = true
 		$"/root/Welt/NotifyRect/Control/HintergrundButton".visible = false
 		$"/root/Welt/NotifyRect/Control/HintergrundButton2".visible = true

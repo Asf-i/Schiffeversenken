@@ -274,8 +274,8 @@ func gewinnercheck():
 		yield(get_tree().create_timer(0.5), "timeout")
 		spieler2_ist_dran = false
 		if spieler1_punkte == 19:
-			$Gewonnen/Label.set_text("Spiel gewonnen!")
-			$Gewonnen/Revanche.text = "Nochmal"
+			$Gewonnen/Label.set_text("You are the winner!")
+			$Gewonnen/Revanche.text = "Play Again"
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
 		$Gewonnen.visible = true

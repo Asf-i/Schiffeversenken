@@ -706,8 +706,8 @@ margin_right = -110.0
 margin_bottom = 314.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_styles/normal = SubResource( 20 )
-text = "Platziere die Schiffe
-im Feld"
+text = "Put your fleet
+into place"
 align = 1
 valign = 1
 __meta__ = {
@@ -851,6 +851,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1055,6 +1056,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1213,7 +1215,7 @@ margin_top = 443.999
 margin_right = 206.5
 margin_bottom = 579.999
 theme = ExtResource( 13 )
-text = "Revanche"
+text = "Revenge"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1228,7 +1230,7 @@ margin_top = 614.999
 margin_right = 206.5
 margin_bottom = 750.999
 theme = ExtResource( 13 )
-text = "Zur Liste"
+text = "Player List"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1251,8 +1253,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 8910.0
-margin_bottom = 15740.0
+margin_right = 270.0
+margin_bottom = 380.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1301,7 +1303,7 @@ margin_right = 517.0
 margin_bottom = 151.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_fonts/font = SubResource( 29 )
-text = "Warte auf"
+text = "Waiting for"
 align = 1
 clip_text = true
 __meta__ = {
@@ -1331,8 +1333,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 27270.0
-margin_bottom = 48480.0
+margin_right = 270.0
+margin_bottom = 480.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1416,7 +1418,7 @@ margin_right = 210.5
 margin_bottom = 369.0
 theme = ExtResource( 23 )
 custom_fonts/font = SubResource( 66 )
-text = "Zur Liste"
+text = "Player List"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1431,6 +1433,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1482,7 +1485,7 @@ margin_top = -85.0
 margin_right = 477.0
 margin_bottom = -3.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Revanche-Anfrage"
+text = "Revenge Request"
 align = 1
 valign = 1
 __meta__ = {
@@ -1569,12 +1572,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -207.0
+margin_left = -360.0
 margin_top = -91.0
-margin_right = 207.0
+margin_right = 360.0
 margin_bottom = -9.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Angerfagt..."
+text = "Request sent..."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1639,8 +1643,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 8910.0
-margin_bottom = 15840.0
+margin_right = 270.0
+margin_bottom = 479.998
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1693,13 +1697,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -314.5
-margin_top = -647.001
-margin_right = 314.5
-margin_bottom = -565.001
+margin_left = -445.0
+margin_top = -647.0
+margin_right = 445.0
+margin_bottom = -565.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Zur Liste?"
+text = "Return to player list?"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ja" type="Button" parent="ZumHauptmenu/Control"]
 anchor_left = 0.5

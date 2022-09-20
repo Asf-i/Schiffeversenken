@@ -630,8 +630,8 @@ margin_right = -110.0
 margin_bottom = 280.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 custom_styles/normal = SubResource( 37 )
-text = "Platziere die Schiffe
-im Feld"
+text = "Put your fleet
+into place"
 align = 1
 valign = 1
 __meta__ = {
@@ -937,6 +937,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1011,6 +1012,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1063,7 +1065,7 @@ margin_top = 46.999
 margin_right = 530.0
 margin_bottom = 109.999
 custom_fonts/font = SubResource( 25 )
-text = "ist dran"
+text = "get ready"
 align = 1
 valign = 1
 clip_text = true
@@ -1354,7 +1356,7 @@ margin_top = -822.0
 margin_right = 540.0
 margin_bottom = -740.0
 custom_fonts/font = SubResource( 40 )
-text = "hat gewonnen"
+text = "is the winner!"
 align = 1
 valign = 1
 __meta__ = {
@@ -1389,7 +1391,7 @@ margin_top = -138.002
 margin_right = 288.0
 margin_bottom = -45.188
 theme = ExtResource( 9 )
-text = "Revanche"
+text = "Retry"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1404,7 +1406,7 @@ margin_top = -138.002
 margin_right = -19.0001
 margin_bottom = -45.188
 theme = ExtResource( 9 )
-text = "Hauptmenü"
+text = "Main Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1441,8 +1443,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 270.0
 margin_top = 480.0
-margin_right = 16470.0
-margin_bottom = 29280.0
+margin_right = 270.0
+margin_bottom = 480.0
 rect_scale = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1479,12 +1481,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -314.5
-margin_top = -647.001
-margin_right = 314.5
-margin_bottom = -565.001
+margin_left = -385.5
+margin_top = -654.0
+margin_right = 385.5
+margin_bottom = -572.0
 custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-text = "Zum Hauptmenü?"
+text = "Return to title screen?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ja" type="Button" parent="ZumHauptmenu/Content"]
 anchor_left = 0.5

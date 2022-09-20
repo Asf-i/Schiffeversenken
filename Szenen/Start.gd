@@ -107,8 +107,8 @@ func _on_LineEdit_text_changed(new_text):
 			break
 	#Falls man nichts schreibt
 	if new_text == "":
-		$NameButton.text = "Spieler_1"
-		Autoload.savegame_data.sp1name = "Spieler_1"
+		$NameButton.text = "Player_1"
+		Autoload.savegame_data.sp1name = "Player_1"
 	else:
 		$NameButton.text = new_text
 		Autoload.savegame_data.sp1name = new_text
@@ -123,7 +123,7 @@ func _on_Spieler2_text_changed(new_text):
 			break
 	#Falls man nichts schreibt
 	if new_text == "":
-		Autoload.savegame_data.sp2name = "Spieler_2"
+		Autoload.savegame_data.sp2name = "Player_2"
 	else:
 		Autoload.savegame_data.sp2name = new_text
 

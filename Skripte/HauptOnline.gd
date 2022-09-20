@@ -199,7 +199,7 @@ func schiffe_fertig_platziert():
 func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Feld.gd
 	if spielphase != 3:
 		$NotifyRect/Control/NamenLabel.set_text(Server.spielpartner_name)
-		$NotifyRect/Control/InfoLabel.set_text("ist dran")
+		$NotifyRect/Control/InfoLabel.set_text("is planning")
 		$NotifyRect/Control/AnimationPlayer.play("open")
 		$NotifyRect.visible = true
 		yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
@@ -274,7 +274,7 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 	if spieler1_punkte == 19 or spieler2_punkte == 19:
 		spielphase = 3
 		yield(get_tree().create_timer(0.5), "timeout")
-		$Gewonnen/Label.set_text("Spiel gewonnen!")
+		$Gewonnen/Label.set_text("You are the winner!")
 		$Gewonnen/Tween.interpolate_property($Gewonnen, "rect_position:y", $Gewonnen.rect_position.y, 0, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Gewonnen/Tween.start()
 		Server.rpc_id(Server.spielpartner_id, "spiel_wurde_gewonnen")
@@ -282,10 +282,9 @@ func gewinnercheck(peimel : bool = true): #peimel ist da, dass, wenn man will, d
 	
 	if peimel == false:
 		if (spieler2_ist_dran && spieler2_punkte == 19) or (not spieler2_ist_dran && spieler1_punkte == 19):
-			$Gewonnen/Revanche.set_text("Nochmal")
+			$Gewonnen/Revanche.set_text("Play Again")
 		
 		$Gewonnen.visible = true
-#		$NochDaCheckTimer.start()
 		$Gewonnen/Control/FertigFelder.felder_platzieren()
 		$Gewonnen/Control/FertigFelder.felder_laden(not spieler2_ist_dran)
 		$Gewonnen/Control/FertigFelder.treffer_markieren(spieler2_ist_dran)
