@@ -34,7 +34,7 @@ func _on_server_disconnected():
 	get_tree().reload_current_scene()
 
 func _on_connection_failed():
-	$"/root/Start/VerbindeRect/Control/Label".set_text("fehlgeschlagen")
+	$"/root/Start/VerbindeRect/Control/Label".set_text("connection failed")
 	$"/root/Start/VerbindeRect/Control/Button".set_text("ok")
 
 func _on_connection_succeeded():
@@ -144,7 +144,7 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 				$"/root/Welt/WarteAufControl".visible = false
 			if $"/root/Welt".spieler2_ist_dran:
 				$"/root/Welt/NotifyRect/Control/NamenLabel".set_text(spielpartner_name)
-				$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
+				$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("is planning")
 				$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 				$"/root/Welt/NotifyRect".visible = true
 		else:
@@ -154,7 +154,7 @@ remote func bin_bereit(antwort : bool = false, noch_nicht_ready : bool = false):
 		$"/root/Welt/WarteAufControl".visible = false
 		if $"/root/Welt".spieler2_ist_dran:
 			$"/root/Welt/NotifyRect/Control/NamenLabel".set_text(spielpartner_name)
-			$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("ist dran")
+			$"/root/Welt/NotifyRect/Control/InfoLabel".set_text("is planning")
 			$"/root/Welt/NotifyRect/Control/AnimationPlayer".play("open")
 			$"/root/Welt/NotifyRect".visible = true
 	

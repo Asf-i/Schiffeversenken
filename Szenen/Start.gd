@@ -39,7 +39,7 @@ func _ready():
 func _on_Multiplayer_pressed():
 	if not swiping:
 		$Einstellungen.sonst_okay = false
-		$VerbindeRect/Control/Label.set_text("verbinde...")
+		$VerbindeRect/Control/Label.set_text("connecting...")
 		$VerbindeRect/Control/Button.set_text("X")
 		$VerbindeRect.visible = true
 		$VerbindeRect/VerbindeRectTimer.start()

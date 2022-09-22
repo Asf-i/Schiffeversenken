@@ -194,7 +194,7 @@ func schiffe_fertig_platziert():
 
 func spielerparatfeld_anzeigen(): #Wird nur so genannt, wegen der Funktion in Feld.gd
 	$NotifyRect/Control/NamenLabel.set_text("Mr.Computer")
-	$NotifyRect/Control/InfoLabel.set_text("ist dran")
+	$NotifyRect/Control/InfoLabel.set_text("is planning")
 	$NotifyRect/Control/AnimationPlayer.play("open")
 	$NotifyRect.visible = true
 	yield($NotifyRect/Control/AnimationPlayer, "animation_finished")
