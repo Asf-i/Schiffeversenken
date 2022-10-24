@@ -1,5 +1,5 @@
 extends Node
-
+var x : int = 0
 var spieler1_felder = []
 var spieler2_felder = []
 

@@ -55,10 +55,11 @@ func machen():
 		$Particles2D.emitting = true
 		$Explosion.pitch_scale = rand_range(0.8, 1.2)
 		$Explosion.play()
-		if Autoload.savegame_data.vibration:
-			Input.vibrate_handheld(50)
 		$"/root/Welt".vollschiffcheck(check_schiffli_name, name)
 		$"/root/Welt".gewinnercheck()
+		if Autoload.savegame_data.vibration:
+			yield(get_tree().create_timer(0.1), "timeout") #weil es sich anfühlt, als käme die Vibration zu früh
+			Input.vibrate_handheld(50)
 	else:
 		eigene_spieler_beschossene[name] = false
 		$Button.modulate = get_parent().verfehltfarbe
